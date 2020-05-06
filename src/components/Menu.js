@@ -209,9 +209,11 @@ class Menu extends Component {
 
     return (
       <aside className="container_menu" style={this.props.styles}>
-        <figure className="container_menu-logo">
-          <img src={Logo} alt="logo" className="menu_logo" />
-        </figure>
+        <NavLink to={'/uniaorio'}>
+          <figure className="container_menu-logo">
+            <img src={Logo} alt="logo" className="menu_logo" />
+          </figure>
+        </NavLink>
         <div className="container_menu-wrapper">
           {this.state.buttonList.map(({label, route}) => (
             <>
