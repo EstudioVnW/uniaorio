@@ -14,11 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-  "/uniaorio/precache-manifest.a43d0f1d61fd528acb525a0f54a4316d.js"
-=======
-  "/uniaorio/precache-manifest.32427e802d455b8283949a71bc5a2960.js"
->>>>>>> 26635b38914961f0b2b2f8498a72dc6a736bd6a0
+  "/uniaorio/precache-manifest.7e39bc2ea204ce8b1ae0050a38a9df19.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -39,5 +35,5 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/uniaorio/index.html"), {
   
-  blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
+  blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
 });

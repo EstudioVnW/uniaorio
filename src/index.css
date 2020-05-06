@@ -479,10 +479,14 @@ code {
 }
 
 .container_table-title {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 5;
   color: #FFFFFF;
 	font-size: 0.90rem;
 	background-color: #CC2E00;
-	padding-left: .7rem;
+  padding-left: .7rem;
 }
 
 @media(max-width: 648px) {
