@@ -330,8 +330,7 @@ code {
   }
   .container_grid {
     width: 100vw;
-    margin-top: 50vh;
-    margin-bottom: 25vh;
+    margin-top: 10rem;
   }
   .menu_logo {
     min-width: 50px;
@@ -343,10 +342,12 @@ code {
   }
 }
 
+
 @media(max-width: 648px) {
   .container_grid-content--header {
     max-width: 100%;
     align-items: center;
+    padding: 0.55rem 0;
   }
   .header_title {
     padding-top: 1rem;
@@ -365,6 +366,7 @@ code {
   padding-left: .55rem;
   font-size: 1.125rem;
   font-weight: 900;
+  padding: 0.15rem 0;
 }
 
 .container_header-sortBy {
@@ -388,7 +390,7 @@ code {
 	display: flex;
   flex-direction: column;
 	position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .header_sortBy-input {
@@ -432,10 +434,15 @@ code {
 }
 
 .table {
-  max-height: 84vh;
+  max-height: 82vh;
   overflow-y: scroll;
 }
 
+@media(max-width: 648px) {
+  .table{ 
+    max-height: 60vh;
+  }
+}
 .table::-webkit-scrollbar {
   width: 10px;
 }
