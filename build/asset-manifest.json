@@ -1,16 +1,28 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/uniaorio/static/css/main.4541f560.chunk.css",
     "main.js": "/uniaorio/static/js/main.a45f21c6.chunk.js",
     "main.js.map": "/uniaorio/static/js/main.a45f21c6.chunk.js.map",
+=======
+    "main.css": "/uniaorio/static/css/main.b48b62f3.chunk.css",
+    "main.js": "/uniaorio/static/js/main.e86ee487.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.e86ee487.chunk.js.map",
+>>>>>>> 9381ed869c0e676380f95ccc6f04d04bae711127
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.961753e3.chunk.js": "/uniaorio/static/js/2.961753e3.chunk.js",
     "static/js/2.961753e3.chunk.js.map": "/uniaorio/static/js/2.961753e3.chunk.js.map",
     "index.html": "/uniaorio/index.html",
+<<<<<<< HEAD
     "precache-manifest.2dbfe0801841f609d6e0495de3700b66.js": "/uniaorio/precache-manifest.2dbfe0801841f609d6e0495de3700b66.js",
     "service-worker.js": "/uniaorio/service-worker.js",
     "static/css/main.4541f560.chunk.css.map": "/uniaorio/static/css/main.4541f560.chunk.css.map",
+=======
+    "precache-manifest.3e08809bd08344e37cccb4ad423ea535.js": "/uniaorio/precache-manifest.3e08809bd08344e37cccb4ad423ea535.js",
+    "service-worker.js": "/uniaorio/service-worker.js",
+    "static/css/main.b48b62f3.chunk.css.map": "/uniaorio/static/css/main.b48b62f3.chunk.css.map",
+>>>>>>> 9381ed869c0e676380f95ccc6f04d04bae711127
     "static/js/2.961753e3.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.961753e3.chunk.js.LICENSE.txt",
     "static/media/check.svg": "/uniaorio/static/media/check.32d24ad4.svg",
     "static/media/densDiagonal.svg": "/uniaorio/static/media/densDiagonal.22c16143.svg",
@@ -26,7 +38,12 @@
   "entrypoints": [
     "static/js/runtime-main.cb743201.js",
     "static/js/2.961753e3.chunk.js",
+<<<<<<< HEAD
     "static/css/main.4541f560.chunk.css",
     "static/js/main.a45f21c6.chunk.js"
+=======
+    "static/css/main.b48b62f3.chunk.css",
+    "static/js/main.e86ee487.chunk.js"
+>>>>>>> 9381ed869c0e676380f95ccc6f04d04bae711127
   ]
 }

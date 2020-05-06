@@ -277,11 +277,20 @@ code {
 
 .container_grid {
   width: 82%;
-  height: 100%;
+  min-height: 100vh;
+  /* height: 100%; */
   display: flex;
   align-items: center;
   flex-direction: column;
   background: #fff;
+}
+
+@media (max-width: 768px) {
+  .container_grid {
+    min-height: 75vh;
+    width: 100vw;
+    /* margin-top: 10rem; */
+  }
 }
 
 .container_grid-content {
@@ -312,7 +321,7 @@ code {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 12;
   }
   .container_menu-wrapper {
     position: fixed;
@@ -328,11 +337,6 @@ code {
     flex-direction: column;
     max-width: 50%;
   }
-  .container_grid {
-    width: 100vw;
-    margin-top: 50vh;
-    margin-bottom: 25vh;
-  }
   .menu_logo {
     min-width: 50px;
     width: 30%;
@@ -343,10 +347,12 @@ code {
   }
 }
 
+
 @media(max-width: 648px) {
   .container_grid-content--header {
     max-width: 100%;
     align-items: center;
+    padding: 0.55rem 0;
   }
   .header_title {
     padding-top: 1rem;
@@ -365,6 +371,7 @@ code {
   padding-left: .55rem;
   font-size: 1.125rem;
   font-weight: 900;
+  padding: 0.15rem 0;
 }
 
 .container_header-sortBy {
@@ -388,7 +395,7 @@ code {
 	display: flex;
   flex-direction: column;
 	position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .header_sortBy-input {
@@ -420,6 +427,13 @@ code {
 	cursor: pointer;
 }
 
+@media(max-width: 648px) {
+  .sortBy_selectedItem {
+    overflow-y: scroll;
+    height: 50vh;
+  }
+}
+
 .sortBy_selectedItem-text {
   padding: .8rem 1rem .8rem;
   font-size: 0.85rem;
@@ -432,10 +446,15 @@ code {
 }
 
 .table {
-  max-height: 84vh;
+  max-height: 82vh;
   overflow-y: scroll;
 }
 
+@media(max-width: 648px) {
+  .table{ 
+    max-height: 60vh;
+  }
+}
 .table::-webkit-scrollbar {
   width: 10px;
 }
@@ -496,12 +515,14 @@ code {
 }
 
 .container_table-loader {
-  margin-top: 10rem;
   display: flex;
   justify-content: center;
+  align-self: center;
+  margin: 10rem 0;
 }
 
 .table-loader {
+  min-width: 50px;
   width: 4%;
 }
 
@@ -519,5 +540,3 @@ code {
 .container_table-text--neighborhood {
   text-align: left;
 }
-
-/* GRID */

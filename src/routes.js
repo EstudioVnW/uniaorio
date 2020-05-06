@@ -10,9 +10,9 @@ import Grid from './screens/Grid';
 const Routes = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route exact path='/' component={HumanitarianMap} />
+			{/* <Route exact path='/' component={HumanitarianMap} /> */}
 			<Route exact path='/uniaorio' component={HumanitarianMap} />
-      <Route path='/statistics' component={Grid} />
+			<Route path='/uniaorio/statistics' component={Grid} />
 			{/* <Route path='/statistics' component={Statistics} /> */}
 		</Switch>
 	</BrowserRouter>
