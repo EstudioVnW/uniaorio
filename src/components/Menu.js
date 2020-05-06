@@ -16,11 +16,11 @@ class Menu extends Component {
     buttonList: [
       {
         label: "Mapeamento",
-        route: "/"
+        route: "/uniaorio"
       },
       {
         label: "Estatísticas por Bairro",
-        route: "/statistics"
+        route: "/uniaorio/statistics"
       },      
     ],
     mappingList: [
