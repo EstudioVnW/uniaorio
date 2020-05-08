@@ -24,7 +24,7 @@ class HumanitarianMap extends Component {
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/draft',
+      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom
     });
@@ -37,29 +37,31 @@ class HumanitarianMap extends Component {
       });
     });
 
-    map.on('click', 'ongs-lindas', (e) => {
+    let popup;
+
+    map.on('mouseenter', 'ongs-lindas', (e) => {
       if (e.features) {
         let coordinates = e.features[0].geometry.coordinates.slice();
         let title = e.features[0].properties.title;
-        let address = e.features[0].properties.address;
+        // let address = e.features[0].properties.address;
+        let demand = e.features[0].properties.demand;
         
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
         
-        new mapboxgl.Popup()
+        popup = new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`<div><p>Nome: ${title}</p><p>Endereço: ${address}</p></div>`)
+        .setHTML(`<div><p><strong>Nome:</strong> ${title}</p><p><strong>Demanda de cestas:</strong> ${demand.split('.')[0]}</p></div>`)
         .addTo(map);
+        map.getCanvas().style.cursor = 'pointer';
+        return popup;
       } return null;
-    });
-    
-    map.on('mouseenter', 'ongs-lindas', () => {
-      map.getCanvas().style.cursor = 'pointer';
     });
 
     map.on('mouseleave', 'ongs-lindas', () => {
       map.getCanvas().style.cursor = '';
+      popup.remove();
     });
 
     map.addControl(new mapboxgl.NavigationControl());
