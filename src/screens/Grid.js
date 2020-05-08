@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 // Libs
 import React, { Component } from 'react';
 
@@ -212,6 +213,11 @@ class Grid extends Component {
     }
   }
 
+  convertValue = (value) => {
+    let item = value * 1000;
+    return item.toLocaleString('pt-BR');
+  }
+
   render() {
     const { selectedValue, isDropdownSelected, selectedItems, tableTitles, neighborhoodData } = this.state;
     return (
@@ -269,7 +275,7 @@ class Grid extends Component {
                   {neighborhoodData.map((item, index) => (
                     <tr key={index} className="container_table-tr">
                       <td className="container_table-text container_table-text--neighborhood">{item._source.Bairro}</td>
-                      <td className="container_table-text">R$ {item._source.Renda_per_capita_sal_min*1000},00</td>
+                      <td className="container_table-text">R$ {this.convertValue(item._source.Renda_per_capita_sal_min)}</td>
                       <td className="container_table-text">{item._source.CasosConfirmados}</td>
                       <td className="container_table-text">{item._source.Obitos}</td>
                       <td className="container_table-text">{item._source.cestas_demandadas}</td>
