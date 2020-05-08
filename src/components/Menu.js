@@ -206,7 +206,6 @@ class Menu extends Component {
   
   
   render() {
-
     return (
       <aside className="container_menu" style={this.props.styles}>
         <NavLink to={'/uniaorio'}>

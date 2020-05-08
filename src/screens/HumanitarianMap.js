@@ -24,7 +24,7 @@ class HumanitarianMap extends Component {
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/draft',
+      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4',
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom
     });
@@ -53,22 +53,6 @@ class HumanitarianMap extends Component {
         .addTo(map);
       } return null;
     });
-
-    // MARCADOR!!!
-    var marker = new mapboxgl.Marker({
-      draggable: true
-    })
-      .setLngLat([0, 0])
-      .addTo(map);
-      
-    function onDragEnd() {
-      var lngLat = marker.getLngLat();
-
-      const teste = `longitude ${lngLat.lng}, latitude ${lngLat.lat}` 
-      return teste
-    }
-      
-    marker.on('dragend', onDragEnd);
     
     map.on('mouseenter', 'ongs-lindas', () => {
       map.getCanvas().style.cursor = 'pointer';
@@ -77,7 +61,6 @@ class HumanitarianMap extends Component {
     map.on('mouseleave', 'ongs-lindas', () => {
       map.getCanvas().style.cursor = '';
     });
-
 
     map.addControl(new mapboxgl.NavigationControl());
   }
