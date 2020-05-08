@@ -21,8 +21,10 @@ code {
 } */
 
 .mapboxgl-popup-content {
-  background-color: pink;
-  color: black;
+  padding: 1rem;
+  font-size: .9rem;
+  background-color: #333;
+  color: #fff;
 }
 
 .mapContainer {
