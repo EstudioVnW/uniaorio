@@ -42,6 +42,7 @@ class HumanitarianMap extends Component {
         let coordinates = e.features[0].geometry.coordinates.slice();
         let title = e.features[0].properties.title;
         let address = e.features[0].properties.address;
+        let demand = e.features[0].properties.demand;
         
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -49,7 +50,7 @@ class HumanitarianMap extends Component {
         
         new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`<div><p>Nome: ${title}</p><p>Endereço: ${address}</p></div>`)
+        .setHTML(`<div><p><strong>Nome:</strong> ${title}</p><p><strong>Endereço:</strong> ${address}</p><p><strong>Demanda de cestas:</strong> ${demand.split('.')[0]}</p></div>`)
         .addTo(map);
       } return null;
     });

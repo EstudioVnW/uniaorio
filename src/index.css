@@ -27,6 +27,10 @@ code {
   color: #fff;
 }
 
+.mapboxgl-popup-content p {
+  margin: .5rem 0;
+}
+
 .mapContainer {
   position: absolute;
   top: 0;
