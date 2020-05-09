@@ -51,19 +51,18 @@ class Grid extends Component {
   }
 
   async fetchNeighborhood() {
-
     try {
 
       this.setState({ isFetching: true });
 
       const response = await getAllNeighborhood();
-
+      console.log('response.data.data', response.data.data)
       const data = response.data.data.map((item) => ({
         ...item,
         _source: {
           ...item._source,
-          cestas_doadas: !item._source["Quantidade de cestas doadas"] ? 0 : parseInt(item._source["Quantidade de cestas doadas"]),
-          cestas_demandadas: !item._source["Quantidade de cestas demandadas"] ? 0 : parseInt(item._source["Quantidade de cestas demandadas"]),
+          cestas_doadas: !item._source.delivered ? 0 : parseInt(item._source.delivered),
+          cestas_demandadas: !item._source.demands ? 0 : parseInt(item._source.demands),
           Renda_per_capita_sal_min: parseFloat(item._source.Renda_per_capita_sal_min.split(',').join('.'))
         }
       }))
@@ -87,13 +86,13 @@ class Grid extends Component {
     });
 
     if (item === "Bairros A-Z") {
-      const order = this.state.neighborhoodData.sort((item, b) => item._source.Bairro.localeCompare(b._source.Bairro))
+      const order = this.state.neighborhoodData.sort((item, b) => item._source.district.localeCompare(b._source.district))
 
       this.setState({ neighborhoodData: order })
     }
 
     if (item === "Bairros Z-A") {
-      const order = this.state.neighborhoodData.sort((item, b) => item._source.Bairro.localeCompare(b._source.Bairro)).reverse()
+      const order = this.state.neighborhoodData.sort((item, b) => item._source.district.localeCompare(b._source.district)).reverse()
 
       this.setState({ neighborhoodData: order })
     }
@@ -274,7 +273,7 @@ class Grid extends Component {
                 <tbody>
                   {neighborhoodData.map((item, index) => (
                     <tr key={index} className="container_table-tr">
-                      <td className="container_table-text container_table-text--neighborhood">{item._source.Bairro}</td>
+                      <td className="container_table-text container_table-text--neighborhood">{item._source.district}</td>
                       <td className="container_table-text">R$ {this.convertValue(item._source.Renda_per_capita_sal_min)}</td>
                       <td className="container_table-text">{item._source.CasosConfirmados}</td>
                       <td className="container_table-text">{item._source.Obitos}</td>
