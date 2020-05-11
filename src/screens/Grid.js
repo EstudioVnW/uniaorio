@@ -277,8 +277,8 @@ class Grid extends Component {
                       <td className="container_table-text">R$ {this.convertValue(item._source.Renda_per_capita_sal_min)}</td>
                       <td className="container_table-text">{item._source.CasosConfirmados}</td>
                       <td className="container_table-text">{item._source.Obitos}</td>
-                      <td className="container_table-text">{item._source.cestas_demandadas}</td>
-                      <td className="container_table-text">{item._source.cestas_doadas}</td>
+                      <td className="container_table-text">{item._source.cestas_demandadas.toLocaleString('pt-BR')}</td>
+                      <td className="container_table-text"> {item._source.cestas_doadas.toLocaleString('pt-BR')}</td>
                       {item && item._source.cestas_demandadas && item._source.cestas_doadas ? (
                         <td className="container_table-text">
                           {(item._source.cestas_doadas * 100 / item._source.cestas_demandadas).toFixed(0)}%

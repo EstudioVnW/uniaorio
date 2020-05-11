@@ -190,12 +190,12 @@ class Menu extends Component {
       {this.state.mappingList.map((item) => (
         <>
           <div key={item} className="container_mapping-item">
-            <div
+            {/* <div
               className="mapping_item-checkbox"
               onClick={() => this.handleMappingCheck(item)}
             >
               {this.renderCheckIcon(item)}
-            </div>
+            </div> */}
             <p className="mapping_item-text">{item}</p>
           </div>
           {this.renderDataItem(item)}
