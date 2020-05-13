@@ -11,6 +11,13 @@ import densHorizontal from '../assets/densHorizontal.svg';
 import densVertical from '../assets/densVertical.svg';
 import densDiagonal from '../assets/densDiagonal.svg'
 
+import filterIcon1 from '../assets/filter-icon-1.svg'
+import filterIcon2 from '../assets/filter-icon-2.svg'
+import filterIcon3 from '../assets/filter-icon-3.svg'
+import filterIcon4 from '../assets/filter-icon-4.svg'
+import filterIcon5 from '../assets/filter-icon-5.svg'
+import filterIcon6 from '../assets/filter-icon-6.svg'
+
 class Menu extends Component {
   state = {
     buttonList: [
@@ -207,39 +214,74 @@ class Menu extends Component {
   
   render() {
     return (
-      <aside className="container_menu" style={this.props.styles}>
-        <NavLink to={'/uniaorio'}>
-          <figure className="container_menu-logo">
-            <img src={Logo} alt="logo" className="menu_logo" />
-          </figure>
-        </NavLink>
-        <div className="container_menu-wrapper">
-          {this.state.buttonList.map(({label, route}) => (
-            <>
-              <NavLink
-                key={label}
-                className="container_menu-button"
-                exact to={route}
-                activeClassName="menu_button-active"
-                style={{ 
-                  backgroundColor: this.state.isSelectedButton === label && '#CC2E00',
-                  justifyContent: label === 'Mapeamento' && 'space-between'
-                }}
-                onClick={label === 'Mapeamento'
-                  ? () => this.handleIsMappingOpen(label)
-                  : () => this.handleSelected(label)
-                }
-              >
-                {label}
-                {label === 'Mapeamento' && this.state.isMapping === false ? (
-                  <img src={Dropdown} alt="dropdown" className="menu_drop" />
-                ) : (label === 'Mapeamento' && <img src={DropdownUp} alt="dropUp" className="menu_drop" />)}
-              </NavLink>
-              {label === "Mapeamento" ? this.state.isMapping && this.renderMapping() : null}
-            </>
-          ))}
+      <nav className="menu">
+        <div className="menu-container">
+          <div className="menu-logo">
+            <NavLink to={'/uniaorio'}>
+              <img src={Logo} alt="logo"/>
+            </NavLink>
+            <div>
+              <p>Última atualização</p>
+              <p className="text-red">17:23 - 08.05.20</p>
+            </div>
+          </div>
+          <ul className="menu-filters">
+            <li>
+              <img src={filterIcon1} alt=""/>
+              <p>Socio-econômico</p>
+            </li>
+            <li>
+              <img src={filterIcon2} alt=""/>
+              <p>Densidade demográfica</p>
+            </li>
+            <li>
+              <img src={filterIcon3} alt=""/>
+              <p>Solidariedade</p>
+            </li>
+            <li>
+              <img src={filterIcon4} alt=""/>
+              <p>Covid-19</p>
+            </li>
+            <li>
+              <img src={filterIcon5} alt=""/>
+              <p>ONG's Parceiras</p>
+            </li>
+            <li>
+              <img src={filterIcon6} alt=""/>
+              <p>Painel de transparência</p>
+            </li>
+          </ul>
+          <button>
+            Faça uma doação
+          </button>
+          {/* <div className="container_menu-wrapper">
+            {this.state.buttonList.map(({label, route}) => (
+              <>
+                <NavLink
+                  key={label}
+                  className="container_menu-button"
+                  exact to={route}
+                  activeClassName="menu_button-active"
+                  style={{ 
+                    backgroundColor: this.state.isSelectedButton === label && '#CC2E00',
+                    justifyContent: label === 'Mapeamento' && 'space-between'
+                  }}
+                  onClick={label === 'Mapeamento'
+                    ? () => this.handleIsMappingOpen(label)
+                    : () => this.handleSelected(label)
+                  }
+                >
+                  {label}
+                  {label === 'Mapeamento' && this.state.isMapping === false ? (
+                    <img src={Dropdown} alt="dropdown" className="menu_drop" />
+                  ) : (label === 'Mapeamento' && <img src={DropdownUp} alt="dropUp" className="menu_drop" />)}
+                </NavLink>
+                {label === "Mapeamento" ? this.state.isMapping && this.renderMapping() : null}
+              </>
+            ))}
+          </div> */}
         </div>
-    </aside>
+      </nav>
     );
   }
 }

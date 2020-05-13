@@ -16,8 +16,12 @@ class HumanitarianMap extends Component {
     this.state = {
       lng: -43.2096,
       lat:  -22.9035,
-      zoom: 10,
+      zoom: 11,
       currentOng: '',
+      // bounds: [
+      //   [-74.04728500751165, 40.68392799015035], // Southwest coordinates
+      //   [-73.91058699000139, 40.87764500765852] // Northeast coordinates
+      // ],
     };
   }
 
@@ -26,14 +30,20 @@ class HumanitarianMap extends Component {
       container: this.mapContainer,
       style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
       center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
+      zoom: this.state.zoom,
+      minZoom: 7,
+      maxZoom: 14,
+      maxBounds: [
+        [-45.858984, -23.553521],
+        [-40.50585, -20.715985]]
+      // maxBounds: this.state.bounds
     });
 
     map.on('move', () => {
       this.setState({
         lng: map.getCenter().lng.toFixed(4),
         lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
+        zoom: map.getZoom().toFixed(2),
       });
     });
 
@@ -77,16 +87,14 @@ class HumanitarianMap extends Component {
   render() {
     return (
       <div  id="map">
-        <div>
-          <div className='container_map-rio'>
-            <p className='map_rio-text'>
-              riocontra
-            </p>
-            <p className='map_rio-text' style={{color: '#F05123'}}>corona</p>
-          </div>
-          {/* <div className='sidebarStyle'>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
-          <Menu styles={{position: 'absolute', top: 0, left: 0, zIndex: 3}} />
-        </div>
+        {/* <div className='container_map-rio'>
+          <p className='map_rio-text'>
+            riocontra
+          </p>
+          <p className='map_rio-text' style={{color: '#F05123'}}>corona</p>
+        </div> */}
+        {/* <div className='sidebarStyle'>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
+        <Menu/>
         <div ref={el => this.mapContainer = el} className="mapContainer"/>
       </div>
     );
