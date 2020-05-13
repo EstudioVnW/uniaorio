@@ -57,11 +57,11 @@ img {
 }
 a:active,
 a:hover {
-  color: #ffb8d1;
+  color: #F05123;
 }
 
 ::selection {
-  background: #ffb8d1;
+  background: #F05123;
   color: #fff;
 }
 
@@ -175,7 +175,7 @@ a:hover {
 
 .mapContainer {
   position: absolute;
-  top: 0;
+  top: 90px;
   right: 0;
   left: 0;
   bottom: 0;
