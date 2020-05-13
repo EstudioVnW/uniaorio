@@ -17,41 +17,39 @@ class HumanitarianMap extends Component {
     this.state = {
       lng: -43.2096,
       lat:  -22.9035,
-      zoom: 11,
+      zoom: 12,
       currentOng: '',
       selectedMenuItem: '',
       showSubtitle: false,
     };
+
+    this.map = undefined;
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
-      minZoom: 7,
-      maxZoom: 14,
-      maxBounds: [
-        [-45.858984, -23.553521],
-        [-40.50585, -20.715985]]
-    });
     const { selectedMenuItem } = this.state;
 
     if (prevState.selectedMenuItem !== selectedMenuItem) {
-      console.log('teste');
       if (this.state.selectedMenuItem.title === 'Socio-econômico') {
-        map.on('load', () => {
-          map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
-        });
-      } else {
-        return null
+        this.map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
+        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'none');
+        this.map.setLayoutProperty('ongs-icons', 'visibility', 'none');
+      }
+      if (this.state.selectedMenuItem.title === 'Densidade demográfica') {
+        this.map.setLayoutProperty('ibge-renda', 'visibility', 'none');
+        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'visible');
+        this.map.setLayoutProperty('ongs-icons', 'visibility', 'none');
+      }
+      if (this.state.selectedMenuItem.title === "ONG's Parceiras") {
+        this.map.setLayoutProperty('ibge-renda', 'visibility', 'none');
+        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'none');
+        this.map.setLayoutProperty('ongs-icons', 'visibility', 'visible');
       }
     } 
   }
 
   componentDidMount() {
-    const map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
       center: [this.state.lng, this.state.lat],
@@ -68,17 +66,9 @@ class HumanitarianMap extends Component {
       showSubtitle: false,
     });
 
-    map.on('move', () => {
-      this.setState({
-        lng: map.getCenter().lng.toFixed(4),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2),
-      });
-    });
-
     let popup;
 
-    map.on('mouseenter', 'ongs-coords-delivered-demands', (e) => {
+    this.map.on('mouseenter', 'ongs-coords-delivered-demands', (e) => {
       if (e.features) {
         const currentOng = e.features[0].properties
         let coordinates = e.features[0].geometry.coordinates.slice();
@@ -93,18 +83,18 @@ class HumanitarianMap extends Component {
         popup = new mapboxgl.Popup()
           .setLngLat(coordinates)
           .setHTML(`<div><p><strong>Nome:</strong> ${title}</p><p><strong>Demanda de cestas:</strong> ${demand}</p><p><strong>Cestas recebidas:</strong> ${delivered}</p></div>`)
-          .addTo(map);
-        map.getCanvas().style.cursor = 'pointer';
+          .addTo(this.map);
+        this.map.getCanvas().style.cursor = 'pointer';
         return popup;
       } return null;
     });
 
-    map.on('mouseleave', 'ongs-coords-delivered-demands', () => {
-      map.getCanvas().style.cursor = '';
+    this.map.on('mouseleave', 'ongs-coords-delivered-demands', () => {
+      this.map.getCanvas().style.cursor = '';
       popup.remove();
     });
 
-    map.addControl(new mapboxgl.NavigationControl());
+    this.map.addControl(new mapboxgl.NavigationControl());
   }
 
   handleClose = () => {
@@ -128,13 +118,6 @@ class HumanitarianMap extends Component {
   render() {
     return (
       <div id="map">
-        {/* <div className='container_map-rio'>
-          <p className='map_rio-text'>
-            riocontra
-          </p>
-          <p className='map_rio-text' style={{color: '#F05123'}}>corona</p>
-        </div> */}
-        {/* <div className='sidebarStyle'>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
         <Menu
           selectMenuItem={this.handleMenuItem}
           selectedItem={this.state.selectedMenuItem} />
