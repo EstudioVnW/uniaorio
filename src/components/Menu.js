@@ -5,18 +5,24 @@ import { NavLink } from 'react-router-dom';
 // Images
 import Check from '../assets/check.svg';
 import Logo from '../assets/logo.png';
-import Dropdown from '../assets/dropdownWhite.svg';
-import DropdownUp from '../assets/dropUp.svg';
+// import Dropdown from '../assets/dropdownWhite.svg';
+// import DropdownUp from '../assets/dropUp.svg';
 import densHorizontal from '../assets/densHorizontal.svg';
 import densVertical from '../assets/densVertical.svg';
 import densDiagonal from '../assets/densDiagonal.svg'
 
-import filterIcon1 from '../assets/filter-icon-1.svg'
-import filterIcon2 from '../assets/filter-icon-2.svg'
-import filterIcon3 from '../assets/filter-icon-3.svg'
-import filterIcon4 from '../assets/filter-icon-4.svg'
-import filterIcon5 from '../assets/filter-icon-5.svg'
-import filterIcon6 from '../assets/filter-icon-6.svg'
+import filterIcon1 from '../assets/filter-icon-1.svg';
+import filterIcon2 from '../assets/filter-icon-2.svg';
+import filterIcon3 from '../assets/filter-icon-3.svg';
+import filterIcon4 from '../assets/filter-icon-4.svg';
+import filterIcon5 from '../assets/filter-icon-5.svg';
+// import filterIcon6 from '../assets/filter-icon-6.svg';
+import filterSelectedIcon1 from '../assets/filter-selected-icon-1.svg';
+import filterSelectedIcon2 from '../assets/filter-selected-icon-2.svg';
+import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
+import filterSelectedIcon4 from '../assets/filter-selected-icon-4.svg';
+import filterSelectedIcon5 from '../assets/filter-selected-icon-5.svg';
+// import filterSelectedIcon6 from '../assets/filter-selected-icon-6.svg';
 
 class Menu extends Component {
   state = {
@@ -95,6 +101,51 @@ class Menu extends Component {
         color: '#00ACAC',
         text: '10 cestas demandadas',
       },
+    ],
+    menuItems: [
+      {
+        image: filterIcon1,
+        selectedImage: filterSelectedIcon1,
+        title: 'Socio-econômico',
+        color: '#F05123',
+        text: 'socio',
+        layer: 'ibge-renda',
+      },
+      {
+        image: filterIcon2,
+        selectedImage: filterSelectedIcon2,
+        title: 'Densidade demográfica',
+        color: '#595959',
+        text: 'densidade',
+      },
+      {
+        image: filterIcon3,
+        selectedImage: filterSelectedIcon3,
+        title: 'Solidariedade',
+        color: '#0ACF59',
+        text: 'solid',
+      },
+      {
+        image: filterIcon4,
+        selectedImage: filterSelectedIcon4,
+        title: 'Covid-19',
+        color: '#4DA9FF',
+        text: 'covid',
+      },
+      {
+        image: filterIcon5,
+        selectedImage: filterSelectedIcon5,
+        title: "ONG's Parceiras",
+        color: '#F0184F',
+        text: 'ongs',
+      },
+      // {
+      //   image: filterIcon6,
+      //   selectedImage: filterSelectedIcon5,
+      //   title: 'Painel de transparência',
+      //   color: '#F0184F',
+      //   text: 'painel',
+      // }
     ],
     isMapping: false,
     isSelectedButton: '',
@@ -211,7 +262,26 @@ class Menu extends Component {
     </div>
   )
   
-  
+  renderMenuItem = () => {
+    const { menuItems } = this.state;
+    return menuItems.map(item => {
+      const currentItem = this.props.selectedItem === item;
+      const setColor = currentItem ? item.color : '#595959';
+      const setFont = currentItem ? '600' : '200';
+      const setDisplay = currentItem ? 'flex' : 'none';
+
+      return (
+      <li
+        key={item.title}
+        onClick={() => this.props.selectMenuItem(item)}
+        style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`}}>
+        <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
+        <p>{item.title}</p>
+        <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
+      </li>
+    )}
+    );
+  }
   render() {
     return (
       <nav className="menu">
@@ -226,30 +296,7 @@ class Menu extends Component {
             </div>
           </div>
           <ul className="menu-filters">
-            <li>
-              <img src={filterIcon1} alt=""/>
-              <p>Socio-econômico</p>
-            </li>
-            <li>
-              <img src={filterIcon2} alt=""/>
-              <p>Densidade demográfica</p>
-            </li>
-            <li>
-              <img src={filterIcon3} alt=""/>
-              <p>Solidariedade</p>
-            </li>
-            <li>
-              <img src={filterIcon4} alt=""/>
-              <p>Covid-19</p>
-            </li>
-            <li>
-              <img src={filterIcon5} alt=""/>
-              <p>ONG's Parceiras</p>
-            </li>
-            <li>
-              <img src={filterIcon6} alt=""/>
-              <p>Painel de transparência</p>
-            </li>
+            {this.renderMenuItem()}
           </ul>
           <button>
             Faça uma doação

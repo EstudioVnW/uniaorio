@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 // Components
-import Menu from '../components/Menu'
+import Menu from '../components/Menu';
+import Subtitle from '../components/ModalSubtitle';
 
 // Images
 // import MarkerIcon from '../assets/marker.svg';
@@ -18,11 +19,35 @@ class HumanitarianMap extends Component {
       lat:  -22.9035,
       zoom: 11,
       currentOng: '',
-      // bounds: [
-      //   [-74.04728500751165, 40.68392799015035], // Southwest coordinates
-      //   [-73.91058699000139, 40.87764500765852] // Northeast coordinates
-      // ],
+      selectedMenuItem: '',
+      showSubtitle: false,
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // const map = new mapboxgl.Map({
+    //   container: this.mapContainer,
+    //   style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
+    //   center: [this.state.lng, this.state.lat],
+    //   zoom: this.state.zoom,
+    //   minZoom: 7,
+    //   maxZoom: 14,
+    //   maxBounds: [
+    //     [-45.858984, -23.553521],
+    //     [-40.50585, -20.715985]]
+    // });
+    const { selectedMenuItem } = this.state;
+
+    if (prevState.selectedMenuItem !== selectedMenuItem ) {
+      console.log('teste');
+      // if (this.state.selectedMenuItem.title === 'Socio-econômico') {
+      //   map.on('load', () => {
+      //     map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
+      //   });
+      // } else {
+      //   return null
+      // }
+    } 
   }
 
   componentDidMount() {
@@ -36,7 +61,11 @@ class HumanitarianMap extends Component {
       maxBounds: [
         [-45.858984, -23.553521],
         [-40.50585, -20.715985]]
-      // maxBounds: this.state.bounds
+    });
+
+    this.setState({
+      selectedMenuItem: '',
+      showSubtitle: false,
     });
 
     map.on('move', () => {
@@ -84,9 +113,21 @@ class HumanitarianMap extends Component {
     })
   }
 
+  handleMenuItem = (item) => {
+    this.setState({
+      selectedMenuItem: item,
+    });
+  }
+
+  handleModalSubtitle = () => {
+    this.setState({
+      showSubtitle: !this.state.showSubtitle,
+    });
+  }
+
   render() {
     return (
-      <div  id="map">
+      <div id="map">
         {/* <div className='container_map-rio'>
           <p className='map_rio-text'>
             riocontra
@@ -94,7 +135,13 @@ class HumanitarianMap extends Component {
           <p className='map_rio-text' style={{color: '#F05123'}}>corona</p>
         </div> */}
         {/* <div className='sidebarStyle'>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
-        <Menu/>
+        <Menu
+          selectMenuItem={this.handleMenuItem}
+          selectedItem={this.state.selectedMenuItem} />
+        <Subtitle
+          handleModalSubtitle={this.handleModalSubtitle}
+          showSubtitle={this.state.showSubtitle}
+          selectedItem={this.state.selectedMenuItem}/>
         <div ref={el => this.mapContainer = el} className="mapContainer"/>
       </div>
     );
