@@ -25,28 +25,28 @@ class HumanitarianMap extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // const map = new mapboxgl.Map({
-    //   container: this.mapContainer,
-    //   style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
-    //   center: [this.state.lng, this.state.lat],
-    //   zoom: this.state.zoom,
-    //   minZoom: 7,
-    //   maxZoom: 14,
-    //   maxBounds: [
-    //     [-45.858984, -23.553521],
-    //     [-40.50585, -20.715985]]
-    // });
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
+      center: [this.state.lng, this.state.lat],
+      zoom: this.state.zoom,
+      minZoom: 7,
+      maxZoom: 14,
+      maxBounds: [
+        [-45.858984, -23.553521],
+        [-40.50585, -20.715985]]
+    });
     const { selectedMenuItem } = this.state;
 
-    if (prevState.selectedMenuItem !== selectedMenuItem ) {
+    if (prevState.selectedMenuItem !== selectedMenuItem) {
       console.log('teste');
-      // if (this.state.selectedMenuItem.title === 'Socio-econômico') {
-      //   map.on('load', () => {
-      //     map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
-      //   });
-      // } else {
-      //   return null
-      // }
+      if (this.state.selectedMenuItem.title === 'Socio-econômico') {
+        map.on('load', () => {
+          map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
+        });
+      } else {
+        return null
+      }
     } 
   }
 
