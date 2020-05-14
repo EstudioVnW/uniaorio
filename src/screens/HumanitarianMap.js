@@ -31,7 +31,7 @@ class HumanitarianMap extends Component {
     let popup;
 
     this.map.on('mouseenter', layer.layerName, (e) => {
-      console.log(e.features[0])
+      // console.log(e.features[0])
 
       // const isPoligon = layer.layerName === 'ibge-renda' || layer.layerName === 'ibge-populacao';
       const isIcon = layer.layerName === 'ongs-icons';
@@ -46,14 +46,25 @@ class HumanitarianMap extends Component {
         }
       }
 
-      // const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
-      // const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
-      // const renda = `<p>R$ ${formatRenda}</p>`;
+      const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
+      const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
+      const densidade = `<h2>${e.features[0].properties.dens_ha}</h2>`;
+      const renda = `<p>R$ ${formatRenda}</p>`;
+      let style;
+
+      console.log(e.features[0].properties);
+
+      if (layer.layerName === 'ibge-renda') {
+        style = `${bairro}${renda}<small>Renda média</small>`
+      } else if (layer.layerName === 'ibge-populacao') {
+        style = `${bairro}${densidade}<small>Densidade Populacional</small>`
+      } else if (layer.layerName === 'layer-bairro-covid') {
+        style = `${bairro}<div><span>${densidade}<small>Confirmados</small></span><span>${densidade}<small>Óbitos</small></span></div>`
+      }
 
       popup = new mapboxgl.Popup()
         .setLngLat(isIcon ? iconCoord : e.lngLat)
-        .setHTML(layer.layerName)
-        // .setHTML(`${bairro}${renda}<small>Renda média</small>`)
+        .setHTML(style)
         .addTo(this.map);
 
       return popup;

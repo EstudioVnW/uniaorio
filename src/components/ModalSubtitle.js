@@ -20,7 +20,7 @@ class Modal extends Component {
           <li>Acima de R$10.000,00</li>
         </ul>
       </div>
-      <p>Os tons mais escuros correspondem aos de maior <strong>renda per-capita</strong>. Já os mais claros correspondem aos de menor renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
+      <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
       <p>Esses dados foram retirados do SENSO-20, realizado pelo IBGE no ano de 2020.</p>
       <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
