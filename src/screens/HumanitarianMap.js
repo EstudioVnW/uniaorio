@@ -26,6 +26,28 @@ class HumanitarianMap extends Component {
     this.map = undefined;
   }
 
+  handlePopup = () => {
+    let popup;
+
+    this.map.on('mouseenter', 'ibge-renda', (e) => {
+      const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
+      const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
+      const renda = `<p>R$ ${formatRenda}</p>`;
+
+      popup = new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML(`${bairro}${renda}<small>Renda média</small>`)
+      .addTo(this.map);
+
+      return popup;
+    });
+
+    this.map.on('mouseleave', 'ibge-renda', () => {
+      this.map.getCanvas().style.cursor = '';
+      popup.remove();
+    });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { selectedMenuItem } = this.state;
 
@@ -34,6 +56,7 @@ class HumanitarianMap extends Component {
         this.map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
         this.map.setLayoutProperty('ibge-populacao', 'visibility', 'none');
         this.map.setLayoutProperty('ongs-icons', 'visibility', 'none');
+        this.handlePopup();
       }
       if (this.state.selectedMenuItem.title === 'Densidade demográfica') {
         this.map.setLayoutProperty('ibge-renda', 'visibility', 'none');
@@ -64,34 +87,6 @@ class HumanitarianMap extends Component {
     this.setState({
       selectedMenuItem: '',
       showSubtitle: false,
-    });
-
-    let popup;
-
-    this.map.on('mouseenter', 'ongs-coords-delivered-demands', (e) => {
-      if (e.features) {
-        const currentOng = e.features[0].properties
-        let coordinates = e.features[0].geometry.coordinates.slice();
-        let title = currentOng.title;
-        let delivered = currentOng.delivered > 0 ? currentOng.delivered : 0;
-        let demand = currentOng.demands > 0 ? currentOng.demands : 0;
-        
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-        
-        popup = new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(`<div><p><strong>Nome:</strong> ${title}</p><p><strong>Demanda de cestas:</strong> ${demand}</p><p><strong>Cestas recebidas:</strong> ${delivered}</p></div>`)
-          .addTo(this.map);
-        this.map.getCanvas().style.cursor = 'pointer';
-        return popup;
-      } return null;
-    });
-
-    this.map.on('mouseleave', 'ongs-coords-delivered-demands', () => {
-      this.map.getCanvas().style.cursor = '';
-      popup.remove();
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
