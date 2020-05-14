@@ -115,7 +115,7 @@ class Menu extends Component {
         image: filterIcon2,
         selectedImage: filterSelectedIcon2,
         title: 'Densidade demográfica',
-        color: '#595959',
+        color: '#6929CA',
         text: 'densidade',
       },
       {
