@@ -107,6 +107,7 @@ class Menu extends Component {
         image: filterIcon1,
         selectedImage: filterSelectedIcon1,
         title: 'Socio-econômico',
+        layerName: 'ibge-renda',
         color: '#F05123',
         text: 'socio',
       },
@@ -114,6 +115,7 @@ class Menu extends Component {
         image: filterIcon2,
         selectedImage: filterSelectedIcon2,
         title: 'Densidade demográfica',
+        layerName: 'ibge-populacao',
         color: '#6929CA',
         text: 'densidade',
       },
@@ -137,6 +139,7 @@ class Menu extends Component {
         title: "ONG's Parceiras",
         color: '#F0184F',
         text: 'ongs',
+        layerName: 'ongs-icons',
       },
       // {
       //   image: filterIcon6,
@@ -264,21 +267,21 @@ class Menu extends Component {
   renderMenuItem = () => {
     const { menuItems } = this.state;
     return menuItems.map(item => {
-      const currentItem = this.props.selectedItem === item;
+      const currentItem = this.props.selectedMenuItem.title === item.title;
       const setColor = currentItem ? item.color : '#595959';
       const setFont = currentItem ? '600' : '200';
       const setDisplay = currentItem ? 'flex' : 'none';
 
       return (
-      <li
-        key={item.title}
-        onClick={() => this.props.selectMenuItem(item)}
-        style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`}}>
-        <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
-        <p>{item.title}</p>
-        <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
-      </li>
-    )}
+        <li
+          key={item.title}
+          onClick={() => this.props.selectMenuItem(item)}
+          style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`}}>
+          <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
+          <p>{item.title}</p>
+          <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
+        </li>
+      )}
     );
   }
   render() {

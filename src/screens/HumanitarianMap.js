@@ -5,7 +5,8 @@ import mapboxgl from 'mapbox-gl';
 // Components
 import Menu from '../components/Menu';
 import Subtitle from '../components/ModalSubtitle';
-
+import filterIcon1 from '../assets/filter-icon-1.svg';
+import filterSelectedIcon1 from '../assets/filter-selected-icon-1.svg';
 // Images
 // import MarkerIcon from '../assets/marker.svg';
 
@@ -26,23 +27,39 @@ class HumanitarianMap extends Component {
     this.map = undefined;
   }
 
-  handlePopup = () => {
+  handlePopup = (layer) => {
     let popup;
 
-    this.map.on('mouseenter', 'ibge-renda', (e) => {
-      const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
-      const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
-      const renda = `<p>R$ ${formatRenda}</p>`;
+    this.map.on('mouseenter', layer.layerName, (e) => {
+      console.log(e.features[0])
+
+      // const isPoligon = layer.layerName === 'ibge-renda' || layer.layerName === 'ibge-populacao';
+      const isIcon = layer.layerName === 'ongs-icons';
+
+      let iconCoord = undefined; 
+
+      if (isIcon) {
+        iconCoord = e.features[0].geometry.coordinates.slice();
+
+        while (Math.abs(e.lngLat.lng - iconCoord[0]) > 180) {
+          iconCoord[0] += e.lngLat.lng > iconCoord[0] ? 360 : -360;
+        }
+      }
+
+      // const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
+      // const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
+      // const renda = `<p>R$ ${formatRenda}</p>`;
 
       popup = new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
-      .setHTML(`${bairro}${renda}<small>Renda média</small>`)
-      .addTo(this.map);
+        .setLngLat(isIcon ? iconCoord : e.lngLat)
+        .setHTML(layer.layerName)
+        // .setHTML(`${bairro}${renda}<small>Renda média</small>`)
+        .addTo(this.map);
 
       return popup;
     });
 
-    this.map.on('mouseleave', 'ibge-renda', () => {
+    this.map.on('mouseleave', layer.layerName, () => {
       this.map.getCanvas().style.cursor = '';
       popup.remove();
     });
@@ -52,22 +69,11 @@ class HumanitarianMap extends Component {
     const { selectedMenuItem } = this.state;
 
     if (prevState.selectedMenuItem !== selectedMenuItem) {
-      if (this.state.selectedMenuItem.title === 'Socio-econômico') {
-        this.map.setLayoutProperty('ibge-renda', 'visibility', 'visible');
-        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'none');
-        this.map.setLayoutProperty('ongs-icons', 'visibility', 'none');
-        this.handlePopup();
+      if (prevState.selectedMenuItem.layerName){
+        this.map.setLayoutProperty(prevState.selectedMenuItem.layerName, 'visibility', 'none');
       }
-      if (this.state.selectedMenuItem.title === 'Densidade demográfica') {
-        this.map.setLayoutProperty('ibge-renda', 'visibility', 'none');
-        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'visible');
-        this.map.setLayoutProperty('ongs-icons', 'visibility', 'none');
-      }
-      if (this.state.selectedMenuItem.title === "ONG's Parceiras") {
-        this.map.setLayoutProperty('ibge-renda', 'visibility', 'none');
-        this.map.setLayoutProperty('ibge-populacao', 'visibility', 'none');
-        this.map.setLayoutProperty('ongs-icons', 'visibility', 'visible');
-      }
+      this.map.setLayoutProperty(selectedMenuItem.layerName, 'visibility', 'visible');
+      this.handlePopup(selectedMenuItem);
     } 
   }
 
@@ -84,10 +90,16 @@ class HumanitarianMap extends Component {
         [-40.50585, -20.715985]]
     });
 
-    this.setState({
-      selectedMenuItem: '',
-      showSubtitle: false,
-    });
+    this.map.on('load', () => {
+      this.handleMenuItem({
+        image: filterIcon1,
+        selectedImage: filterSelectedIcon1,
+        title: 'Socio-econômico',
+        layerName: 'ibge-renda',
+        color: '#F05123',
+        text: 'socio',
+      })
+    })
 
     this.map.addControl(new mapboxgl.NavigationControl());
   }
@@ -115,7 +127,7 @@ class HumanitarianMap extends Component {
       <div id="map">
         <Menu
           selectMenuItem={this.handleMenuItem}
-          selectedItem={this.state.selectedMenuItem} />
+          selectedMenuItem={this.state.selectedMenuItem} />
         <Subtitle
           handleModalSubtitle={this.handleModalSubtitle}
           showSubtitle={this.state.showSubtitle}
