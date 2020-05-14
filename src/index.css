@@ -195,6 +195,19 @@ a:hover {
   border-bottom: 4px solid #F05123;
 }
 
+.mapboxgl-popup-content div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: .5rem;
+}
+
+.mapboxgl-popup-content span {
+  width: 50%;
+  margin: .25rem;
+  text-align: center;
+}
+
 .mapboxgl-popup-content h2 {
   font: 600 1rem 'Barlow';
   color: #343434;
@@ -211,7 +224,7 @@ a:hover {
 }
 
 .mapboxgl-popup-content small {
-  font-size: .65rem;
+  font-size: .7rem;
   color: #343434;
 }
 
@@ -294,6 +307,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+}
+
+.content-numbers img {
+  transform: rotate(180deg);
 }
 
 .content-numbers ul {

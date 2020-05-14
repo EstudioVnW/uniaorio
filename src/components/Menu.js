@@ -123,21 +123,23 @@ class Menu extends Component {
         image: filterIcon3,
         selectedImage: filterSelectedIcon3,
         title: 'Solidariedade',
-        color: '#0ACF59',
+        color: '#F0184F',
         text: 'solid',
+        layerName: ''
       },
       {
         image: filterIcon4,
         selectedImage: filterSelectedIcon4,
         title: 'Covid-19',
-        color: '#4DA9FF',
+        color: '#0ACF59',
         text: 'covid',
+        layerName: 'layer-bairro-covid'
       },
       {
         image: filterIcon5,
         selectedImage: filterSelectedIcon5,
         title: "ONG's Parceiras",
-        color: '#F0184F',
+        color: '#4DA9FF',
         text: 'ongs',
         layerName: 'ongs-icons',
       },
