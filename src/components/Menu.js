@@ -109,7 +109,6 @@ class Menu extends Component {
         title: 'Socio-econômico',
         color: '#F05123',
         text: 'socio',
-        layer: 'ibge-renda',
       },
       {
         image: filterIcon2,
