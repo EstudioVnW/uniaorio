@@ -51,7 +51,7 @@ class HumanitarianMap extends Component {
       const bairroCovid = `<h2>${e.features[0].properties.title}</h2>`;
       const bairroOng = `<h2>${e.features[0].properties.district}</h2>`;
       const casosConf = `<h2>${e.features[0].properties.confirmed_cases}</h2>`;
-      const adress = `<small>${e.features[0].properties.adress_original}</small>`;
+      const adress = `<small>${e.features[0].properties.address_original}</small>`;
       const mortes = `<h2>${e.features[0].properties.deaths}</h2>`;
       const demanda = `<h2>${e.features[0].properties.demands}</h2>`;
       const entrega = `<h2>${e.features[0].properties.delivered || 0}</h2>`;

@@ -139,7 +139,6 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* transition: .2s; */
   cursor: pointer;
 }
 
@@ -148,7 +147,6 @@ a:hover {
   bottom: 0;
   width: 100%;
   height: 4px;
-  /* transition: .2s; */
 }
 
 .menu-filters img {
@@ -228,13 +226,6 @@ a:hover {
   color: #343434;
 }
 
-/* .mapboxgl-popup-content hr {
-  width: 100%;
-  height: 4px;
-  border: none;
-  background-color: pink;
-} */
-
 .mapboxgl-popup-content button {
   display: none;
 }
@@ -310,6 +301,7 @@ a:hover {
 }
 
 .content-numbers img {
+  margin-right: 1rem;
   transform: rotate(180deg);
 }
 
@@ -320,21 +312,80 @@ a:hover {
 
 .content-numbers li {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   list-style: none;
   height: 21px;
-  padding-left: 1rem;
   font-size: .8rem;
 }
 
 .content-numbers li span {
   width: 15px;
   height: 15px;
+  margin-right: 1rem;
 }
 
-.socio p {
+.content-numbers ul li span{
+  width: 18px;
+  height: 18px;
+}
+
+.dens-0 {
+  border: solid .5px #373383;
+}
+
+.dens-1 {
+  background-image: url('./assets/min-dens.svg');
+  background-size: 40%;
+  background-position: center;
+  background-repeat: repeat-x;
+  border: solid .5px #373383;
+}
+
+.dens-2 {
+  background-image: url('./assets/second-dens.svg');
+  background-size: 40%;
+  background-position: center;
+  background-repeat: repeat-x;
+  border: solid .5px #373383;
+}
+
+.dens-3 {
+  background-image: url('./assets/max-dens.svg');
+  background-size: 40%;
+  background-repeat: repeat-x;
+  border: solid .5px #373383;
+  background-position: center;
+}
+
+.covid-1 {
+  border-radius: 2px;
+  background: #0ACF59;
+}
+
+.covid-2 {
+  border-radius: 2px;
+  background: #14793D;
+}
+
+.solid-1 {
+  border-radius: 2px;
+  text-align: center;
+  font: 600 .9rem 'Barlow', sans-serif;
+  color: #000;
+}
+
+.solid-2 {
+  border-radius: 2px;
+  background: #820525;
+}
+
+.solid-3 {
+  border-radius: 2px;
+  background: #F0184F;
+}
+
+.socio p, .box p {
   margin: .5rem 0;
   font-size: .8rem;
   line-height: 1.25rem;
