@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "73fc7fc052e6e40dff29f95a2e5814cf",
+    "revision": "e3d70af89fe30312320835451e6a9091",
     "url": "/uniaorio/index.html"
   },
   {
-    "revision": "833fae324a3f66a49aed",
-    "url": "/uniaorio/static/css/main.9003462b.chunk.css"
+    "revision": "1a8ef67b7290a221326b",
+    "url": "/uniaorio/static/css/main.59a0c959.chunk.css"
   },
   {
-    "revision": "bb2c57255bbf06b64574",
-    "url": "/uniaorio/static/js/2.15fa0468.chunk.js"
+    "revision": "5235e9113f7c290451a5",
+    "url": "/uniaorio/static/js/2.23765ebf.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/uniaorio/static/js/2.15fa0468.chunk.js.LICENSE.txt"
+    "url": "/uniaorio/static/js/2.23765ebf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "833fae324a3f66a49aed",
-    "url": "/uniaorio/static/js/main.70e4eb2e.chunk.js"
+    "revision": "1a8ef67b7290a221326b",
+    "url": "/uniaorio/static/js/main.b384727a.chunk.js"
   },
   {
     "revision": "ecd5d8f3fadd1f84f3ee",
@@ -40,16 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniaorio/static/media/densVertical.1cac0dbe.svg"
   },
   {
-    "revision": "a971af966d27c3fefd5b64836a2c1314",
-    "url": "/uniaorio/static/media/dropUp.a971af96.svg"
-  },
-  {
     "revision": "4603df692bc130e094f0e145b1198240",
     "url": "/uniaorio/static/media/dropdownBlack.4603df69.svg"
-  },
-  {
-    "revision": "1f90e964425b6ab752c2b1fba515fa5d",
-    "url": "/uniaorio/static/media/dropdownWhite.1f90e964.svg"
   },
   {
     "revision": "94f5f302a5ac7653f3a3bdb079dfb85e",
@@ -72,8 +64,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniaorio/static/media/filter-icon-5.e801dcda.svg"
   },
   {
-    "revision": "9c7137c4ca62d02863a7d22b77564660",
-    "url": "/uniaorio/static/media/filter-icon-6.9c7137c4.svg"
+    "revision": "8238b8ef4c7585baf71f03e63887815f",
+    "url": "/uniaorio/static/media/filter-selected-icon-1.8238b8ef.svg"
+  },
+  {
+    "revision": "1610d6ac1f889075121418d1715d9fae",
+    "url": "/uniaorio/static/media/filter-selected-icon-2.1610d6ac.svg"
+  },
+  {
+    "revision": "3a8eb8f79587512097f96669f9664bf2",
+    "url": "/uniaorio/static/media/filter-selected-icon-3.3a8eb8f7.svg"
+  },
+  {
+    "revision": "8af0b48b75b370d785e3d846d9bc9002",
+    "url": "/uniaorio/static/media/filter-selected-icon-4.8af0b48b.svg"
+  },
+  {
+    "revision": "bc36603d11933b2252d21b491b89315c",
+    "url": "/uniaorio/static/media/filter-selected-icon-5.bc36603d.svg"
   },
   {
     "revision": "0016974744b6825428497f9857b240b4",
@@ -82,5 +90,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "3f9b12715a33d92a9a71cc6180eebf73",
     "url": "/uniaorio/static/media/logo.3f9b1271.png"
+  },
+  {
+    "revision": "3d5ce1be81de459003d5f25af8d0cd35",
+    "url": "/uniaorio/static/media/socio-economic-grafico.3d5ce1be.svg"
   }
 ]);
