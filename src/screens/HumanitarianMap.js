@@ -46,20 +46,27 @@ class HumanitarianMap extends Component {
         }
       }
 
-      const formatRenda = e.features[0].properties.renda.toLocaleString('pt-BR');
+      const formatRenda = e.features[0].properties.renda && e.features[0].properties.renda.toLocaleString('pt-BR');
       const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
+      const bairroCovid = `<h2>${e.features[0].properties.title}</h2>`;
+      const bairroOng = `<h2>${e.features[0].properties.district}</h2>`;
+      const casosConf = `<h2>${e.features[0].properties.confirmed_cases}</h2>`;
+      const adress = `<small>${e.features[0].properties.adress_original}</small>`;
+      const mortes = `<h2>${e.features[0].properties.deaths}</h2>`;
+      const demanda = `<h2>${e.features[0].properties.demands}</h2>`;
+      const entrega = `<h2>${e.features[0].properties.delivered || 0}</h2>`;
       const densidade = `<h2>${e.features[0].properties.dens_ha}</h2>`;
       const renda = `<p>R$ ${formatRenda}</p>`;
       let style;
-
-      console.log(e.features[0].properties);
 
       if (layer.layerName === 'ibge-renda') {
         style = `${bairro}${renda}<small>Renda média</small>`
       } else if (layer.layerName === 'ibge-populacao') {
         style = `${bairro}${densidade}<small>Densidade Populacional</small>`
       } else if (layer.layerName === 'layer-bairro-covid') {
-        style = `${bairro}<div><span>${densidade}<small>Confirmados</small></span><span>${densidade}<small>Óbitos</small></span></div>`
+        style = `${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
+      } else if (layer.layerName === 'ongs-icons') {
+        style = `${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
       }
 
       popup = new mapboxgl.Popup()
