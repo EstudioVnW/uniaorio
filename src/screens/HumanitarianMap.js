@@ -31,7 +31,11 @@ class HumanitarianMap extends Component {
     let popup;
 
     this.map.on('mouseenter', layer.layerName, (e) => {
-      // console.log(e.features[0])
+    // this.map.on('click', layer.layerName, (e) => {
+
+      console.log(e.features[0])
+
+      const features = e.features[0].properties;
 
       // const isPoligon = layer.layerName === 'ibge-renda' || layer.layerName === 'ibge-populacao';
       const isIcon = layer.layerName === 'ongs-icons';
@@ -46,16 +50,16 @@ class HumanitarianMap extends Component {
         }
       }
 
-      const formatRenda = e.features[0].properties.renda && e.features[0].properties.renda.toLocaleString('pt-BR');
-      const bairro = `<h2>${e.features[0].properties.NM_BAIRRO}</h2>`;
-      const bairroCovid = `<h2>${e.features[0].properties.title}</h2>`;
-      const bairroOng = `<h2>${e.features[0].properties.district}</h2>`;
-      const casosConf = `<h2>${e.features[0].properties.confirmed_cases}</h2>`;
-      const adress = `<small>${e.features[0].properties.address_original}</small>`;
-      const mortes = `<h2>${e.features[0].properties.deaths}</h2>`;
-      const demanda = `<h2>${e.features[0].properties.demands}</h2>`;
-      const entrega = `<h2>${e.features[0].properties.delivered || 0}</h2>`;
-      const densidade = `<h2>${e.features[0].properties.dens_ha}</h2>`;
+      const formatRenda = features.renda && features.renda.toLocaleString('pt-BR');
+      const bairro = `<h2>${features.NM_BAIRRO}</h2>`;
+      const bairroCovid = `<h2>${features.title}</h2>`;
+      const bairroOng = `<h2>${features.district}</h2>`;
+      const casosConf = `<h2>${features.confirmed_cases}</h2>`;
+      const adress = `<small>${features.address_original}</small>`;
+      const mortes = `<h2>${features.deaths}</h2>`;
+      const demanda = `<h2>${features.demands}</h2>`;
+      const entrega = `<h2>${features.delivered || 0}</h2>`;
+      const densidade = `<p>${features.dens_ha && features.dens_ha.toFixed(0)}</p>`;
       const renda = `<p>R$ ${formatRenda}</p>`;
       let style;
 

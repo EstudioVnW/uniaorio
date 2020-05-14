@@ -125,7 +125,7 @@ class Menu extends Component {
         title: 'Solidariedade',
         color: '#F0184F',
         text: 'solid',
-        layerName: ''
+        layerName: 'layer-bairro-solidariedade'
       },
       {
         image: filterIcon4,
