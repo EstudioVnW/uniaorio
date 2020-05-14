@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/uniaorio/static/css/main.59a0c959.chunk.css",
-    "main.js": "/uniaorio/static/js/main.aaff927e.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.aaff927e.chunk.js.map",
+    "main.css": "/uniaorio/static/css/main.ce4d756a.chunk.css",
+    "main.js": "/uniaorio/static/js/main.715c9a9b.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.715c9a9b.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.4e9ed603.chunk.js": "/uniaorio/static/js/2.4e9ed603.chunk.js",
     "static/js/2.4e9ed603.chunk.js.map": "/uniaorio/static/js/2.4e9ed603.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.916217ceae96714cfae6d62e6658489c.js": "/uniaorio/precache-manifest.916217ceae96714cfae6d62e6658489c.js",
+    "precache-manifest.4b31555e70c4d15d18063e866c9e929f.js": "/uniaorio/precache-manifest.4b31555e70c4d15d18063e866c9e929f.js",
     "service-worker.js": "/uniaorio/service-worker.js",
-    "static/css/main.59a0c959.chunk.css.map": "/uniaorio/static/css/main.59a0c959.chunk.css.map",
+    "static/css/main.ce4d756a.chunk.css.map": "/uniaorio/static/css/main.ce4d756a.chunk.css.map",
     "static/js/2.4e9ed603.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.4e9ed603.chunk.js.LICENSE.txt",
     "static/media/check.svg": "/uniaorio/static/media/check.32d24ad4.svg",
     "static/media/densDiagonal.svg": "/uniaorio/static/media/densDiagonal.22c16143.svg",
@@ -23,18 +23,19 @@
     "static/media/filter-icon-4.svg": "/uniaorio/static/media/filter-icon-4.a24fcc0b.svg",
     "static/media/filter-icon-5.svg": "/uniaorio/static/media/filter-icon-5.e801dcda.svg",
     "static/media/filter-selected-icon-1.svg": "/uniaorio/static/media/filter-selected-icon-1.8238b8ef.svg",
-    "static/media/filter-selected-icon-2.svg": "/uniaorio/static/media/filter-selected-icon-2.1610d6ac.svg",
-    "static/media/filter-selected-icon-3.svg": "/uniaorio/static/media/filter-selected-icon-3.3a8eb8f7.svg",
-    "static/media/filter-selected-icon-4.svg": "/uniaorio/static/media/filter-selected-icon-4.8af0b48b.svg",
-    "static/media/filter-selected-icon-5.svg": "/uniaorio/static/media/filter-selected-icon-5.bc36603d.svg",
+    "static/media/filter-selected-icon-2.svg": "/uniaorio/static/media/filter-selected-icon-2.d6e42c23.svg",
+    "static/media/filter-selected-icon-3.svg": "/uniaorio/static/media/filter-selected-icon-3.1062eeba.svg",
+    "static/media/filter-selected-icon-4.svg": "/uniaorio/static/media/filter-selected-icon-4.7d2a4960.svg",
+    "static/media/filter-selected-icon-5.svg": "/uniaorio/static/media/filter-selected-icon-5.29d40615.svg",
     "static/media/loading.svg": "/uniaorio/static/media/loading.00169747.svg",
     "static/media/logo.png": "/uniaorio/static/media/logo.3f9b1271.png",
+    "static/media/index.css": "/uniaorio/static/media/second-dens.e1b0ade8.svg",
     "static/media/socio-economic-grafico.svg": "/uniaorio/static/media/socio-economic-grafico.3d5ce1be.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cb743201.js",
     "static/js/2.4e9ed603.chunk.js",
-    "static/css/main.59a0c959.chunk.css",
-    "static/js/main.aaff927e.chunk.js"
+    "static/css/main.ce4d756a.chunk.css",
+    "static/js/main.715c9a9b.chunk.js"
   ]
 }
