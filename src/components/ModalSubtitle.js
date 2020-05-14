@@ -27,21 +27,61 @@ class Modal extends Component {
     </div>
   )
 
-  handleDemographicDensity = () => {
-    return <p>densidade</p>
-  }
+  handleDemographicDensity = () => (
+    <div className='box'>
+      <h2 className='content-title'>Densidade demográfica</h2>
+      <div className='content-numbers'>
+        <ul>
+          <li><span className='dens-0'></span> 100 - 500 hab.</li>
+          <li><span className='dens-1'></span> 501 - 1.000 hab.</li>
+          <li><span className='dens-2'></span> 1.001- 5.000</li>
+          <li><span className='dens-3'></span> Acima de 5.001</li>
+        </ul>
+      </div>
+      <p>Densidade demográfica, densidade populacional ou população relativa é a medida expressa pela relação entre a população e a superfície do território, geralmente aplicada a seres humanos, mas também em outros seres vivos. É sempre expressa em habitantes por quilômetro quadrado.</p>
+    </div>
+  )
 
-  handleSolidarity = () => {
-    return <p>solid</p>
-  }
+  handleSolidarity = () => (
+    <div className='box'>
+      <h2 className='content-title'>Cestas básicas</h2>
+      <div className='content-numbers'>
+        <ul>
+          <li><span className='solid-1'>%</span>Percentual entregue</li>
+          <li><span className='solid-2'></span>Entrega</li>
+          <li><span className='solid-3'></span>Demanda</li>
+        </ul>
+      </div>
+      <p>Percentual de cestas básicas</p>
+    </div>
+  )
 
-  handleCovid = () => {
-    return <p>covid</p>
-  }
+  handleCovid = () => (
+    <div className='box'>
+      <h2 className='content-title'>Casos de COVID-19</h2>
+      <div className='content-numbers'>
+        <ul>
+          <li><span className='covid-1'></span>Confirmados</li>
+          <li><span className='covid-2'></span>Óbitos</li>
+        </ul>
+      </div>
+      <p>Casos de Covid-19 no Rio de Janeiro</p>
+    </div>
+  )
 
-  handleOngs = () => {
-    return <p>ongs</p>;
-  }
+  handleOngs = () => (
+    <div className='box'>
+      <h2 className='content-title'>ONG's Parceiras</h2>
+      <div className='content-numbers'>
+        <ul>
+          <li>- Nome da ONG</li>
+          <li>- Endereço da ONG</li>
+          <li>- Demanda e entrega de cestas básicas</li>
+        </ul>
+      </div>
+      <p>Casos de Covid-19 no Rio de Janeiro</p>
+    </div>
+  )
 
   renderContent = () => {
     const content = this.props.selectedItem.title;
