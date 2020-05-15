@@ -27,55 +27,58 @@ class HumanitarianMap extends Component {
     this.map = undefined;
   }
 
+  choosePopup = (layer, feature) => {
+    const formatRenda = feature.renda && feature.renda.toLocaleString('pt-BR');
+    const bairro = `<h2>${feature.NM_BAIRRO}</h2>`;
+    const bairroCovid = `<h2>${feature.title}</h2>`;
+    const bairroOng = `<h2>${feature.district || feature.title}</h2>`;
+    const casosConf = `<h2>${feature.confirmed_cases}</h2>`;
+    const adress = `<small>${feature.address_original}</small>`;
+    const mortes = `<h2>${feature.deaths}</h2>`;
+    const demanda = `<h2>${feature.demands}</h2>`;
+    const entrega = `<h2>${feature.delivered || 0}</h2>`;
+    const densidade = `<p>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
+    const renda = `<p>R$ ${formatRenda}</p>`;
+
+    if (layer === 'ibge-renda') {
+      return `${bairro}${renda}<small>Renda média</small>`
+    }
+    else if (layer === 'ibge-populacao') {
+      return`${bairro}${densidade}<small>Densidade Populacional</small>`
+    }
+    else if (layer === 'layer-bairro-covid') {
+      return`${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
+    }
+    else if (layer === 'ongs-icons') {
+      return`${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+    }
+    else if (layer === 'layer-bairro-solidariedade') {
+      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+    }
+  }
+
   handlePopup = (layer) => {
     let popup;
 
     this.map.on('mouseenter', layer.layerName, (e) => {
-    // this.map.on('click', layer.layerName, (e) => {
-
       console.log(e.features[0])
 
-      const features = e.features[0].properties;
-
-      // const isPoligon = layer.layerName === 'ibge-renda' || layer.layerName === 'ibge-populacao';
-      const isIcon = layer.layerName === 'ongs-icons';
-
-      let iconCoord = undefined; 
+      const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade';
+      let coord = undefined;
 
       if (isIcon) {
-        iconCoord = e.features[0].geometry.coordinates.slice();
+        coord = e.features[0].geometry.coordinates.slice();
 
-        while (Math.abs(e.lngLat.lng - iconCoord[0]) > 180) {
-          iconCoord[0] += e.lngLat.lng > iconCoord[0] ? 360 : -360;
+        while (Math.abs(e.lngLat.lng - coord[0]) > 180) {
+          coord[0] += e.lngLat.lng > coord[0] ? 360 : -360;
         }
       }
 
-      const formatRenda = features.renda && features.renda.toLocaleString('pt-BR');
-      const bairro = `<h2>${features.NM_BAIRRO}</h2>`;
-      const bairroCovid = `<h2>${features.title}</h2>`;
-      const bairroOng = `<h2>${features.district}</h2>`;
-      const casosConf = `<h2>${features.confirmed_cases}</h2>`;
-      const adress = `<small>${features.address_original}</small>`;
-      const mortes = `<h2>${features.deaths}</h2>`;
-      const demanda = `<h2>${features.demands}</h2>`;
-      const entrega = `<h2>${features.delivered || 0}</h2>`;
-      const densidade = `<p>${features.dens_ha && features.dens_ha.toFixed(0)}</p>`;
-      const renda = `<p>R$ ${formatRenda}</p>`;
-      let style;
-
-      if (layer.layerName === 'ibge-renda') {
-        style = `${bairro}${renda}<small>Renda média</small>`
-      } else if (layer.layerName === 'ibge-populacao') {
-        style = `${bairro}${densidade}<small>Densidade Populacional</small>`
-      } else if (layer.layerName === 'layer-bairro-covid') {
-        style = `${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
-      } else if (layer.layerName === 'ongs-icons') {
-        style = `${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
-      }
+      const popupMarkup = this.choosePopup(layer.layerName, e.features[0].properties)
 
       popup = new mapboxgl.Popup()
-        .setLngLat(isIcon ? iconCoord : e.lngLat)
-        .setHTML(style)
+        .setLngLat(isIcon ? coord : e.lngLat)
+        .setHTML(popupMarkup)
         .addTo(this.map);
 
       return popup;
@@ -113,6 +116,8 @@ class HumanitarianMap extends Component {
     });
 
     this.map.on('load', () => {
+      console.log('map.getStyle().layers', this.map.getStyle().layers)
+
       this.handleMenuItem({
         image: filterIcon1,
         selectedImage: filterSelectedIcon1,
