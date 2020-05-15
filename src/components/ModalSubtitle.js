@@ -107,7 +107,7 @@ class Modal extends Component {
 
     return (
       <div className='modal' onClick={this.props.handleModalSubtitle}>
-        <div className='modal-header'>Legenda
+        <div className='modal-header'>LEGENDA
           {this.props.showSubtitle ? <span></span> : <p>+</p>}
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>

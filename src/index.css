@@ -87,7 +87,6 @@ a:hover {
   justify-content: space-around;
 }
 .menu-container button {
-  /* opacity: 0; */
   display: none;
 }
 
@@ -115,17 +114,14 @@ a:hover {
 }
 
 @media(max-width: 975px) {
-  .menu-filters { 
+  .menu-filters {
     position: fixed;
     bottom: 0;
     left: 0;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px -3px 6px #00000029;
     height: 90px;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
   }
 }
 
@@ -140,6 +136,16 @@ a:hover {
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
+}
+
+@media(max-width: 590px) {
+  .menu-container, .menu-filters {
+    height: 70px;
+  }
+
+  .menu-filters li {
+    margin: 0;
+  }
 }
 
 .line {
@@ -208,13 +214,38 @@ a:hover {
 }
 
 .mapboxgl-popup-content h2 {
-  font: 600 1rem 'Barlow';
+  font: 600 1rem 'Barlow', sans-serif;
   color: #343434;
 }
 
 .mapboxgl-popup-content p {
-  font: 600 1.85rem 'Barlow';
+  margin-top: .5rem;
+  margin-bottom: .25rem;
+  font: 600 1.5rem 'Barlow', sans-serif;
+}
+
+#renda-color {
   color: #F05123;
+}
+
+#densidade-color {
+  color: #6929CA;
+}
+
+#covid-color {
+  color: #41A95C;
+}
+
+#covid-color_confirm {
+  color: #84D874;
+}
+
+#solidariedade-color {
+  color: #F0184F;
+}
+
+#solidariedade-color_delivered {
+  color: #F0184F;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
@@ -236,21 +267,11 @@ a:hover {
   bottom: 0;
   right: 0;
   width: 280px;
-  max-height: 75vh;
   border-radius: 5px 5px 0px 0px;
   background: #F7F7F7;
   box-shadow: 0px 6px 6px #00000029;
   z-index: 99;
   cursor: pointer;
-  overflow-y: scroll;
-}
-
-.modal::-webkit-scrollbar {
-  width: 2px;
-}
-.modal::-webkit-scrollbar-thumb {
-  background: #cecece50; 
-  border-radius: 10px;
 }
 
 .modal-header {
@@ -260,6 +281,7 @@ a:hover {
   padding: .6rem 1rem;
   width: 100%;
   height: 40px;
+  font: 200 .95rem 'Barlow', sans-serif;
   border-radius: 5px 5px 0px 0px;
   background: #F05123;
   color: #fff;
@@ -278,19 +300,28 @@ a:hover {
 
 @media(max-width: 975px) {
   .modal {
-    bottom: 90px;
-    max-height: 60vh;
+    bottom: 70px;
     box-shadow: none;
   }
 }
 
 .modal-content {
   padding: 1rem;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 5px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #cecece85; 
+  border-radius: 10px;
 }
 
 .content-title {
   margin-top: 0;
-  font: 600 1rem 'Barlow';
+  font: 600 1rem 'Barlow', sans-serif;
   color: #000000;
 }
 
