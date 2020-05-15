@@ -30,13 +30,13 @@ class HumanitarianMap extends Component {
   choosePopup = (layer, feature) => {
     const formatRenda = feature.renda && feature.renda.toLocaleString('pt-BR');
     const bairro = `<h2>${feature.NM_BAIRRO}</h2>`;
-    const bairroCovid = `<h2>${feature.title}</h2>`;
-    const bairroOng = `<h2>${feature.district || feature.title}</h2>`;
+    const district = `<h2>${feature.district || feature.title}</h2>`;
+    const ongName = `<h2>${feature.title}</h2>`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const adress = `<small>${feature.address_original}</small>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
-    const demanda = `<p id='solidariedade-color'>${feature.demands}</p>`;
-    const ongDemand = `<p id='ong-demand-color'>${feature.demands}</p>`;
+    const demanda = `<p id='solidariedade-color'>${feature.demands || 0}</p>`;
+    const ongDemand = `<p id='ong-demand-color'>${feature.demands || 0}</p>`;
     const entrega = `<p id='ong-delivered-color'>${feature.delivered || 0}</p>`;
     const densidade = `<p id='densidade-color'>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
     const renda = `<p id='renda-color'>R$ ${formatRenda}</p>`;
@@ -48,13 +48,13 @@ class HumanitarianMap extends Component {
       return`${bairro}${densidade}<small>Densidade Populacional</small>`
     }
     else if (layer === 'layer-bairro-solidariedade') {
-      return`${bairroOng}<div><span>${demanda}<small>Cestas entregues</small></div>`
+      return`${district}<div><span>${demanda}<small>Cestas entregues</small></div>`
     }
     else if (layer === 'layer-bairro-covid') {
-      return`${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
+      return `${district}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
     }
     else if (layer === 'ongs-icons') {
-      return `${bairroOng}${adress}<div><span>${ongDemand}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+      return `${ongName}${adress}<div><span>${ongDemand}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
     }
   }
 
@@ -130,7 +130,7 @@ class HumanitarianMap extends Component {
       })
     })
 
-    this.map.addControl(new mapboxgl.NavigationControl());
+    this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
   }
 
   handleClose = () => {
