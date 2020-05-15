@@ -136,6 +136,7 @@ a:hover {
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
+  transition: 0.25s color ease-in-out;
 }
 
 @media(max-width: 590px) {
@@ -157,6 +158,7 @@ a:hover {
 
 .menu-filters img {
   height: 25px;
+  transition: 0.25s all ease-in-out;
 }
 
 .menu-filters p {
@@ -197,6 +199,7 @@ a:hover {
   align-items: center;
   width: 200px;
   min-height: 110px;
+  border: 0;
   border-bottom: 4px solid #F05123;
   text-align: center;
   line-height: 1rem;
@@ -248,8 +251,12 @@ a:hover {
   color: #F0184F;
 }
 
-#solidariedade-color_delivered {
-  color: #F0184F;
+#ong-delivered-color {
+  color: #4DA9FF;
+}
+
+#ong-demand-color{
+  color: #8FC9FF;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
@@ -311,7 +318,7 @@ a:hover {
 
 .modal-content {
   padding: 1rem;
-  max-height: 80vh;
+  min-height: 55vh;
   overflow-y: scroll;
 }
 

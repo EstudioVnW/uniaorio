@@ -36,7 +36,8 @@ class HumanitarianMap extends Component {
     const adress = `<small>${feature.address_original}</small>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demanda = `<p id='solidariedade-color'>${feature.demands}</p>`;
-    const entrega = `<p id='solidariedade-color_delivered'>${feature.delivered || 0}</p>`;
+    const ongDemand = `<p id='ong-demand-color'>${feature.demands}</p>`;
+    const entrega = `<p id='ong-delivered-color'>${feature.delivered || 0}</p>`;
     const densidade = `<p id='densidade-color'>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
     const renda = `<p id='renda-color'>R$ ${formatRenda}</p>`;
 
@@ -47,13 +48,13 @@ class HumanitarianMap extends Component {
       return`${bairro}${densidade}<small>Densidade Populacional</small>`
     }
     else if (layer === 'layer-bairro-solidariedade') {
-      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></div>`
+      return`${bairroOng}<div><span>${demanda}<small>Cestas entregues</small></div>`
     }
     else if (layer === 'layer-bairro-covid') {
       return`${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
     }
     else if (layer === 'ongs-icons') {
-      return`${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+      return `${bairroOng}${adress}<div><span>${ongDemand}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
     }
   }
 
