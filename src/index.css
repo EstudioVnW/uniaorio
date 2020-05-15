@@ -317,9 +317,12 @@ a:hover {
 }
 
 .modal-content {
+  /* display: none; */
   padding: 1rem;
   min-height: 55vh;
   overflow-y: scroll;
+  /* transition: all .5s ease-in-out 1s; */
+  /* transform: rotate(180deg); */
 }
 
 .modal-content::-webkit-scrollbar {
