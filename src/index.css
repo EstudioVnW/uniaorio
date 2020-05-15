@@ -200,7 +200,7 @@ a:hover {
   border-bottom: 4px solid #F05123;
   text-align: center;
   line-height: 1rem;
-  padding: 0.55rem 0 0.25rem;
+  padding: 1rem 0.55rem;
 }
 
 .mapboxgl-popup-content div {
