@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Images
-import Check from '../assets/check.svg';
+// import Check from '../assets/check.svg';
 import Logo from '../assets/logo.png';
 // import Dropdown from '../assets/dropdownWhite.svg';
 // import DropdownUp from '../assets/dropUp.svg';
@@ -171,100 +171,100 @@ class Menu extends Component {
     this.setState({ isSelectedButton: label });
   }
 
-  renderDemandsandDeliveries = () => (
-    <div className="container_infos">
-      {this.state.demandsandDeliveries.map(({color, text}) => (
-        <div className="container_infos-item">
-          <span className="container_infos-item--box infos_item-demand" style={{background: color}} />
-          {text}
-        </div>
-      ))}
-    </div>
-  )
+  // renderDemandsandDeliveries = () => (
+  //   <div className="container_infos">
+  //     {this.state.demandsandDeliveries.map(({color, text}) => (
+  //       <div className="container_infos-item">
+  //         <span className="container_infos-item--box infos_item-demand" style={{background: color}} />
+  //         {text}
+  //       </div>
+  //     ))}
+  //   </div>
+  // )
 
-  renderDemographicDensity = () => (
-    <div className="container_infos">
-      {this.state.demographicDensity.map(({text, img, imgDesc}) => (
-        <div className="container_infos-item">
-          <span className="container_infos-item--box">
-            <img src={img} alt={imgDesc} className="density_img" />
-          </span>
-          {text}
-        </div>
-      ))}
-    </div>
-  )
+  // renderDemographicDensity = () => (
+  //   <div className="container_infos">
+  //     {this.state.demographicDensity.map(({text, img, imgDesc}) => (
+  //       <div className="container_infos-item">
+  //         <span className="container_infos-item--box">
+  //           <img src={img} alt={imgDesc} className="density_img" />
+  //         </span>
+  //         {text}
+  //       </div>
+  //     ))}
+  //   </div>
+  // )
 
-  renderSocioEconomic = () => (
-    <div className="container_infos">
-      {this.state.averageIncome.map(({text, color}) => (
-        <div className="container_infos-item">
-          <span className="container_infos-item--box" style={{backgroundColor: color}} />
-          {text}
-        </div>
-      ))}
-    </div>
-  )
+  // renderSocioEconomic = () => (
+  //   <div className="container_infos">
+  //     {this.state.averageIncome.map(({text, color}) => (
+  //       <div className="container_infos-item">
+  //         <span className="container_infos-item--box" style={{backgroundColor: color}} />
+  //         {text}
+  //       </div>
+  //     ))}
+  //   </div>
+  // )
 
-  handleMappingCheck = (item) => {
-    let list = this.state.isSelectedCheck;
-    const hasMatch = list.find(value => value === item);
+  // handleMappingCheck = (item) => {
+  //   let list = this.state.isSelectedCheck;
+  //   const hasMatch = list.find(value => value === item);
     
-    if (hasMatch) {
-      list.splice(list.indexOf(item), 1);
-    } else {
-      list = list.concat(item);
-    }
+  //   if (hasMatch) {
+  //     list.splice(list.indexOf(item), 1);
+  //   } else {
+  //     list = list.concat(item);
+  //   }
 
-    this.setState({
-      isSelectedCheck: list,
-    });
-  }
+  //   this.setState({
+  //     isSelectedCheck: list,
+  //   });
+  // }
 
-  renderCheckIcon = (item) => {
-    const hasMatch = this.state.isSelectedCheck.find(value => value === item);
+  // renderCheckIcon = (item) => {
+  //   const hasMatch = this.state.isSelectedCheck.find(value => value === item);
 
-    if (hasMatch) {
-      return  (
-        <img src={Check} alt="check" className="mapping_item-checkbox--check" />
-      );
-    } return null;
-  }
+  //   if (hasMatch) {
+  //     return  (
+  //       <img src={Check} alt="check" className="mapping_item-checkbox--check" />
+  //     );
+  //   } return null;
+  // }
 
-  renderDataItem = (item) => {
-    const hasMatch = this.state.isSelectedCheck.find(value => value === item);
-    switch(item && hasMatch) {
-      case 'Sócio-Econômico':
-			return this.renderSocioEconomic();
-      case 'Densidade Demográfica':
-        return this.renderDemographicDensity();
-      case 'Demandas e Entregas':
-        return this.renderDemandsandDeliveries();
-      case "ONG's Parceiras":
-      return console.log('ongs');
-      default:
-        return null;
-    }
-  }
+  // renderDataItem = (item) => {
+  //   const hasMatch = this.state.isSelectedCheck.find(value => value === item);
+  //   switch(item && hasMatch) {
+  //     case 'Sócio-Econômico':
+	// 		return this.renderSocioEconomic();
+  //     case 'Densidade Demográfica':
+  //       return this.renderDemographicDensity();
+  //     case 'Demandas e Entregas':
+  //       return this.renderDemandsandDeliveries();
+  //     case "ONG's Parceiras":
+  //     return console.log('ongs');
+  //     default:
+  //       return null;
+  //   }
+  // }
 
-  renderMapping = () => (
-    <div className="container_mapping">
-      {this.state.mappingList.map((item) => (
-        <>
-          <div key={item} className="container_mapping-item">
-            {/* <div
-              className="mapping_item-checkbox"
-              onClick={() => this.handleMappingCheck(item)}
-            >
-              {this.renderCheckIcon(item)}
-            </div> */}
-            <p className="mapping_item-text">{item}</p>
-          </div>
-          {this.renderDataItem(item)}
-        </>
-      ))}
-    </div>
-  )
+  // renderMapping = () => (
+  //   <div className="container_mapping">
+  //     {this.state.mappingList.map((item) => (
+  //       <>
+  //         <div key={item} className="container_mapping-item">
+  //           {/* <div
+  //             className="mapping_item-checkbox"
+  //             onClick={() => this.handleMappingCheck(item)}
+  //           >
+  //             {this.renderCheckIcon(item)}
+  //           </div> */}
+  //           <p className="mapping_item-text">{item}</p>
+  //         </div>
+  //         {this.renderDataItem(item)}
+  //       </>
+  //     ))}
+  //   </div>
+  // )
   
   renderMenuItem = () => {
     const { menuItems } = this.state;

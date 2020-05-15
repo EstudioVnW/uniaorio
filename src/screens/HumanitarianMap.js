@@ -60,10 +60,9 @@ class HumanitarianMap extends Component {
 
   handlePopup = (layer) => {
     let popup;
+    const type = (window.innerWidth > 975) ? 'mouseenter' : 'click';
 
-    // this.map.on('click', layer.layerName, (e) => {
-    this.map.on('mouseenter', layer.layerName, (e) => {
-      // console.log(e.features[0])
+    this.map.on(type, layer.layerName, (e) => {
 
       const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade';
       let coord = undefined;
@@ -86,10 +85,12 @@ class HumanitarianMap extends Component {
       return popup;
     });
 
-    this.map.on('mouseleave', layer.layerName, () => {
-      this.map.getCanvas().style.cursor = '';
-      popup.remove();
-    });
+    if(type === 'mouseenter') {
+      this.map.on('mouseleave', layer.layerName, () => {
+        this.map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -118,7 +119,7 @@ class HumanitarianMap extends Component {
     });
 
     this.map.on('load', () => {
-      console.log('map.getStyle().layers', this.map.getStyle().layers)
+      // console.log('map.getStyle().layers', this.map.getStyle().layers)
 
       this.handleMenuItem({
         image: filterIcon1,
