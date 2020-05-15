@@ -220,8 +220,32 @@ a:hover {
 
 .mapboxgl-popup-content p {
   margin-top: .5rem;
-  font: 600 1.85rem 'Barlow', sans-serif;
+  margin-bottom: .25rem;
+  font: 600 1.5rem 'Barlow', sans-serif;
+}
+
+#renda-color {
   color: #F05123;
+}
+
+#densidade-color {
+  color: #6929CA;
+}
+
+#covid-color {
+  color: #41A95C;
+}
+
+#covid-color_confirm {
+  color: #84D874;
+}
+
+#solidariedade-color {
+  color: #F0184F;
+}
+
+#solidariedade-color_delivered {
+  color: #F0184F;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {

@@ -32,13 +32,13 @@ class HumanitarianMap extends Component {
     const bairro = `<h2>${feature.NM_BAIRRO}</h2>`;
     const bairroCovid = `<h2>${feature.title}</h2>`;
     const bairroOng = `<h2>${feature.district || feature.title}</h2>`;
-    const casosConf = `<h2>${feature.confirmed_cases}</h2>`;
+    const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const adress = `<small>${feature.address_original}</small>`;
-    const mortes = `<h2>${feature.deaths}</h2>`;
-    const demanda = `<h2 className="demand">${feature.demands}</h2>`;
-    const entrega = `<h2>${feature.delivered || 0}</h2>`;
-    const densidade = `<p>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
-    const renda = `<p>R$ ${formatRenda}</p>`;
+    const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
+    const demanda = `<p id='solidariedade-color'>${feature.demands}</p>`;
+    const entrega = `<p id='solidariedade-color_delivered'>${feature.delivered || 0}</p>`;
+    const densidade = `<p id='densidade-color'>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
+    const renda = `<p id='renda-color'>R$ ${formatRenda}</p>`;
 
     if (layer === 'ibge-renda') {
       return `${bairro}${renda}<small>Renda média</small>`
@@ -62,7 +62,7 @@ class HumanitarianMap extends Component {
 
     // this.map.on('click', layer.layerName, (e) => {
     this.map.on('mouseenter', layer.layerName, (e) => {
-      console.log(e.features[0])
+      // console.log(e.features[0])
 
       const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade';
       let coord = undefined;
