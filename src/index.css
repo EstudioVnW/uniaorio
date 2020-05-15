@@ -195,24 +195,21 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 225px;
-  min-height: 100px;
+  width: 200px;
+  min-height: 110px;
   border-bottom: 4px solid #F05123;
   text-align: center;
   line-height: 1rem;
+  padding: 0.55rem 0 0.25rem;
 }
 
 .mapboxgl-popup-content div {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: .5rem;
-  width: 125px;
+  padding: 0.45rem 0;
 }
 
 .mapboxgl-popup-content span {
-  width: 50%;
-  margin: 0 0.25rem;
+  padding: 0 0.45rem;
   text-align: center;
 }
 

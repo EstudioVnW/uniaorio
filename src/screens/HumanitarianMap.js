@@ -35,7 +35,7 @@ class HumanitarianMap extends Component {
     const casosConf = `<h2>${feature.confirmed_cases}</h2>`;
     const adress = `<small>${feature.address_original}</small>`;
     const mortes = `<h2>${feature.deaths}</h2>`;
-    const demanda = `<h2>${feature.demands}</h2>`;
+    const demanda = `<h2 className="demand">${feature.demands}</h2>`;
     const entrega = `<h2>${feature.delivered || 0}</h2>`;
     const densidade = `<p>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
     const renda = `<p>R$ ${formatRenda}</p>`;
@@ -53,13 +53,14 @@ class HumanitarianMap extends Component {
       return`${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
     }
     else if (layer === 'layer-bairro-solidariedade') {
-      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></div>`
     }
   }
 
   handlePopup = (layer) => {
     let popup;
 
+    // this.map.on('click', layer.layerName, (e) => {
     this.map.on('mouseenter', layer.layerName, (e) => {
       console.log(e.features[0])
 
