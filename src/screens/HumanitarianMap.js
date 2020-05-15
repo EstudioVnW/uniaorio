@@ -46,14 +46,14 @@ class HumanitarianMap extends Component {
     else if (layer === 'ibge-populacao') {
       return`${bairro}${densidade}<small>Densidade Populacional</small>`
     }
+    else if (layer === 'layer-bairro-solidariedade') {
+      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></div>`
+    }
     else if (layer === 'layer-bairro-covid') {
       return`${bairroCovid}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
     }
     else if (layer === 'ongs-icons') {
       return`${bairroOng}${adress}<div><span>${demanda}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
-    }
-    else if (layer === 'layer-bairro-solidariedade') {
-      return`${bairroOng}<div><span>${demanda}<small>Demanda</small></div>`
     }
   }
 
