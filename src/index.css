@@ -50,6 +50,10 @@ a:hover {
   color: #fff;
 }
 
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl {
+  margin: 0 0 2rem 10px;
+}
+
 .menu {
   position: fixed;
   top: 0;
@@ -283,6 +287,12 @@ a:hover {
 
 @media(max-width: 975px) {
   .modal {
+    bottom: 90px;
+  }
+}
+
+@media(max-width: 490px) {
+  .modal {
     bottom: 70px;
   }
 }
@@ -312,12 +322,10 @@ a:hover {
 }
 
 .modal-content {
-  /* display: none; */
   padding: 1rem;
+  margin-bottom: .75rem;
   min-height: 55vh;
   overflow-y: scroll;
-  /* transition: all .5s ease-in-out 1s; */
-  /* transform: rotate(180deg); */
 }
 
 @media(max-width: 975px) {
