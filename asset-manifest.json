@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/uniaorio/static/css/main.d86f3363.chunk.css",
-    "main.js": "/uniaorio/static/js/main.7926942b.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.7926942b.chunk.js.map",
+    "main.js": "/uniaorio/static/js/main.a994f136.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.a994f136.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.d7adae58.chunk.js": "/uniaorio/static/js/2.d7adae58.chunk.js",
     "static/js/2.d7adae58.chunk.js.map": "/uniaorio/static/js/2.d7adae58.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.068fd33d0a5c6348c141f8b42e66d42f.js": "/uniaorio/precache-manifest.068fd33d0a5c6348c141f8b42e66d42f.js",
+    "precache-manifest.998abfa9a6bc1d39bc1a70730bf9a83b.js": "/uniaorio/precache-manifest.998abfa9a6bc1d39bc1a70730bf9a83b.js",
     "service-worker.js": "/uniaorio/service-worker.js",
     "static/css/main.d86f3363.chunk.css.map": "/uniaorio/static/css/main.d86f3363.chunk.css.map",
     "static/js/2.d7adae58.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.d7adae58.chunk.js.LICENSE.txt",
@@ -32,7 +32,7 @@
     "static/media/loading.svg": "/uniaorio/static/media/loading.00169747.svg",
     "static/media/logo.png": "/uniaorio/static/media/logo.3f9b1271.png",
     "static/media/index.css": "/uniaorio/static/media/second-dens.e1b0ade8.svg",
-    "static/media/menu.svg": "/uniaorio/static/media/menu.713d1ec2.svg",
+    "static/media/menu.png": "/uniaorio/static/media/menu.3a4e897c.png",
     "static/media/painel.svg": "/uniaorio/static/media/painel.6e1bce9b.svg",
     "static/media/painel2.svg": "/uniaorio/static/media/painel2.e48b3922.svg",
     "static/media/socio-economic-grafico.svg": "/uniaorio/static/media/socio-economic-grafico.3d5ce1be.svg"
@@ -41,6 +41,6 @@
     "static/js/runtime-main.cb743201.js",
     "static/js/2.d7adae58.chunk.js",
     "static/css/main.d86f3363.chunk.css",
-    "static/js/main.7926942b.chunk.js"
+    "static/js/main.a994f136.chunk.js"
   ]
 }
