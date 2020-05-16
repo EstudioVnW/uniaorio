@@ -22,7 +22,7 @@ class Modal extends Component {
       </div>
       <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
-      <p>Esses dados foram retirados do SENSO-20, realizado pelo IBGE no ano de 2020.</p>
+      <p>Esses dados foram retirados do SENSO-10, realizado pelo IBGE no ano de 2020.</p>
       <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
     </div>
   )
@@ -71,15 +71,14 @@ class Modal extends Component {
 
   handleOngs = () => (
     <div className='box'>
-      <h2 className='content-title'>ONG's Parceiras</h2>
+      <h2 className='content-title'>Parceiros</h2>
       <div className='content-numbers'>
         <ul>
-          <li>- Nome da ONG</li>
-          <li>- Endereço da ONG</li>
+          <li>- Nome do parceiro</li>
+          <li>- Endereço do parceiro</li>
           <li>- Demanda e entrega de cestas básicas</li>
         </ul>
       </div>
-      <p>Casos de Covid-19 no Rio de Janeiro</p>
     </div>
   )
 
@@ -87,15 +86,15 @@ class Modal extends Component {
     const content = this.props.selectedItem.title;
 
     switch (content) {
-      case 'Socio-econômico':
-			return this.handleSocioEconomic();
-      case 'Densidade demográfica':
-        return this.handleDemographicDensity();
+      // case 'Socio-econômico':
+			// return this.handleSocioEconomic();
+      // case 'Densidade demográfica':
+      //   return this.handleDemographicDensity();
       case 'Solidariedade':
         return this.handleSolidarity();
       case 'Covid-19':
         return this.handleCovid();
-      case "ONG's Parceiras":
+      case "Parceiros":
       return this.handleOngs();
       default:
         return null;
@@ -112,6 +111,7 @@ class Modal extends Component {
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
           {this.renderContent()}
+          {this.handleSocioEconomic()}
         </div>
       </div>
     );

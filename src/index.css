@@ -65,7 +65,7 @@ a:hover {
 
 .menu-container {
   width: 90%;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,13 +73,14 @@ a:hover {
 
 @media(max-width: 1025px) {
   .menu-container {
-    width: 100%;
+    width: 95%;
     height: 75px;
+    z-index: 10;
   }
 }
 
 .menu-container button {
-  width: 175px;
+  width: 155px;
   height: 38px;
   background: #FBB03B 0% 0% no-repeat padding-box;
   border-radius: 4px;
@@ -90,6 +91,11 @@ a:hover {
   color: #000000;
   border: 0;
 }
+
+#map > nav > div > div > div {
+  font-size: 0.75rem;
+}
+
 
 .menu-logo {
   display: flex;
@@ -102,12 +108,12 @@ a:hover {
   padding: 0 0.55rem;
 }
 .menu-logo img {
-  width: 75px;
+  width: 55px;
 }
 
 .menu-filters {
-  width: 65%;
-  height: 80px;
+  width: 60%;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,7 +148,7 @@ a:hover {
 
 @media(max-width: 590px) {
   .menu-container, .menu-filters {
-    height: 80px;
+    height: 60px;
   }
 
   .menu-filters li {
@@ -158,7 +164,7 @@ a:hover {
 }
 
 .menu-filters img {
-  height: 25px;
+  height: 20px;
   transition: 0.25s all ease-in-out;
 }
 
@@ -187,16 +193,17 @@ a:hover {
 
 .mapContainer {
   position: absolute;
-  top: 80px;
+  top: 60px;
   right: 0;
   left: 0;
   bottom: 0;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
 }
 
 @media(max-width: 975px) {
   .mapContainer {
-    top: 80px;
+    height: 50vh;
+    top: 60px;
     height: calc(100vh - 100px);
   }
 }
@@ -300,7 +307,7 @@ a:hover {
 
 @media(max-width: 975px) {
   .modal {
-    bottom: 80px;
+    bottom: 60px;
   }
 }
 
@@ -332,6 +339,11 @@ a:hover {
   padding: 1rem;
   min-height: 55vh;
   overflow-y: scroll;
+  flex-direction: column;
+}
+
+.socio {
+  margin-top: 2rem;
 }
 
 @media(max-width: 975px) {
@@ -455,4 +467,71 @@ a:hover {
 .socio span {
   font-size: .7rem;
   color: #595959;
+}
+
+.painel {
+  padding: 10rem;
+  width: 100%;
+  height: calc(100vh - 70px);
+  font: 400 1rem 'Barlow', sans-serif;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  background-color: #FFF6E9;
+  min-height: 250vh;
+}
+
+@media(max-width: 975px) {
+  .painel {
+    padding: 0;
+  }
+}
+
+
+.painel-container {
+  width: 70vw;
+}
+
+@media(max-width: 975px) {
+  .painel-container {
+    margin-top: 4rem;
+    width: 100vw;
+    padding: 1rem;
+  }
+}
+
+.painel-img {
+  padding-top: 4rem;
+}
+.painel2 {
+  padding-top: 10rem;
+}
+
+.painel-menu {
+  position: absolute;
+  top: 11rem;
+  left: 5rem;
+  width: 100px;
+}
+
+@media(max-width: 975px) {
+  .painel-menu {
+    display: none;
+  }
+}
+
+
+.painel h1 {
+  font-size: 3rem;
+  color: #F05123;
+  font-weight: 500;
+}
+
+.painel p {
+  color: #5C5C5C;
+  font-size: 2.5rem;
+  font-weight: bold;
 }

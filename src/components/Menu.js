@@ -103,22 +103,22 @@ class Menu extends Component {
       },
     ],
     menuItems: [
-      {
-        image: filterIcon1,
-        selectedImage: filterSelectedIcon1,
-        title: 'Socio-econômico',
-        layerName: 'ibge-renda',
-        color: '#F05123',
-        text: 'socio',
-      },
-      {
-        image: filterIcon2,
-        selectedImage: filterSelectedIcon2,
-        title: 'Densidade demográfica',
-        layerName: 'ibge-populacao',
-        color: '#6929CA',
-        text: 'densidade',
-      },
+      // {
+      //   image: filterIcon1,
+      //   selectedImage: filterSelectedIcon1,
+      //   title: 'Socio-econômico',
+      //   layerName: 'ibge-renda',
+      //   color: '#F05123',
+      //   text: 'socio',
+      // },
+      // {
+      //   image: filterIcon2,
+      //   selectedImage: filterSelectedIcon2,
+      //   title: 'Densidade demográfica',
+      //   layerName: 'ibge-populacao',
+      //   color: '#6929CA',
+      //   text: 'densidade',
+      // },
       {
         image: filterIcon3,
         selectedImage: filterSelectedIcon3,
@@ -126,6 +126,14 @@ class Menu extends Component {
         color: '#F0184F',
         text: 'solid',
         layerName: 'layer-bairro-solidariedade'
+      },
+      {
+        image: filterIcon5,
+        selectedImage: filterSelectedIcon5,
+        title: "Parceiros",
+        color: '#4DA9FF',
+        text: 'ongs',
+        layerName: 'ongs-icons',
       },
       {
         image: filterIcon4,
@@ -136,17 +144,9 @@ class Menu extends Component {
         layerName: 'layer-bairro-covid'
       },
       {
-        image: filterIcon5,
-        selectedImage: filterSelectedIcon5,
-        title: "ONG's Parceiras",
-        color: '#4DA9FF',
-        text: 'ongs',
-        layerName: 'ongs-icons',
-      },
-      {
         image: filterIcon6,
         selectedImage: filterSelectedIcon6,
-        title: 'Painel de transparência',
+        title: 'Transparência',
         color: '#FA9900',
         text: 'painel',
       }
