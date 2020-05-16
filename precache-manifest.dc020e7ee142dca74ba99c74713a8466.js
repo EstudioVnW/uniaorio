@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5ac37bbd51efee80557f335a0ff9e345",
+    "revision": "22700351528d8b42a8bcf60684b2d7ec",
     "url": "/uniaorio/index.html"
   },
   {
-    "revision": "a28aca61f77f16706f95",
-    "url": "/uniaorio/static/css/main.11d03cac.chunk.css"
+    "revision": "cb419eb9468a1f85c790",
+    "url": "/uniaorio/static/css/main.287cb6ca.chunk.css"
   },
   {
-    "revision": "b9edbc63b23e1a4ffb93",
-    "url": "/uniaorio/static/js/2.f2a893ba.chunk.js"
+    "revision": "6d683d2d08515aedb88c",
+    "url": "/uniaorio/static/js/2.d7adae58.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/uniaorio/static/js/2.f2a893ba.chunk.js.LICENSE.txt"
+    "url": "/uniaorio/static/js/2.d7adae58.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a28aca61f77f16706f95",
-    "url": "/uniaorio/static/js/main.f7d2ffc8.chunk.js"
+    "revision": "cb419eb9468a1f85c790",
+    "url": "/uniaorio/static/js/main.ddb5aa5f.chunk.js"
   },
   {
     "revision": "ecd5d8f3fadd1f84f3ee",
@@ -104,8 +104,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniaorio/static/media/max-dens.c9cb195e.svg"
   },
   {
+    "revision": "a08e459a92226325bcbcba901a36f211",
+    "url": "/uniaorio/static/media/menu.a08e459a.svg"
+  },
+  {
     "revision": "7f34633fd1ae05c09c3605203bf83a75",
     "url": "/uniaorio/static/media/min-dens.7f34633f.svg"
+  },
+  {
+    "revision": "6e1bce9b7a81c09aa2d6bc11aae04906",
+    "url": "/uniaorio/static/media/painel.6e1bce9b.svg"
+  },
+  {
+    "revision": "e48b3922218adc47e4e8b161b20b94bc",
+    "url": "/uniaorio/static/media/painel2.e48b3922.svg"
   },
   {
     "revision": "e1b0ade8ef3c5b99cae166b8f4d87c05",
