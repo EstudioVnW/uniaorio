@@ -16,13 +16,13 @@ import filterIcon2 from '../assets/filter-icon-2.svg';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterIcon4 from '../assets/filter-icon-4.svg';
 import filterIcon5 from '../assets/filter-icon-5.svg';
-// import filterIcon6 from '../assets/filter-icon-6.svg';
+import filterIcon6 from '../assets/filter-icon-6.svg';
 import filterSelectedIcon1 from '../assets/filter-selected-icon-1.svg';
 import filterSelectedIcon2 from '../assets/filter-selected-icon-2.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
 import filterSelectedIcon4 from '../assets/filter-selected-icon-4.svg';
 import filterSelectedIcon5 from '../assets/filter-selected-icon-5.svg';
-// import filterSelectedIcon6 from '../assets/filter-selected-icon-6.svg';
+import filterSelectedIcon6 from '../assets/filter-selected-icon-6.svg';
 
 class Menu extends Component {
   state = {
@@ -143,13 +143,13 @@ class Menu extends Component {
         text: 'ongs',
         layerName: 'ongs-icons',
       },
-      // {
-      //   image: filterIcon6,
-      //   selectedImage: filterSelectedIcon5,
-      //   title: 'Painel de transparência',
-      //   color: '#F0184F',
-      //   text: 'painel',
-      // }
+      {
+        image: filterIcon6,
+        selectedImage: filterSelectedIcon6,
+        title: 'Painel de transparência',
+        color: '#FA9900',
+        text: 'painel',
+      }
     ],
     isMapping: false,
     isSelectedButton: '',
@@ -296,7 +296,7 @@ class Menu extends Component {
             </NavLink>
             <div>
               <p>Última atualização</p>
-              <p className="text-red">17:23 - 08.05.20</p>
+              <p className="text-red">17:00 - 16.05.20</p>
             </div>
           </div>
           <ul className="menu-filters">

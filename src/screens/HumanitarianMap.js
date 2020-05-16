@@ -37,7 +37,7 @@ class HumanitarianMap extends Component {
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demanda = `<p id='solidariedade-color'>${feature.demands || 0}</p>`;
     const ongDemand = `<p id='ong-demand-color'>${feature.demands || 0}</p>`;
-    const entrega = `<p id='ong-delivered-color'>${feature.delivered || 0}</p>`;
+    const entrega = `<p id='ong-delivered-color'>${feature.delivered_amount || 0}</p>`;
     const densidade = `<p id='densidade-color'>${feature.dens_ha && feature.dens_ha.toFixed(0)}</p>`;
     const renda = `<p id='renda-color'>R$ ${formatRenda}</p>`;
 
@@ -48,7 +48,7 @@ class HumanitarianMap extends Component {
       return`${bairro}${densidade}<small>Densidade Populacional</small>`
     }
     else if (layer === 'layer-bairro-solidariedade') {
-      return`${district}<div><span>${demanda}<small>Cestas entregues</small></div>`
+      return`${district}<div><span>${entrega}<small>Cestas entregues</small></div>`
     }
     else if (layer === 'layer-bairro-covid') {
       return `${district}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
@@ -63,7 +63,6 @@ class HumanitarianMap extends Component {
 
     // this.map.on('click', layer.layerName, (e) => {
     this.map.on('mouseenter', layer.layerName, (e) => {
-      // console.log(e.features[0])
 
       const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade';
       let coord = undefined;
@@ -111,7 +110,7 @@ class HumanitarianMap extends Component {
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom,
       minZoom: 7,
-      maxZoom: 14,
+      maxZoom: 13,
       maxBounds: [
         [-45.858984, -23.553521],
         [-40.50585, -20.715985]]

@@ -48,8 +48,8 @@ class Modal extends Component {
       <div className='content-numbers'>
         <ul>
           <li><span className='solid-1'>%</span>Percentual entregue</li>
-          <li><span className='solid-2'></span>Entrega</li>
-          <li><span className='solid-3'></span>Demanda</li>
+          <li><span className='solid-2'></span>Demanda</li>
+          <li><span className='solid-3'></span>Entrega</li>
         </ul>
       </div>
       <p>Percentual de cestas básicas</p>
