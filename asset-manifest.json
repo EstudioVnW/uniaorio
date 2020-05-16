@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/uniaorio/static/css/main.f469681a.chunk.css",
-    "main.js": "/uniaorio/static/js/main.0e133c8b.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.0e133c8b.chunk.js.map",
+    "main.css": "/uniaorio/static/css/main.dc54e045.chunk.css",
+    "main.js": "/uniaorio/static/js/main.61485e49.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.61485e49.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.d7adae58.chunk.js": "/uniaorio/static/js/2.d7adae58.chunk.js",
     "static/js/2.d7adae58.chunk.js.map": "/uniaorio/static/js/2.d7adae58.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.be91dfaca76ef178284e5ac87425c762.js": "/uniaorio/precache-manifest.be91dfaca76ef178284e5ac87425c762.js",
+    "precache-manifest.41b3d737c35aae7147d46422c7402664.js": "/uniaorio/precache-manifest.41b3d737c35aae7147d46422c7402664.js",
     "service-worker.js": "/uniaorio/service-worker.js",
-    "static/css/main.f469681a.chunk.css.map": "/uniaorio/static/css/main.f469681a.chunk.css.map",
+    "static/css/main.dc54e045.chunk.css.map": "/uniaorio/static/css/main.dc54e045.chunk.css.map",
     "static/js/2.d7adae58.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.d7adae58.chunk.js.LICENSE.txt",
     "static/media/check.svg": "/uniaorio/static/media/check.32d24ad4.svg",
     "static/media/densDiagonal.svg": "/uniaorio/static/media/densDiagonal.22c16143.svg",
@@ -32,7 +32,7 @@
     "static/media/loading.svg": "/uniaorio/static/media/loading.00169747.svg",
     "static/media/logo.png": "/uniaorio/static/media/logo.3f9b1271.png",
     "static/media/index.css": "/uniaorio/static/media/second-dens.e1b0ade8.svg",
-    "static/media/menu.svg": "/uniaorio/static/media/menu.a08e459a.svg",
+    "static/media/menu.svg": "/uniaorio/static/media/menu.713d1ec2.svg",
     "static/media/painel.svg": "/uniaorio/static/media/painel.6e1bce9b.svg",
     "static/media/painel2.svg": "/uniaorio/static/media/painel2.e48b3922.svg",
     "static/media/socio-economic-grafico.svg": "/uniaorio/static/media/socio-economic-grafico.3d5ce1be.svg"
@@ -40,7 +40,7 @@
   "entrypoints": [
     "static/js/runtime-main.cb743201.js",
     "static/js/2.d7adae58.chunk.js",
-    "static/css/main.f469681a.chunk.css",
-    "static/js/main.0e133c8b.chunk.js"
+    "static/css/main.dc54e045.chunk.css",
+    "static/js/main.61485e49.chunk.js"
   ]
 }
