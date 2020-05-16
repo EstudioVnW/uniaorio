@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/uniaorio/static/css/main.287cb6ca.chunk.css",
-    "main.js": "/uniaorio/static/js/main.ddb5aa5f.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.ddb5aa5f.chunk.js.map",
+    "main.css": "/uniaorio/static/css/main.f469681a.chunk.css",
+    "main.js": "/uniaorio/static/js/main.0e133c8b.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.0e133c8b.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.d7adae58.chunk.js": "/uniaorio/static/js/2.d7adae58.chunk.js",
     "static/js/2.d7adae58.chunk.js.map": "/uniaorio/static/js/2.d7adae58.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.dc020e7ee142dca74ba99c74713a8466.js": "/uniaorio/precache-manifest.dc020e7ee142dca74ba99c74713a8466.js",
+    "precache-manifest.be91dfaca76ef178284e5ac87425c762.js": "/uniaorio/precache-manifest.be91dfaca76ef178284e5ac87425c762.js",
     "service-worker.js": "/uniaorio/service-worker.js",
-    "static/css/main.287cb6ca.chunk.css.map": "/uniaorio/static/css/main.287cb6ca.chunk.css.map",
+    "static/css/main.f469681a.chunk.css.map": "/uniaorio/static/css/main.f469681a.chunk.css.map",
     "static/js/2.d7adae58.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.d7adae58.chunk.js.LICENSE.txt",
     "static/media/check.svg": "/uniaorio/static/media/check.32d24ad4.svg",
     "static/media/densDiagonal.svg": "/uniaorio/static/media/densDiagonal.22c16143.svg",
@@ -40,7 +40,7 @@
   "entrypoints": [
     "static/js/runtime-main.cb743201.js",
     "static/js/2.d7adae58.chunk.js",
-    "static/css/main.287cb6ca.chunk.css",
-    "static/js/main.ddb5aa5f.chunk.js"
+    "static/css/main.f469681a.chunk.css",
+    "static/js/main.0e133c8b.chunk.js"
   ]
 }
