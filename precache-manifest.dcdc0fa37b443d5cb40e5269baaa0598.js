@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7c1b0144a77b4d1b6f4a73ea738a6b13",
+    "revision": "32dc10a712b388921baabf1ebabbe8f0",
     "url": "/uniaorio/index.html"
   },
   {
-    "revision": "4c9e5fbe9d424e4f6be9",
-    "url": "/uniaorio/static/css/main.283fe62e.chunk.css"
+    "revision": "2a7b9c1996e4c6b2862e",
+    "url": "/uniaorio/static/css/main.59312c73.chunk.css"
   },
   {
-    "revision": "6d683d2d08515aedb88c",
-    "url": "/uniaorio/static/js/2.d7adae58.chunk.js"
+    "revision": "5fed17aa04f93658f936",
+    "url": "/uniaorio/static/js/2.d6c76bad.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/uniaorio/static/js/2.d7adae58.chunk.js.LICENSE.txt"
+    "url": "/uniaorio/static/js/2.d6c76bad.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4c9e5fbe9d424e4f6be9",
-    "url": "/uniaorio/static/js/main.a994f136.chunk.js"
+    "revision": "2a7b9c1996e4c6b2862e",
+    "url": "/uniaorio/static/js/main.e91049db.chunk.js"
   },
   {
     "revision": "ecd5d8f3fadd1f84f3ee",
@@ -44,14 +44,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniaorio/static/media/dropdownBlack.4603df69.svg"
   },
   {
-    "revision": "94f5f302a5ac7653f3a3bdb079dfb85e",
-    "url": "/uniaorio/static/media/filter-icon-1.94f5f302.svg"
-  },
-  {
-    "revision": "8823a2ed0e0bc3cfd4a94a879ba0cc45",
-    "url": "/uniaorio/static/media/filter-icon-2.8823a2ed.svg"
-  },
-  {
     "revision": "54d0188ca2ec0977186135fb418bd83e",
     "url": "/uniaorio/static/media/filter-icon-3.54d0188c.svg"
   },
@@ -66,14 +58,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9c7137c4ca62d02863a7d22b77564660",
     "url": "/uniaorio/static/media/filter-icon-6.9c7137c4.svg"
-  },
-  {
-    "revision": "8238b8ef4c7585baf71f03e63887815f",
-    "url": "/uniaorio/static/media/filter-selected-icon-1.8238b8ef.svg"
-  },
-  {
-    "revision": "d6e42c2302b03ac1aaeb4cb0ec704242",
-    "url": "/uniaorio/static/media/filter-selected-icon-2.d6e42c23.svg"
   },
   {
     "revision": "1062eebafb5841dca35ae83132cb65b3",
