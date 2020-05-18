@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export const API_URL = 'https://uniao-rio.now.sh';
 
-export const getAllNeighborhood = () => {
+export const getIndexes = index => {
   return axios({
-    url: `${API_URL}/search?index=ongs`,
+    url: `${API_URL}/search?index=${index}`,
     method: 'get',
   });
 };

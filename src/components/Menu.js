@@ -5,8 +5,6 @@ import { NavLink } from 'react-router-dom';
 // Images
 import Check from '../assets/check.svg';
 import Logo from '../assets/logo.png';
-// import Dropdown from '../assets/dropdownWhite.svg';
-// import DropdownUp from '../assets/dropUp.svg';
 import densHorizontal from '../assets/densHorizontal.svg';
 import densVertical from '../assets/densVertical.svg';
 import densDiagonal from '../assets/densDiagonal.svg'
@@ -99,29 +97,13 @@ class Menu extends Component {
       },
     ],
     menuItems: [
-      // {
-      //   image: filterIcon1,
-      //   selectedImage: filterSelectedIcon1,
-      //   title: 'Socio-econômico',
-      //   layerName: 'ibge-renda',
-      //   color: '#F05123',
-      //   text: 'socio',
-      // },
-      // {
-      //   image: filterIcon2,
-      //   selectedImage: filterSelectedIcon2,
-      //   title: 'Densidade demográfica',
-      //   layerName: 'ibge-populacao',
-      //   color: '#6929CA',
-      //   text: 'densidade',
-      // },
       {
         image: filterIcon3,
         selectedImage: filterSelectedIcon3,
         title: 'Solidariedade',
         color: '#F0184F',
         text: 'solid',
-        layerName: 'layer-bairro-solidariedade2'
+        layerName: 'Solidariedade'
       },
       {
         image: filterIcon5,
@@ -129,7 +111,7 @@ class Menu extends Component {
         title: "Parceiros",
         color: '#4DA9FF',
         text: 'ongs',
-        layerName: 'ongs-icons',
+        layerName: 'Parceiros',
       },
       {
         image: filterIcon4,
@@ -137,7 +119,7 @@ class Menu extends Component {
         title: 'Covid-19',
         color: '#0ACF59',
         text: 'covid',
-        layerName: 'layer-bairro-covid'
+        layerName: 'Covid'
       },
       {
         image: filterIcon6,

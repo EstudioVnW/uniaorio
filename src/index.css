@@ -212,8 +212,13 @@ a:hover {
   margin: 2rem 0;
 }
 
-.mapboxgl-popup-tip {
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+  margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   margin-bottom: 15px;
+  border-top-color: #F05123;
 }
 
 .mapboxgl-popup-content {
@@ -285,10 +290,6 @@ a:hover {
 
 #ong-demand-color{
   color: #8FC9FF;
-}
-
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  border-top-color: #F05123;
 }
 
 .mapboxgl-popup-content small {
