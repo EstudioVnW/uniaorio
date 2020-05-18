@@ -212,6 +212,10 @@ a:hover {
   margin: 2rem 0;
 }
 
+.mapboxgl-popup-tip {
+  margin-bottom: 15px;
+}
+
 .mapboxgl-popup-content {
   display: flex;
   flex-direction: column;

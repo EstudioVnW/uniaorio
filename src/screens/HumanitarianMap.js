@@ -61,6 +61,7 @@ class HumanitarianMap extends Component {
   handlePopup = (layer) => {
     let popup;
 
+    // this.map.on('click', layer.layerName, (e) => {
     this.map.on('mouseenter', layer.layerName, (e) => {
 
       const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade2';
@@ -131,7 +132,7 @@ class HumanitarianMap extends Component {
         "source": "composite",
         "source-layer": "bairros_1605-dxubaf",
         "layout": {
-          'icon-size': 1.25,
+          "text-size": 12,
           "visibility": "visible",
           "icon-image": [
             "step",
@@ -181,7 +182,7 @@ class HumanitarianMap extends Component {
         },
       });
 
-      console.log('map.getStyle().layers', this.map.getStyle().layers)
+      // console.log('map.getStyle().layers', this.map.getStyle().layers)
 
       this.props.handleMenuItem({
         image: filterIcon3,
