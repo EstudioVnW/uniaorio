@@ -22,7 +22,7 @@ class Modal extends Component {
       </div>
       <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
-      <p>Esses dados foram retirados do SENSO-10, realizado pelo IBGE no ano de 2020.</p>
+      <p>Esses dados foram retirados do SENSO-10, realizado pelo IBGE no ano de 2010.</p>
       <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
     </div>
   )

@@ -6,6 +6,7 @@ import mapboxgl from 'mapbox-gl';
 import Subtitle from '../components/ModalSubtitle';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
+import { getAllNeighborhood } from '../api';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWdvcmNvdXRvIiwiYSI6ImNrOWZudjNtcTAyd3EzbHI3a2ppbnpnemUifQ.D--CSyWyEk70oULTVok7vg';
 
@@ -61,7 +62,6 @@ class HumanitarianMap extends Component {
   handlePopup = (layer) => {
     let popup;
 
-    // this.map.on('click', layer.layerName, (e) => {
     this.map.on('mouseenter', layer.layerName, (e) => {
 
       const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade2';
@@ -108,7 +108,45 @@ class HumanitarianMap extends Component {
     } 
   }
 
-  componentDidMount() {
+  async fetchNeighborhood() {
+    try {
+      this.setState({ isFetching: true });
+
+      const response = await getAllNeighborhood();
+      let geojson = {
+        "type":
+        "FeatureCollection",
+        "features": []
+      }
+      response.data.data.forEach(item => {
+        let feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [item._source.longitude, item._source.latitude]
+          },
+          "properties": item._source,
+        }
+
+        geojson['features'].push(feature)
+      })
+      console.log(geojson)
+
+      this.setState({
+        neighborhoodData: geojson,
+        isFetching: false,
+      });
+
+    } catch (error) {
+      console.log(error);
+      console.log(error.response);
+      this.setState({ isFetching: false });
+    }
+  }
+
+  async componentDidMount () {
+    await this.fetchNeighborhood();
+    
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
@@ -116,7 +154,8 @@ class HumanitarianMap extends Component {
       maxZoom: 13,
       maxBounds: [
         [-45.858984, -23.553521],
-        [-40.50585, -20.715985]]
+        [-40.50585, -20.715985]
+      ]
     });
 
     this.map.on('load', () => {
@@ -126,11 +165,17 @@ class HumanitarianMap extends Component {
         speed: 0.5
       });
 
+      this.map.addSource('bairros', {
+        type: 'geojson',
+        data: this.state.neighborhoodData
+      });
+
       this.map.addLayer({
         'id': 'layer-bairro-solidariedade2',
         'type': 'symbol',
-        "source": "composite",
-        "source-layer": "bairros_1605-dxubaf",
+        'source': 'bairros',
+        // "source": "composite",
+        // "source-layer": "bairros_1605-dxubaf",
         "layout": {
           "text-size": 12,
           "visibility": "visible",
@@ -182,7 +227,7 @@ class HumanitarianMap extends Component {
         },
       });
 
-      // console.log('map.getStyle().layers', this.map.getStyle().layers)
+      console.log('map.getStyle().layers', this.map.getStyle().layers)
 
       this.props.handleMenuItem({
         image: filterIcon3,
