@@ -11,14 +11,10 @@ import densHorizontal from '../assets/densHorizontal.svg';
 import densVertical from '../assets/densVertical.svg';
 import densDiagonal from '../assets/densDiagonal.svg'
 
-import filterIcon1 from '../assets/filter-icon-1.svg';
-import filterIcon2 from '../assets/filter-icon-2.svg';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterIcon4 from '../assets/filter-icon-4.svg';
 import filterIcon5 from '../assets/filter-icon-5.svg';
 import filterIcon6 from '../assets/filter-icon-6.svg';
-import filterSelectedIcon1 from '../assets/filter-selected-icon-1.svg';
-import filterSelectedIcon2 from '../assets/filter-selected-icon-2.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
 import filterSelectedIcon4 from '../assets/filter-selected-icon-4.svg';
 import filterSelectedIcon5 from '../assets/filter-selected-icon-5.svg';
@@ -125,7 +121,7 @@ class Menu extends Component {
         title: 'Solidariedade',
         color: '#F0184F',
         text: 'solid',
-        layerName: 'layer-bairro-solidariedade'
+        layerName: 'layer-bairro-solidariedade2'
       },
       {
         image: filterIcon5,

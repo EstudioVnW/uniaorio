@@ -30,18 +30,31 @@ class HumanitarianMap extends Component {
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const adress = `<small>${feature.address_original}</small>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
+    const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
     const ongDemand = `<p id='ong-demand-color'>${feature.demands || 0}</p>`;
     const entrega = `<p id='ong-delivered-color'>${feature.delivered_amount || 0}</p>`;
 
-    if (layer === 'layer-bairro-solidariedade') {
-      return`${district}<div><span>${entregaSolid}<small>Cestas entregues</small></div>`
+    if (layer === 'layer-bairro-solidariedade2') {
+      return `${district}
+        <div>
+          <span>${demand}<small>Demanda</small></span>
+          <span>${entregaSolid}<small>Entrega</small></span>
+        </div>`
     }
     else if (layer === 'layer-bairro-covid') {
-      return `${district}<div><span>${casosConf}<small>Confirmados</small></span><span>${mortes}<small>Óbitos</small></span></div>`
+      return `${district}
+        <div>
+          <span>${casosConf}<small>Confirmados</small></span>
+          <span>${mortes}<small>Óbitos</small></span>
+        </div>`
     }
     else if (layer === 'ongs-icons') {
-      return `${ongName}${adress}<div><span>${ongDemand}<small>Demanda</small></span><span>${entrega}<small>Entrega</small></span></div>`
+      return `${ongName}${adress}
+        <div>
+          <span>${ongDemand}<small>Demanda</small></span>
+          <span>${entrega}<small>Entrega</small></span>
+        </div>`
     }
   }
 
@@ -50,7 +63,7 @@ class HumanitarianMap extends Component {
 
     this.map.on('mouseenter', layer.layerName, (e) => {
 
-      const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade';
+      const isIcon = layer.layerName === 'ongs-icons' || layer.layerName === 'layer-bairro-covid' || layer.layerName === 'layer-bairro-solidariedade2';
       let coord = undefined;
 
       if (isIcon) {
@@ -98,8 +111,6 @@ class HumanitarianMap extends Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
       minZoom: 7,
       maxZoom: 13,
       maxBounds: [
@@ -108,13 +119,77 @@ class HumanitarianMap extends Component {
     });
 
     this.map.on('load', () => {
+      this.map.flyTo({
+        center: [this.state.lng, this.state.lat],
+        zoom: this.state.zoom,
+        speed: 0.5
+      });
+
+      this.map.addLayer({
+        'id': 'layer-bairro-solidariedade2',
+        'type': 'symbol',
+        "source": "composite",
+        "source-layer": "bairros_1605-dxubaf",
+        "layout": {
+          'icon-size': 1.25,
+          "visibility": "visible",
+          "icon-image": [
+            "step",
+            ["round",
+              ["/",
+                ["*",
+                  100,
+                  ["get", "delivered_amount"]
+                ],
+                ["get", "demands"]
+              ]
+            ],
+            "",
+            5,
+            "25 (1)",
+            50,
+            "50",
+            75,
+            "75",
+            100,
+            "100"
+          ],
+          "text-field": [
+            "step",
+            ["get", "delivered_amount"],
+            "",
+            1,
+            ["concat",
+              ["to-string",
+                ["round",
+                  ["/",
+                    ["*",
+                      100,
+                      ["get", "delivered_amount"]
+                    ],
+                    ["get", "demands"]
+                  ]
+                ]
+              ],
+              '%'
+            ]
+          ]
+        },
+        "paint": {
+          "text-color": "#fff",
+          "icon-opacity": 0.7
+        },
+      });
+
+      console.log('map.getStyle().layers', this.map.getStyle().layers)
+
       this.props.handleMenuItem({
         image: filterIcon3,
         selectedImage: filterSelectedIcon3,
         title: 'Solidariedade',
         color: '#F0184F',
         text: 'solid',
-        layerName: 'layer-bairro-solidariedade'
+        layerName: 'layer-bairro-solidariedade2'
       })
     })
 
