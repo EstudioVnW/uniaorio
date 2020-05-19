@@ -29,7 +29,7 @@ class HumanitarianMap extends Component {
     const district = `<h2>${feature.district || feature.title}</h2>`;
     const ongName = `<h2>${feature.title}</h2>`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
-    const adress = `<small>${feature.address_original}</small>`;
+    const address = `<small>${feature.address != 0 ? feature.address || feature.address_original : ''}</small>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
@@ -51,7 +51,7 @@ class HumanitarianMap extends Component {
         </div>`
     }
     else if (layer === 'Parceiros') {
-      return `${ongName}${adress}
+      return `${ongName}${address}
         <div>
           <span>${ongDemand}<small>Demanda</small></span>
           <span>${entrega}<small>Entrega</small></span>
