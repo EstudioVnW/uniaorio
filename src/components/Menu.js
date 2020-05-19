@@ -274,7 +274,7 @@ class Menu extends Component {
             </NavLink>
             <div>
               <p>Última atualização</p>
-              <p className="text-red">17:00 - 16.05.20</p>
+              <p className="text-red">17:00 - 19.05.20</p>
             </div>
           </div>
           <ul className="menu-filters">
