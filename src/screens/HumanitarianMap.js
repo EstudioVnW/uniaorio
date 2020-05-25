@@ -60,21 +60,18 @@ class HumanitarianMap extends Component {
 
     this.map.on('mouseenter', layer.layerName, (e) => {
 
-      const isIcon = layer.layerName === 'Parceiros' || layer.layerName === 'Covid' || layer.layerName === 'Solidariedade';
       let coord = undefined;
 
-      if (isIcon) {
-        coord = e.features[0].geometry.coordinates.slice();
+      coord = e.features[0].geometry.coordinates.slice();
 
-        while (Math.abs(e.lngLat.lng - coord[0]) > 180) {
-          coord[0] += e.lngLat.lng > coord[0] ? 360 : -360;
-        }
+      while (Math.abs(e.lngLat.lng - coord[0]) > 180) {
+        coord[0] += e.lngLat.lng > coord[0] ? 360 : -360;
       }
 
       const popupMarkup = this.choosePopup(layer.layerName, e.features[0].properties)
 
       popup = new mapboxgl.Popup()
-        .setLngLat(isIcon ? coord : e.lngLat)
+        .setLngLat(coord)
         .setHTML(popupMarkup)
         .addTo(this.map);
 
@@ -205,11 +202,39 @@ class HumanitarianMap extends Component {
         data: this.state.bairros
       });
 
+      // bairros title
+      this.map.addLayer({
+        "id": "Bairros-Title",
+        "type": "symbol",
+        "source": "bairros",
+        "layout": {
+          // "icon-ignore-placement": true,
+          "text-field": [
+            "case",
+            [
+              "match",
+              ["get", "district"],
+              ["NAO INFORMADO"],
+              false,
+              true
+            ],
+            ["to-string", ["get", "district"]],
+            ["to-string", ["get", "district"]]
+          ],
+          "text-transform": "lowercase"
+        },
+        "paint": {
+          "text-color": "#7A571D",
+        }
+      });
+
+      // solidariedade
       this.map.addLayer({
         'id': 'Solidariedade',
         'type': 'symbol',
         'source': 'bairros',
         "layout": {
+          "icon-ignore-placement": true,
           "text-size": 12,
           "visibility": "visible",
           "icon-image": [
@@ -260,17 +285,14 @@ class HumanitarianMap extends Component {
         },
       });
 
-      this.map.addSource('ongs', {
-        type: 'geojson',
-        data: this.state.ongs
-      });
-
+      // Covid 
       this.map.addLayer({
         "id": "Covid",
         "type": "symbol",
         "source": "bairros",
         "layout": {
           "visibility": "none",
+          "icon-ignore-placement": true,
           "icon-image": [
             "step",
             ["get", "deaths"],
@@ -283,7 +305,9 @@ class HumanitarianMap extends Component {
             "Grupo 4408"
           ]
         },
-        "paint": { "text-color": "hsl(0, 0%, 0%)", "icon-opacity": 0.7 }
+        "paint": {
+          "icon-opacity": 0.7
+        }
       });
 
       this.props.handleMenuItem({
