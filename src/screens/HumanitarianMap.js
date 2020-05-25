@@ -26,14 +26,10 @@ class HumanitarianMap extends Component {
 
   choosePopup = (layer, feature) => {
     const district = `<h2>${feature.district || feature.title}</h2>`;
-    const ongName = `<h2>${feature.title}</h2>`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
-    const address = `<small>${feature.address != 0 ? feature.address || feature.address_original : ''}</small>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
-    const ongDemand = `<p id='ong-demand-color'>${feature.demands || 0}</p>`;
-    const entrega = `<p id='ong-delivered-color'>${feature.delivered_amount || 0}</p>`;
 
     if (layer === 'Solidariedade') {
       const ongsFiltered = this.state.ongs.features.filter(ongs => ongs.properties.district === feature.district).map(ong => ong.properties.title)
@@ -46,7 +42,7 @@ class HumanitarianMap extends Component {
         <span> ${ongsFiltered.length > 0 ? `Parceiros:  ${ongsFiltered}` : '' }</span>
       `
     }
-    else if (layer === 'Covid') {
+    else if (layer === 'CovidDeaths' || layer === 'CovidCases') {
       return `${district}
         <div>
           <span>${casosConf}<small>Confirmados</small></span>
@@ -55,10 +51,12 @@ class HumanitarianMap extends Component {
     }
   }
 
-  handlePopup = (layer) => {
+  handlePopup = (layerName) => {
     let popup;
 
-    this.map.on('mouseenter', layer.layerName, (e) => {
+    this.map.on('mouseenter', layerName, (e) => {
+
+      console.log('entrou', layerName)
 
       let coord = undefined;
 
@@ -68,7 +66,7 @@ class HumanitarianMap extends Component {
         coord[0] += e.lngLat.lng > coord[0] ? 360 : -360;
       }
 
-      const popupMarkup = this.choosePopup(layer.layerName, e.features[0].properties)
+      const popupMarkup = this.choosePopup(layerName, e.features[0].properties)
 
       popup = new mapboxgl.Popup()
         .setLngLat(coord)
@@ -78,7 +76,7 @@ class HumanitarianMap extends Component {
       return popup;
     });
 
-    this.map.on('mouseleave', layer.layerName, () => {
+    this.map.on('mouseleave', layerName, () => {
       this.map.getCanvas().style.cursor = '';
       popup.remove();
     });
@@ -93,11 +91,27 @@ class HumanitarianMap extends Component {
         this.map.setLayoutProperty(prevProps.selectedMenuItem.layerName, 'visibility', 'none');
       }
       if (selectedMenuItem.text !== 'painel') {
-        if (prevProps.selectedMenuItem.layerName && prevProps.selectedMenuItem.layerName !== 'ibge-renda') {
-          this.map.setLayoutProperty(prevProps.selectedMenuItem.layerName, 'visibility', 'none');
+
+        if (prevProps.selectedMenuItem.layerName === 'Covid') {
+          this.map.setLayoutProperty('CovidDeaths', 'visibility', 'none');
+          this.map.setLayoutProperty('CovidCases', 'visibility', 'none');
         }
-        this.map.setLayoutProperty(selectedMenuItem.layerName, 'visibility', 'visible');
-        this.handlePopup(selectedMenuItem);
+
+        if (prevProps.selectedMenuItem.layerName === 'Solidariedade') {
+          this.map.setLayoutProperty('Solidariedade', 'visibility', 'none');
+        }
+
+        if (selectedMenuItem.layerName === 'Covid') {
+          this.map.setLayoutProperty('CovidDeaths', 'visibility', 'visible');
+          this.map.setLayoutProperty('CovidCases', 'visibility', 'visible');
+          this.handlePopup('CovidDeaths');
+          this.handlePopup('CovidCases');
+        }
+
+        if (selectedMenuItem.layerName === 'Solidariedade') {
+          this.map.setLayoutProperty('Solidariedade', 'visibility', 'visible');
+          this.handlePopup('Solidariedade');
+        }
       }
     } 
   }
@@ -202,6 +216,91 @@ class HumanitarianMap extends Component {
         data: this.state.bairros
       });
 
+      // Covid 
+      // this.map.addLayer({
+      //   "id": "Covid",
+      //   "type": "symbol",
+      //   "source": "bairros",
+      //   "layout": {
+      //     "visibility": "none",
+      //     "icon-ignore-placement": true,
+      //     "icon-image": [
+      //       "step",
+      //       ["get", "deaths"],
+      //       "",
+      //       1,
+      //       "Grupo 4409",
+      //       20,
+      //       "Grupo%204422",
+      //       50,
+      //       "Grupo 4408"
+      //     ]
+      //   },
+      //   "paint": {
+      //     "icon-opacity": 0
+      //   }
+      // });
+
+      // cases
+      this.map.addLayer({
+        "id": "CovidCases",
+        "type": "circle",
+        "source": "bairros",
+        "layout": {
+          "visibility": "none",
+        },
+        "paint": {
+          "circle-stroke-width": [
+            "interpolate",
+            ["linear"],
+            ["get", "confirmed_cases"],
+            20,
+            4,
+
+            100,
+            8,
+
+            150,
+            16,
+
+            200,
+            32
+          ],
+          "circle-stroke-color": "hsla(144, 91%, 43%, 0.4)",
+          "circle-color": "hsla(144, 91%, 43%, 0.4)",
+        }
+      });
+
+      //deaths
+      this.map.addLayer({
+        "id": "CovidDeaths",
+        "type": "circle",
+        "source": "bairros",
+        "layout": {
+          "visibility": "none",
+        },
+        "paint": {
+            "circle-stroke-width": [
+            "interpolate",
+            ["linear"],
+            ["get", "deaths"],
+            10,
+            3,
+
+            20,
+            6,
+            
+            50,
+            12,
+            
+            75,
+            24
+          ],
+          "circle-stroke-color": "hsla(134, 44%, 46%, 0.6)",
+          "circle-color": "hsla(134, 44%, 46%, 0.6)",
+        }
+      });
+
       // bairros title
       this.map.addLayer({
         "id": "Bairros-Title",
@@ -283,31 +382,6 @@ class HumanitarianMap extends Component {
           "text-color": "#fff",
           "icon-opacity": 0.7
         },
-      });
-
-      // Covid 
-      this.map.addLayer({
-        "id": "Covid",
-        "type": "symbol",
-        "source": "bairros",
-        "layout": {
-          "visibility": "none",
-          "icon-ignore-placement": true,
-          "icon-image": [
-            "step",
-            ["get", "deaths"],
-            "",
-            1,
-            "Grupo 4409",
-            20,
-            "Grupo%204422",
-            50,
-            "Grupo 4408"
-          ]
-        },
-        "paint": {
-          "icon-opacity": 0.7
-        }
       });
 
       this.props.handleMenuItem({
