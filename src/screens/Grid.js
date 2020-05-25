@@ -56,7 +56,6 @@
 //       this.setState({ isFetching: true });
 
 //       const response = await getAllNeighborhood();
-//       console.log('response.data.data', response.data.data)
 //       const data = response.data.data.map((item) => ({
 //         ...item,
 //         _source: {
