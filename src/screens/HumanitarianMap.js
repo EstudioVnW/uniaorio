@@ -17,7 +17,6 @@ class HumanitarianMap extends Component {
       lng: -43.2096,
       lat:  -22.9035,
       zoom: 5,
-      currentOng: '',
       selectedMenuItem: '',
       showSubtitle: false,
     };
@@ -37,11 +36,15 @@ class HumanitarianMap extends Component {
     const entrega = `<p id='ong-delivered-color'>${feature.delivered_amount || 0}</p>`;
 
     if (layer === 'Solidariedade') {
+      const ongsFiltered = this.state.ongs.features.filter(ongs => ongs.properties.district === feature.district).map(ong => ong.properties.title)
+      
       return `${district}
         <div>
           <span>${demand}<small>Demanda</small></span>
           <span>${entregaSolid}<small>Entrega</small></span>
-        </div>`
+        </div>
+        <span> ${ongsFiltered.length > 0 ? `Parceiros:  ${ongsFiltered}` : '' }</span>
+      `
     }
     else if (layer === 'Covid') {
       return `${district}
@@ -183,8 +186,8 @@ class HumanitarianMap extends Component {
       minZoom: 7,
       maxZoom: 13,
       maxBounds: [
-        [-45.858984, -23.553521],
-        [-40.50585, -20.715985]]
+        [-45.70898, -23.553521],
+        [-40.40585, -20.715985]]
     });
 
     console.log('this.map', this.map)
