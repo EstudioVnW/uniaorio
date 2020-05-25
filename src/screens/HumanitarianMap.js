@@ -7,6 +7,7 @@ import Subtitle from '../components/ModalSubtitle';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
 import { getIndexes } from '../api';
+import Loading from '../assets/loading.svg';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWdvcmNvdXRvIiwiYSI6ImNrOWZudjNtcTAyd3EzbHI3a2ppbnpnemUifQ.D--CSyWyEk70oULTVok7vg';
 
@@ -14,6 +15,7 @@ class HumanitarianMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       lng: -43.2096,
       lat:  -22.9035,
       zoom: 5,
@@ -178,6 +180,8 @@ class HumanitarianMap extends Component {
     await this.fetchNeighborhood();
     await this.fetchOngs();
 
+    this.setState({isLoading: false});
+
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/igorcouto/ck9mtp0zx384s1jwau5diy2w4/',
@@ -296,7 +300,6 @@ class HumanitarianMap extends Component {
       })
     })
 
-
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
   }
 
@@ -306,14 +309,28 @@ class HumanitarianMap extends Component {
     });
   }
 
+  renderLoading = () => (
+    <figure className='figureLoadingMap'>
+      <img src={Loading} alt='Carregando...' className='imgLoading'/>
+    </figure>
+  )
+
   render() {
+    const {isLoading, showSubtitle} = this.state;
+    const {setDisplay, selectedMenuItem} = this.props;
+    
     return (
-      <div id="map">
-        <Subtitle
-          handleModalSubtitle={this.handleModalSubtitle}
-          showSubtitle={this.state.showSubtitle}
-          selectedItem={this.props.selectedMenuItem}/>
-        <div ref={el => this.mapContainer = el} className="mapContainer"/>
+      <div id="map" style={{'display': setDisplay}}>
+        {isLoading  ? this.renderLoading()
+          : (
+            <>
+              <Subtitle
+                handleModalSubtitle={this.handleModalSubtitle}
+                showSubtitle={showSubtitle}
+                selectedItem={selectedMenuItem}/>
+              <div ref={el => this.mapContainer = el} className="mapContainer"/>
+            </>
+          )}
       </div>
     );
   }

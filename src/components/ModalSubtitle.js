@@ -105,8 +105,8 @@ class Modal extends Component {
     const setDisplay = this.props.showSubtitle ? 'flex' : 'none';
 
     return (
-      <div className='modal' onClick={this.props.handleModalSubtitle}>
-        <div className='modal-header'>LEGENDA
+      <div className='modal'>
+        <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
           {this.props.showSubtitle ? <span></span> : <p>+</p>}
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>

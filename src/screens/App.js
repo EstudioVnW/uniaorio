@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 // Components
 import Menu from '../components/Menu';
-import Subtitle from '../components/ModalSubtitle';
 import HumanitarianMap from '../screens/HumanitarianMap';
 import painel from '../assets/painel.svg';
 import menu from '../assets/menu.png';
@@ -18,6 +17,10 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.renderMap();
+  }
+
   handleMenuItem = (item) => {
     this.setState({
       selectedMenuItem: item,
@@ -30,6 +33,35 @@ class App extends Component {
     });
   }
 
+  renderMap = () => {
+    const setDisplay = this.state.selectedMenuItem.text !== 'painel' ? 'flex' : 'none';
+
+    return (
+      <HumanitarianMap
+        setDisplay={setDisplay}
+        handleMenuItem={this.handleMenuItem}
+        selectedMenuItem={this.state.selectedMenuItem}
+      />
+    )
+  }
+
+  renderPainel = () => {
+    const setDisplay = this.state.selectedMenuItem.text === 'painel' ? 'flex' : 'none';
+    
+    return (
+      <div className="painel" style={{'display': `${setDisplay}`}}>
+        <div className="painel-container">
+          <h1>Painel da transparência</h1>
+          <p>Geral</p>
+          <img className="painel-img" src={painel} alt='Icone' />
+          <img className="painel-menu" src={menu} alt='Menu' />
+          <img className="painel2" src={painel2} alt='Menu' />
+        </div>
+      </div>
+    )
+  }
+
+
   render() {
     return (
       <div id="map">
@@ -37,26 +69,8 @@ class App extends Component {
           selectMenuItem={this.handleMenuItem}
           selectedMenuItem={this.state.selectedMenuItem}
         />
-        <Subtitle
-          handleModalSubtitle={this.handleModalSubtitle}
-          showSubtitle={this.state.showSubtitle}
-          selectedItem={this.state.selectedMenuItem}
-        />
-        <HumanitarianMap
-          handleMenuItem={this.handleMenuItem}
-          selectedMenuItem={this.state.selectedMenuItem}
-        />
-        {this.state.selectedMenuItem.text === 'painel' && (
-          <div className="painel">
-            <div className="painel-container">
-              <h1>Painel da transparência</h1>
-              <p>Geral</p>
-              <img className="painel-img" src={painel} alt='Icone' />
-              <img className="painel-menu" src={menu} alt='Menu' />
-              <img className="painel2" src={painel2} alt='Menu' />
-            </div>
-          </div>
-        )}
+        {this.renderMap()}
+        {this.renderPainel()}
       </div>
     );
   }

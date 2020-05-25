@@ -251,12 +251,13 @@ class Menu extends Component {
       const setColor = currentItem ? item.color : '#595959';
       const setFont = currentItem ? '600' : '200';
       const setDisplay = currentItem ? 'flex' : 'none';
+      const setOpacity = this.props.selectedMenuItem ? 1 :  0.5;
 
       return (
         <li
           key={item.title}
-          onClick={() => this.props.selectMenuItem(item)}
-          style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`}}>
+          onClick={() => this.props.selectedMenuItem && this.props.selectMenuItem(item)}
+          style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`, opacity: `${setOpacity}`}}>
           <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
           <p>{item.title}</p>
           <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
