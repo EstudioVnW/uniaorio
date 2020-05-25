@@ -307,6 +307,7 @@ class HumanitarianMap extends Component {
         "type": "symbol",
         "source": "bairros",
         "layout": {
+          "text-size": 12,
           // "icon-ignore-placement": true,
           "text-field": [
             "case",
