@@ -50,13 +50,6 @@ class HumanitarianMap extends Component {
           <span>${mortes}<small>Óbitos</small></span>
         </div>`
     }
-    else if (layer === 'Parceiros') {
-      return `${ongName}${address}
-        <div>
-          <span>${ongDemand}<small>Demanda</small></span>
-          <span>${entrega}<small>Entrega</small></span>
-        </div>`
-    }
   }
 
   handlePopup = (layer) => {
@@ -194,6 +187,9 @@ class HumanitarianMap extends Component {
         [-40.50585, -20.715985]]
     });
 
+    console.log('this.map', this.map)
+    console.log('this.state', this.state)
+
     this.map.on('load', () => {
       this.map.flyTo({
         center: [this.state.lng, this.state.lat],
@@ -264,19 +260,6 @@ class HumanitarianMap extends Component {
       this.map.addSource('ongs', {
         type: 'geojson',
         data: this.state.ongs
-      });
-
-      this.map.addLayer({
-        "id": "Parceiros",
-        "type": "symbol",
-        "source": "ongs",
-        "layout": {
-          "icon-image": "Grupo%204347%20(1)",
-          "text-anchor": "top",
-          "text-offset": [0, 0.5],
-          "visibility": "none"
-        },
-        "paint": {}
       });
 
       this.map.addLayer({

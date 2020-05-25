@@ -11,7 +11,7 @@ class Modal extends Component {
     <div className='socio'>
       <h2 className='content-title'>Socio-econômico</h2>
       <div className='content-numbers'>
-        <img src={GraphicImage} alt='icon' />
+        <div className="ibge-degrade"></div>
         <ul>
           <li>R$1.000,00 - R$2.000,00</li>
           <li>R$3.000,00 - R$4.000,00</li>
@@ -22,7 +22,7 @@ class Modal extends Component {
       </div>
       <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
-      <p>Esses dados foram retirados do SENSO-10, realizado pelo IBGE no ano de 2010.</p>
+      <p>Esses dados foram retirados do CENSO-10, realizado pelo IBGE no ano de 2010.</p>
       <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
     </div>
   )

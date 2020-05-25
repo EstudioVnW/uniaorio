@@ -112,7 +112,7 @@ a:hover {
 }
 
 .menu-filters {
-  width: 60%;
+  width: 40%;
   height: 60px;
   display: flex;
   align-items: center;
@@ -136,7 +136,7 @@ a:hover {
   position: relative;
   padding: 0 0.45rem;
   display: flex;
-  width: 20%;
+  width: 100%;
   height: 100%;
   margin: 0 0.25rem;
   align-items: center;
@@ -209,7 +209,7 @@ a:hover {
 }
 
 .mapboxgl-ctrl-bottom-left {
-  margin: 2rem 0;
+  margin: 2rem 1rem;
 }
 
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
@@ -353,6 +353,7 @@ a:hover {
 
 .socio {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media(max-width: 975px) {
@@ -543,4 +544,12 @@ a:hover {
   color: #5C5C5C;
   font-size: 2.5rem;
   font-weight: bold;
+}
+
+.ibge-degrade {
+  width: 18px;
+  height: 103px;
+  border-radius: 2px;
+  margin-right: 10px;
+  background: transparent linear-gradient(180deg, #FCA216 0%, #FCC25A 24%, #FCD276 51%, #C9E2C2 77%, #A5BDD4 100%) 0% 0% no-repeat padding-box;
 }

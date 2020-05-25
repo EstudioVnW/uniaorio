@@ -105,14 +105,14 @@ class Menu extends Component {
         text: 'solid',
         layerName: 'Solidariedade'
       },
-      {
-        image: filterIcon5,
-        selectedImage: filterSelectedIcon5,
-        title: "Parceiros",
-        color: '#4DA9FF',
-        text: 'ongs',
-        layerName: 'Parceiros',
-      },
+      // {
+      //   image: filterIcon5,
+      //   selectedImage: filterSelectedIcon5,
+      //   title: "Parceiros",
+      //   color: '#4DA9FF',
+      //   text: 'ongs',
+      //   layerName: 'Parceiros',
+      // },
       {
         image: filterIcon4,
         selectedImage: filterSelectedIcon4,
@@ -218,8 +218,8 @@ class Menu extends Component {
         return this.renderDemographicDensity();
       case 'Demandas e Entregas':
         return this.renderDemandsandDeliveries();
-      case "ONG's Parceiras":
-      return console.log('ongs');
+      // case "ONG's Parceiras":
+      // return console.log('ongs');
       default:
         return null;
     }
