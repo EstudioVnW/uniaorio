@@ -58,8 +58,6 @@ class HumanitarianMap extends Component {
 
     this.map.on('mouseenter', layerName, (e) => {
 
-      console.log('entrou', layerName)
-
       let coord = undefined;
 
       coord = e.features[0].geometry.coordinates.slice();
