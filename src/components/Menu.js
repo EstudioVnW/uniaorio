@@ -218,8 +218,8 @@ class Menu extends Component {
         return this.renderDemographicDensity();
       case 'Demandas e Entregas':
         return this.renderDemandsandDeliveries();
-      // case "ONG's Parceiras":
-      // return console.log('ongs');
+      case "ONG's Parceiras":
+      return console.log('ongs');
       default:
         return null;
     }
@@ -274,7 +274,7 @@ class Menu extends Component {
               <img src={Logo} alt="logo"/>
             </NavLink>
             <div>
-              <p>Última atualização</p>
+              <p>Última atualização - Em testes</p>
               <p className="text-red">17:00 - 19.05.20</p>
             </div>
           </div>
