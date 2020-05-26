@@ -7,6 +7,7 @@ import Subtitle from '../components/ModalSubtitle';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
 import { getIndexes } from '../api';
+import Loading from '../assets/loading.svg';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWdvcmNvdXRvIiwiYSI6ImNrOWZudjNtcTAyd3EzbHI3a2ppbnpnemUifQ.D--CSyWyEk70oULTVok7vg';
 
@@ -14,6 +15,7 @@ class HumanitarianMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       lng: -43.2096,
       lat:  -22.9035,
       zoom: 5,
@@ -25,6 +27,7 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
+    console.log('feature ', feature)
     const district = `<h2>${feature.district || feature.title}</h2>`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
@@ -55,8 +58,6 @@ class HumanitarianMap extends Component {
     let popup;
 
     this.map.on('mouseenter', layerName, (e) => {
-
-      console.log('entrou', layerName)
 
       let coord = undefined;
 
@@ -188,6 +189,8 @@ class HumanitarianMap extends Component {
   async componentDidMount () {
     await this.fetchNeighborhood();
     await this.fetchOngs();
+
+    this.setState({isLoading: false});
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -394,7 +397,6 @@ class HumanitarianMap extends Component {
       })
     })
 
-
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
   }
 
@@ -404,14 +406,29 @@ class HumanitarianMap extends Component {
     });
   }
 
+  renderLoading = () => (
+    <figure className='figureLoadingMap'>
+      <img src={Loading} alt='Carregando...' className='imgLoading'/>
+    </figure>
+  )
+
   render() {
+    const {isLoading, showSubtitle} = this.state;
+    const {selectedMenuItem} = this.props;
+    
     return (
       <div id="map">
-        <Subtitle
-          handleModalSubtitle={this.handleModalSubtitle}
-          showSubtitle={this.state.showSubtitle}
-          selectedItem={this.props.selectedMenuItem}/>
-        <div ref={el => this.mapContainer = el} className="mapContainer"/>
+        {isLoading
+          ? this.renderLoading()
+          : (
+            <>
+              <Subtitle
+                handleModalSubtitle={this.handleModalSubtitle}
+                showSubtitle={showSubtitle}
+                selectedItem={selectedMenuItem}/>
+              <div ref={el => this.mapContainer = el} className="mapContainer"/>
+            </>
+          )}
       </div>
     );
   }

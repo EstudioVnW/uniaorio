@@ -127,7 +127,6 @@ a:hover {
     left: 0;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px -3px 6px #00000029;
-    height: 90px;
     width: 100%;
   }
 }
@@ -173,6 +172,7 @@ a:hover {
   padding-top: 0.45rem;
   text-align: center;
   font-size: 0.85rem;
+  font-family: 'Barlow', sans-serif;
 }
 
 @media(max-width: 975px) {
@@ -192,12 +192,14 @@ a:hover {
 }
 
 .mapContainer {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  width: 100vw;
   height: calc(100vh - 60px);
+
+  /* position: absolute; */
+  top: 60px;
+  /* right: 0;
+  left: 0;
+  bottom: 0; */
 }
 
 @media(max-width: 975px) {
@@ -479,6 +481,16 @@ a:hover {
   color: #595959;
 }
 
+.figureLoadingMap {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.imgLoading {
+  width: 5%;
+}
+
 .painel {
   padding: 10rem;
   width: 100%;
@@ -487,11 +499,11 @@ a:hover {
   background: white;
   display: flex;
   justify-content: flex-end;
+  background-color: #FFF6E9;
+  min-height: 250vh;
   z-index: 4;
   position: absolute;
   top: 20px;
-  background-color: #FFF6E9;
-  min-height: 250vh;
 }
 
 @media(max-width: 975px) {
@@ -499,7 +511,6 @@ a:hover {
     padding: 0;
   }
 }
-
 
 .painel-container {
   width: 70vw;
@@ -532,7 +543,6 @@ a:hover {
     display: none;
   }
 }
-
 
 .painel h1 {
   font-size: 3rem;
