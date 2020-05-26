@@ -413,11 +413,12 @@ class HumanitarianMap extends Component {
 
   render() {
     const {isLoading, showSubtitle} = this.state;
-    const {setDisplay, selectedMenuItem} = this.props;
+    const {selectedMenuItem} = this.props;
     
     return (
-      <div id="map" style={{'display': setDisplay}}>
-        {isLoading  ? this.renderLoading()
+      <div id="map">
+        {isLoading
+          ? this.renderLoading()
           : (
             <>
               <Subtitle

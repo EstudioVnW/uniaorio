@@ -34,11 +34,8 @@ class App extends Component {
   }
 
   renderMap = () => {
-    const setDisplay = this.state.selectedMenuItem.text !== 'painel' ? 'flex' : 'none';
-
     return (
       <HumanitarianMap
-        setDisplay={setDisplay}
         handleMenuItem={this.handleMenuItem}
         selectedMenuItem={this.state.selectedMenuItem}
       />
@@ -46,18 +43,18 @@ class App extends Component {
   }
 
   renderPainel = () => {
-    const setDisplay = this.state.selectedMenuItem.text === 'painel' ? 'flex' : 'none';
-    
     return (
-      <div className="painel" style={{'display': `${setDisplay}`}}>
-        <div className="painel-container">
-          <h1>Painel da transparência</h1>
-          <p>Geral</p>
-          <img className="painel-img" src={painel} alt='Icone' />
-          <img className="painel-menu" src={menu} alt='Menu' />
-          <img className="painel2" src={painel2} alt='Menu' />
+      this.state.selectedMenuItem.text === 'painel' && (
+        <div className="painel">
+          <div className="painel-container">
+            <h1>Painel da transparência</h1>
+            <p>Geral</p>
+            <img className="painel-img" src={painel} alt='Icone' />
+            <img className="painel-menu" src={menu} alt='Menu' />
+            <img className="painel2" src={painel2} alt='Menu' />
+          </div>
         </div>
-      </div>
+      )
     )
   }
 

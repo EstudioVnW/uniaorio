@@ -194,6 +194,12 @@ a:hover {
 .mapContainer {
   width: 100vw;
   height: calc(100vh - 60px);
+
+  /* position: absolute; */
+  top: 60px;
+  /* right: 0;
+  left: 0;
+  bottom: 0; */
 }
 
 @media(max-width: 975px) {
@@ -495,6 +501,9 @@ a:hover {
   justify-content: flex-end;
   background-color: #FFF6E9;
   min-height: 250vh;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
 }
 
 @media(max-width: 975px) {
