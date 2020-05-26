@@ -5,7 +5,15 @@ import React, { Component } from 'react';
 import GraphicImage from '../assets/socio-economic-grafico.svg';
 
 class Modal extends Component {
-  state = {};
+  state = {
+    isModal: undefined,
+  };
+
+  handleClick = () => {
+    this.setState({
+      isModal: true,
+    })
+  }
 
   handleSocioEconomic = () => (
     <div className='socio'>
@@ -20,6 +28,40 @@ class Modal extends Component {
           <li>Acima de R$10.000,00</li>
         </ul>
       </div>
+      <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
+      <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
+      <p>Esses dados foram retirados do CENSO-10, realizado pelo IBGE no ano de 2010.</p>
+      <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
+    </div>
+  )
+
+  renderSocioEconomic = () => {
+    return (
+      <>
+        {this.renderSocioEconomicDatas()}
+        {this.renderSocioEconomicDescription()}
+      </>
+    )
+  }
+
+  renderSocioEconomicDatas = () => (
+    <div className='socio'>
+      <h2 className='content-title'>Socio-econômico</h2>
+      <div className='content-numbers'>
+        <div className="ibge-degrade"></div>
+        <ul>
+          <li>R$1.000,00 - R$2.000,00</li>
+          <li>R$3.000,00 - R$4.000,00</li>
+          <li>R$5.000,00 - R$6.000,00</li>
+          <li>R$7.000,00 - R$8.000,00</li>
+          <li>Acima de R$10.000,00</li>
+        </ul>
+      </div>
+    </div>
+  )
+
+  renderSocioEconomicDescription = () => (
+    <div className='socio'>
       <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
       <p>Esses dados foram retirados do CENSO-10, realizado pelo IBGE no ano de 2010.</p>
@@ -52,9 +94,27 @@ class Modal extends Component {
           <li><span className='solid-3'></span>Entrega</li>
         </ul>
       </div>
-      <p>Percentual de cestas básicas</p>
+     {this.renderContentDemand()}
     </div>
   )
+
+  renderContentDemand = () => (
+    <div className='box'>
+      <h2 className='content-title'>Demanda geral por bairro</h2>
+      <p className='content-subtitle'>A barra a esquerda indica a condição
+        <button className='content-subtitle-button' onClick={this.handleClick}>sócio-econômica</button> de cada bairro
+      </p>
+      <div className='content-numbers content-demand'>
+        <span className='content-bar'></span>
+        <ul>
+          <li className='content-title name-neighborhood'>Campo Grande</li>
+          <li>Entrega: 989</li>
+          <li>Demanda: 1.236</li>
+          <li>Percentual entregue: 80%</li>
+        </ul>
+      </div>
+    </div>
+  );
 
   handleCovid = () => (
     <div className='box'>
@@ -66,6 +126,7 @@ class Modal extends Component {
         </ul>
       </div>
       <p>Casos de Covid-19 no Rio de Janeiro</p>
+      {this.renderSocioEconomic()}
     </div>
   )
 
@@ -79,6 +140,7 @@ class Modal extends Component {
           <li>- Demanda e entrega de cestas básicas</li>
         </ul>
       </div>
+      {this.renderSocioEconomic()}
     </div>
   )
 
@@ -102,16 +164,21 @@ class Modal extends Component {
   }
   
   render() {
-    const setDisplay = this.props.showSubtitle ? 'flex' : 'none';
+    // const setDisplay = this.props.showSubtitle ? 'flex' : 'none';
 
     return (
       <div className='modal'>
-        <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
+        {/* <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA */}
+        <div className='modal-header' style={{display: 'flex'}}>LEGENDA
+
           {this.props.showSubtitle ? <span></span> : <p>+</p>}
         </div>
-        <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
+        {/* <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
           {this.renderContent()}
-          {this.handleSocioEconomic()}
+        </div> */}
+
+        <div className='modal-content'>
+          {this.handleSolidarity()}
         </div>
       </div>
     );

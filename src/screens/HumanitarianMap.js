@@ -27,7 +27,7 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    console.log('feature ', feature)
+    // console.log('feature ', feature)
     const district = `<h2>${feature.district || feature.title}</h2>`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
@@ -40,7 +40,7 @@ class HumanitarianMap extends Component {
       return `${district}
         <div>
           <span>${demand}<small>Demanda</small></span>
-          <span>${entregaSolid}<small>Entrega</small></span>
+          <span>${entregaSolid}<small>Entregaaaaaaaaa</small></span>
         </div>
         <span> ${ongsFiltered.length > 0 ? `Parceiros:  ${ongsFiltered}` : '' }</span>
       `
@@ -415,7 +415,7 @@ class HumanitarianMap extends Component {
   render() {
     const {isLoading, showSubtitle} = this.state;
     const {selectedMenuItem} = this.props;
-    
+    console.log('this.state.ongs', this.state.ongs)
     return (
       <div id="map">
         {isLoading

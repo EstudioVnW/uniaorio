@@ -396,6 +396,7 @@ a:hover {
 }
 
 .content-numbers li {
+  margin-bottom: 2px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -468,6 +469,36 @@ a:hover {
 .solid-3 {
   border-radius: 2px;
   background: #F0184F;
+}
+
+.content-demand {
+  background-color: #FFF;
+}
+
+.content-subtitle {
+  width: 95%;
+  font-size: .5rem;
+  font-family: 'Barlow', sans-serif;
+  color: #595959;
+}
+
+.content-subtitle-button {
+  color: #004F99;
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.content-bar {
+  width: 10px;
+  margin-right: 1.313rem;
+  border-radius: 7px 0 0 7px;
+  background: #F0184F;
+}
+
+.name-neighborhood {
+  font-size: 0.625rem;
 }
 
 .socio p, .box p {
