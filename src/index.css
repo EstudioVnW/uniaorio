@@ -353,6 +353,17 @@ a:hover {
   flex-direction: column;
 }
 
+.modal-socio-economic {
+  position: absolute;
+  bottom: 250px;
+  right: 200px;
+  width: 280px;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 6px 6px #00000029;
+  z-index: 3;
+  cursor: pointer;
+}
+
 .socio {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -396,7 +407,7 @@ a:hover {
 }
 
 .content-numbers li {
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -483,6 +494,7 @@ a:hover {
 }
 
 .content-subtitle-button {
+  position: relative;
   color: #004F99;
   text-decoration: underline;
   border: none;
@@ -589,8 +601,36 @@ a:hover {
 
 .ibge-degrade {
   width: 18px;
-  height: 103px;
+  height: auto;
   border-radius: 2px;
   margin-right: 10px;
   background: transparent linear-gradient(180deg, #FCA216 0%, #FCC25A 24%, #FCD276 51%, #C9E2C2 77%, #A5BDD4 100%) 0% 0% no-repeat padding-box;
+}
+
+.modal-socio-economic-float {
+  right: 100%;
+  width: 230px;
+  height: 198px;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.socio-float {
+  padding: 1rem;
+  width: 90%;
+  background-color: white;
+}
+
+.modal-socio-economic-arrow {
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  z-index: 1;
+  background: white;
+  transform: translate(-4px, 0) rotate(-45deg);
+  position: absolute;
+  right: 0;
 }

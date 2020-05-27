@@ -6,14 +6,17 @@ import GraphicImage from '../assets/socio-economic-grafico.svg';
 
 class Modal extends Component {
   state = {
-    isModal: undefined,
+    isModal: true,
+    isHover: false,
   };
 
-  handleClick = () => {
+  handleHover = () => {
     this.setState({
-      isModal: true,
+      isHover: !this.state.isHover,
     })
   }
+
+
 
   handleSocioEconomic = () => (
     <div className='socio'>
@@ -102,8 +105,9 @@ class Modal extends Component {
     <div className='box'>
       <h2 className='content-title'>Demanda geral por bairro</h2>
       <p className='content-subtitle'>A barra a esquerda indica a condição
-        <button className='content-subtitle-button' onClick={this.handleClick}>sócio-econômica</button> de cada bairro
+        <span className='content-subtitle-button' onMouseEnter={this.handleHover}  onMouseLeave={this.handleHover}> sócio-econômica</span> de cada bairro
       </p>
+      {this.renderModalSocioEconomic()}
       <div className='content-numbers content-demand'>
         <span className='content-bar'></span>
         <ul>
@@ -162,25 +166,40 @@ class Modal extends Component {
         return null;
     }
   }
-  
-  render() {
-    // const setDisplay = this.props.showSubtitle ? 'flex' : 'none';
 
-    return (
-      <div className='modal'>
-        {/* <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA */}
-        <div className='modal-header' style={{display: 'flex'}}>LEGENDA
-
-          {this.props.showSubtitle ? <span></span> : <p>+</p>}
-        </div>
-        {/* <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
-          {this.renderContent()}
-        </div> */}
-
-        <div className='modal-content'>
-          {this.handleSolidarity()}
+  renderModalSocioEconomic = () => (
+    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
+      <div className='modal-socio-economic-arrow'> </div>
+      <div className='socio socio-float'>
+        <h2 className='content-title'>Socio-econômico</h2>
+        <div className='content-numbers'>
+          <div className="ibge-degrade"></div>
+          <ul>
+            <li>R$1.000,00 - R$2.000,00</li>
+            <li>R$3.000,00 - R$4.000,00</li>
+            <li>R$5.000,00 - R$6.000,00</li>
+            <li>R$7.000,00 - R$8.000,00</li>
+            <li>Acima de R$10.000,00</li>
+          </ul>
         </div>
       </div>
+    </div>
+  )
+  
+  render() {
+    const setDisplay = this.props.showSubtitle ? 'none' : 'flex';
+    return (
+      <>
+        <div className='modal'>
+          <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
+
+            {this.props.showSubtitle ? <span></span> : <p>+</p>}
+          </div>
+          <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
+            {this.renderContent()}
+          </div>
+        </div>
+      </>
     );
   }
 }
