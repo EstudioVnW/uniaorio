@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/uniaorio/static/css/main.22276fc3.chunk.css",
-    "main.js": "/uniaorio/static/js/main.9043795b.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.9043795b.chunk.js.map",
+    "main.js": "/uniaorio/static/js/main.e56334bd.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.e56334bd.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
     "static/js/2.18116e10.chunk.js": "/uniaorio/static/js/2.18116e10.chunk.js",
     "static/js/2.18116e10.chunk.js.map": "/uniaorio/static/js/2.18116e10.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.9f29622fd7bb286ea723cff974750044.js": "/uniaorio/precache-manifest.9f29622fd7bb286ea723cff974750044.js",
+    "precache-manifest.0b04693dbd11cb9ce6f1589d226e1242.js": "/uniaorio/precache-manifest.0b04693dbd11cb9ce6f1589d226e1242.js",
     "service-worker.js": "/uniaorio/service-worker.js",
     "static/css/main.22276fc3.chunk.css.map": "/uniaorio/static/css/main.22276fc3.chunk.css.map",
     "static/js/2.18116e10.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.18116e10.chunk.js.LICENSE.txt",
@@ -36,6 +36,6 @@
     "static/js/runtime-main.cb743201.js",
     "static/js/2.18116e10.chunk.js",
     "static/css/main.22276fc3.chunk.css",
-    "static/js/main.9043795b.chunk.js"
+    "static/js/main.e56334bd.chunk.js"
   ]
 }
