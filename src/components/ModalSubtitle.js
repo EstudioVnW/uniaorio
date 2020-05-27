@@ -69,50 +69,57 @@ class Modal extends Component {
     </div>
   )
 
-  handleOngs = () => (
-    <div className='box'>
-      <h2 className='content-title'>Parceiros</h2>
-      <div className='content-numbers'>
-        <ul>
-          <li>- Nome do parceiro</li>
-          <li>- Endereço do parceiro</li>
-          <li>- Demanda e entrega de cestas básicas</li>
-        </ul>
+  renderOngs = () => {
+    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict)
+
+    return (
+      <div className="ongs-container">
+        <h2>ONG's parceiras</h2>
+        {ongs.length > 0 && ongs.map((ong) =>
+          <ul className="ong-list">
+            <li>
+              <h3>{ong.properties.title}</h3>
+              <p>{ong.properties.address}</p>
+            </li>
+          </ul>
+        )}
+        {ongs.length === 0 && (
+          <ul className="ong-list">
+            <li>
+              <p>Nenhum ponto de doação nesse bairro, mas você pode encontrar outros pontos de doação em um bairro vizinho.</p>
+            </li>
+          </ul>
+        )}
       </div>
-    </div>
-  )
+    );
+  }
 
   renderContent = () => {
     const content = this.props.selectedItem.title;
 
     switch (content) {
-      // case 'Socio-econômico':
-			// return this.handleSocioEconomic();
-      // case 'Densidade demográfica':
-      //   return this.handleDemographicDensity();
       case 'Solidariedade':
         return this.handleSolidarity();
       case 'Covid-19':
         return this.handleCovid();
-      case "Parceiros":
-      return this.handleOngs();
       default:
         return null;
     }
   }
   
   render() {
-    const setDisplay = this.props.showSubtitle ? 'flex' : 'none';
+    const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
+    const setDisplay = showSubtitle ? 'flex' : 'none';
 
     return (
       <div className='modal'>
-        <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
-          {this.props.showSubtitle ? <span></span> : <p>+</p>}
+        <div className='modal-header' onClick={handleModalSubtitle}>LEGENDA
+          {showSubtitle ? <span></span> : <p>+</p>}
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
-          {this.props.currentDistrict}
-          {this.renderContent()}
-          {this.handleSocioEconomic()}
+          {currentDistrict && this.renderOngs()}
+          {!currentDistrict && this.renderContent()}
+          {!currentDistrict && this.handleSocioEconomic()}
         </div>
       </div>
     );
