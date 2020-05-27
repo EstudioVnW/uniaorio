@@ -326,7 +326,10 @@ class HumanitarianMap extends Component {
           "text-transform": "lowercase"
         },
         "paint": {
-          "text-color": "#7A571D",
+          "text-color": "hsla(0, 0%, 20%, 1)",
+          "text-halo-color": "hsla(0, 0%, 100%, 0.7)",
+          "text-halo-width": 1,
+          "text-halo-blur": 1
         }
       });
 
