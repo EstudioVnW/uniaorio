@@ -74,7 +74,7 @@ class Modal extends Component {
 
     return (
       <div className="ongs-container">
-        <h2>ONG's parceiras</h2>
+        <h2>Organizações sociais</h2>
         {ongs.length > 0 && ongs.map((ong) =>
           <ul className="ong-list">
             <li>
