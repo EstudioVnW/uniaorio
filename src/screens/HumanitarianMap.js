@@ -257,17 +257,44 @@ class HumanitarianMap extends Component {
             "interpolate",
             ["linear"],
             ["get", "confirmed_cases"],
-            20,
+            10,
             4,
 
-            100,
+            50,
+            6,
+
+            60,
             8,
 
-            150,
+            70,
+            10,
+
+            80,
+            12,
+
+            90,
+            14,
+
+            100,
             16,
 
             200,
-            32
+            26,
+
+            300,
+            36,
+
+            400,
+            46,
+
+            500,
+            56,
+
+            600,
+            66,
+
+            700,
+            76,
           ],
           "circle-stroke-color": "hsla(144, 91%, 43%, 0.4)",
           "circle-color": "hsla(144, 91%, 43%, 0.4)",
@@ -288,16 +315,43 @@ class HumanitarianMap extends Component {
             ["linear"],
             ["get", "deaths"],
             10,
-            3,
-
-            20,
-            6,
+            4,
 
             50,
+            6,
+
+            60,
+            8,
+
+            70,
+            10,
+
+            80,
             12,
 
-            75,
-            24
+            90,
+            14,
+
+            100,
+            16,
+
+            200,
+            26,
+
+            300,
+            36,
+
+            400,
+            46,
+
+            500,
+            56,
+
+            600,
+            66,
+
+            700,
+            76,
           ],
           "circle-stroke-color": "hsla(134, 44%, 46%, 0.6)",
           "circle-color": "hsla(134, 44%, 46%, 0.6)",
@@ -310,6 +364,7 @@ class HumanitarianMap extends Component {
         "type": "symbol",
         "source": "bairros",
         "layout": {
+          "text-size": 12,
           "icon-ignore-placement": false,
           "text-field": [
             "case",
