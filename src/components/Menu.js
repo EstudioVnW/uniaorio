@@ -105,14 +105,6 @@ class Menu extends Component {
         text: 'solid',
         layerName: 'Solidariedade'
       },
-      // {
-      //   image: filterIcon5,
-      //   selectedImage: filterSelectedIcon5,
-      //   title: "Parceiros",
-      //   color: '#4DA9FF',
-      //   text: 'ongs',
-      //   layerName: 'Parceiros',
-      // },
       {
         image: filterIcon4,
         selectedImage: filterSelectedIcon4,
