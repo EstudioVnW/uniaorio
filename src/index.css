@@ -224,22 +224,50 @@ a:hover {
 }
 
 .mapboxgl-popup-content {
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  border: 0;
+  text-align: center;
+  line-height: 1rem;
+  border-bottom: 4px solid #F05123;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.solidariedade-popup,
+.covid-popup {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 200px;
   min-height: 110px;
-  border: 0;
-  border-bottom: 4px solid #F05123;
-  text-align: center;
-  line-height: 1rem;
-  padding: 1rem 0.55rem;
+}
+
+.solidariedade-popup {
+  min-height: 120px;
+}
+
+.solidariedade-popup div {
+  margin-bottom: 0.5rem;
 }
 
 .mapboxgl-popup-content div {
   display: flex;
   padding: 0.45rem 0;
+}
+
+.solidariedade-popup button {
+  width: 100%;
+  padding: 0.45rem 0 0.65rem 0;
+  border: 0;
+  color: #fff;
+  background: #F0184F;
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  font-size: 0.70rem;
+  text-decoration: underline;
 }
 
 .mapboxgl-popup-content span {
@@ -297,10 +325,6 @@ a:hover {
 .mapboxgl-popup-content small {
   font-size: .7rem;
   color: #343434;
-}
-
-.mapboxgl-popup-content button {
-  display: none;
 }
 
 /* LEGENDA */

@@ -110,6 +110,7 @@ class Modal extends Component {
           {this.props.showSubtitle ? <span></span> : <p>+</p>}
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
+          {this.props.currentDistrict}
           {this.renderContent()}
           {this.handleSocioEconomic()}
         </div>
