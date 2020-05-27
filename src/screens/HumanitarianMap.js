@@ -28,22 +28,22 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    const district = `<h2>${feature.district || feature.title}</h2>`;
+    const district = `${feature.district || feature.title}`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
-    if (layer === 'Solidariedade') {
-      const ongsFiltered = this.state.ongs.features.filter(ongs => ongs.properties.district === feature.district).map(ong => ong.properties.title)
+    console.log('feature.district || feature.title', feature.district || feature.title)
 
+    if (layer === 'Solidariedade') {
       return `
         <div class="solidariedade-popup">
-          ${district}
+          <h2>${district}</h2>
           <div>
             <span>${demand}<small>Demanda</small></span>
             <span>${entregaSolid}<small>Entrega</small></span>
-            <button item=${feature.district || feature.title}>Pontos de doação</button>
+            <button item='${district}'>Pontos de doação</button>
           </div>
         </div>
       `
@@ -51,7 +51,7 @@ class HumanitarianMap extends Component {
     else if (layer === 'CovidDeaths' || layer === 'CovidCases') {
       return `
         <div class="covid-popup">
-          ${district}
+          <h2>${district}</h2>
           <div>
             <span>${casosConf}<small>Confirmados</small></span>
             <span>${mortes}<small>Óbitos</small></span>
@@ -128,7 +128,6 @@ class HumanitarianMap extends Component {
         if (selectedMenuItem.layerName === 'Covid') {
           this.map.setLayoutProperty('CovidDeaths', 'visibility', 'visible');
           this.map.setLayoutProperty('CovidCases', 'visibility', 'visible');
-          this.handlePopup('CovidDeaths');
           this.handlePopup('CovidCases');
         }
 
@@ -311,7 +310,7 @@ class HumanitarianMap extends Component {
         "type": "symbol",
         "source": "bairros",
         "layout": {
-          // "icon-ignore-placement": true,
+          "icon-ignore-placement": false,
           "text-field": [
             "case",
             [
@@ -425,6 +424,7 @@ class HumanitarianMap extends Component {
           : (
             <>
               <Subtitle
+                ongs={this.state.ongs}
                 currentDistrict={this.state.currentDistrict}
                 handleModalSubtitle={this.handleModalSubtitle}
                 showSubtitle={showSubtitle}
