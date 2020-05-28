@@ -214,7 +214,7 @@ a:hover {
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   margin-bottom: 15px;
-  border-top-color: #F05123;
+  border-top-color: #F0184F;
 }
 
 .mapboxgl-popup-content {
@@ -224,7 +224,7 @@ a:hover {
   border: 0;
   text-align: center;
   line-height: 1rem;
-  border-bottom: 4px solid #F05123;
+  border-bottom: 4px solid #F0184F;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -369,6 +369,12 @@ a:hover {
   height: 70vh;
   overflow-y: scroll;
   flex-direction: column;
+}
+
+@media(max-width: 975px) {
+  .modal {
+    height: 65vh;
+  }
 }
 
 .ongs-container {
