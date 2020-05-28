@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "02d5788a821bc534075a50559af44a0e",
+    "revision": "4422a64ae9710b969e2186efb789998d",
     "url": "/uniaorio/index.html"
   },
   {
-    "revision": "abb7b699949409cbdeaa",
-    "url": "/uniaorio/static/css/main.22276fc3.chunk.css"
+    "revision": "688985d13bdba416cd6d",
+    "url": "/uniaorio/static/css/main.99d13dcb.chunk.css"
   },
   {
-    "revision": "a6298f8719b019a1687a",
-    "url": "/uniaorio/static/js/2.18116e10.chunk.js"
+    "revision": "52b320f5183f6e84014c",
+    "url": "/uniaorio/static/js/2.6f2ccb2e.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/uniaorio/static/js/2.18116e10.chunk.js.LICENSE.txt"
+    "url": "/uniaorio/static/js/2.6f2ccb2e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "abb7b699949409cbdeaa",
-    "url": "/uniaorio/static/js/main.e56334bd.chunk.js"
+    "revision": "688985d13bdba416cd6d",
+    "url": "/uniaorio/static/js/main.aa1578cd.chunk.js"
   },
   {
     "revision": "ecd5d8f3fadd1f84f3ee",
@@ -102,9 +102,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e1b0ade8ef3c5b99cae166b8f4d87c05",
     "url": "/uniaorio/static/media/second-dens.e1b0ade8.svg"
-  },
-  {
-    "revision": "3d5ce1be81de459003d5f25af8d0cd35",
-    "url": "/uniaorio/static/media/socio-economic-grafico.3d5ce1be.svg"
   }
 ]);
