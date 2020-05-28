@@ -29,22 +29,22 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    const district = `<h2>${feature.district || feature.title}</h2>`;
+    const district = `${feature.district || feature.title}`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
-    if (layer === 'Solidariedade') {
-      const ongsFiltered = this.state.ongs.features.filter(ongs => ongs.properties.district === feature.district).map(ong => ong.properties.title)
+    console.log('feature.district || feature.title', feature.district || feature.title)
 
+    if (layer === 'Solidariedade') {
       return `
         <div class="solidariedade-popup">
-          ${district}
+          <h2>${district}</h2>
           <div>
             <span>${demand}<small>Demanda</small></span>
             <span>${entregaSolid}<small>Entrega</small></span>
-            <button item=${feature.district || feature.title}>Pontos de doação</button>
+            <button item='${district}'>Pontos de doação</button>
           </div>
         </div>
       `
@@ -52,7 +52,7 @@ class HumanitarianMap extends Component {
     else if (layer === 'CovidDeaths' || layer === 'CovidCases') {
       return `
         <div class="covid-popup">
-          ${district}
+          <h2>${district}</h2>
           <div>
             <span>${casosConf}<small>Confirmados</small></span>
             <span>${mortes}<small>Óbitos</small></span>
@@ -129,7 +129,6 @@ class HumanitarianMap extends Component {
         if (selectedMenuItem.layerName === 'Covid') {
           this.map.setLayoutProperty('CovidDeaths', 'visibility', 'visible');
           this.map.setLayoutProperty('CovidCases', 'visibility', 'visible');
-          this.handlePopup('CovidDeaths');
           this.handlePopup('CovidCases');
         }
 
@@ -259,17 +258,44 @@ class HumanitarianMap extends Component {
             "interpolate",
             ["linear"],
             ["get", "confirmed_cases"],
-            20,
+            10,
             4,
 
-            100,
+            50,
+            6,
+
+            60,
             8,
 
-            150,
+            70,
+            10,
+
+            80,
+            12,
+
+            90,
+            14,
+
+            100,
             16,
 
             200,
-            32
+            26,
+
+            300,
+            36,
+
+            400,
+            46,
+
+            500,
+            56,
+
+            600,
+            66,
+
+            700,
+            76,
           ],
           "circle-stroke-color": "hsla(144, 91%, 43%, 0.4)",
           "circle-color": "hsla(144, 91%, 43%, 0.4)",
@@ -290,16 +316,43 @@ class HumanitarianMap extends Component {
             ["linear"],
             ["get", "deaths"],
             10,
-            3,
-
-            20,
-            6,
+            4,
 
             50,
+            6,
+
+            60,
+            8,
+
+            70,
+            10,
+
+            80,
             12,
 
-            75,
-            24
+            90,
+            14,
+
+            100,
+            16,
+
+            200,
+            26,
+
+            300,
+            36,
+
+            400,
+            46,
+
+            500,
+            56,
+
+            600,
+            66,
+
+            700,
+            76,
           ],
           "circle-stroke-color": "hsla(134, 44%, 46%, 0.6)",
           "circle-color": "hsla(134, 44%, 46%, 0.6)",
@@ -312,7 +365,8 @@ class HumanitarianMap extends Component {
         "type": "symbol",
         "source": "bairros",
         "layout": {
-          // "icon-ignore-placement": true,
+          "text-size": 12,
+          "icon-ignore-placement": false,
           "text-field": [
             "case",
             [
@@ -328,7 +382,10 @@ class HumanitarianMap extends Component {
           "text-transform": "lowercase"
         },
         "paint": {
-          "text-color": "#7A571D",
+          "text-color": "hsla(0, 0%, 20%, 1)",
+          "text-halo-color": "hsla(0, 0%, 100%, 0.7)",
+          "text-halo-width": 1,
+          "text-halo-blur": 1
         }
       });
 
@@ -441,6 +498,7 @@ class HumanitarianMap extends Component {
           : (
             <>
               <Subtitle
+                ongs={this.state.ongs}
                 currentDistrict={this.state.currentDistrict}
                 handleModalSubtitle={this.handleModalSubtitle}
                 showSubtitle={showSubtitle}

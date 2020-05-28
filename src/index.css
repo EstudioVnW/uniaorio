@@ -96,7 +96,6 @@ a:hover {
   font-size: 0.75rem;
 }
 
-
 .menu-logo {
   display: flex;
   align-items: center;
@@ -155,12 +154,12 @@ a:hover {
   }
 }
 
-.line {
+/* .line {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 4px;
-}
+} */
 
 .menu-filters img {
   height: 20px;
@@ -194,13 +193,18 @@ a:hover {
 .mapContainer {
   width: 100vw;
   height: calc(100vh - 60px);
+  top: 60px;
+}
+
+/* <<<<<<< HEAD
   position: absolute;
   top: 60px;
   right: 0; 
   left: 0;
   bottom: 0; 
   z-index: 0;
-}
+=======
+  top: 60px; */
 
 @media(max-width: 975px) {
   .mapContainer {
@@ -284,19 +288,19 @@ a:hover {
   font: 600 1.5rem 'Barlow', sans-serif;
 }
 
-#renda-color,
+/* #renda-color,
 #densidade-color {
   margin-top: .45rem;
   margin-bottom: .15rem;
-}
+} */
 
-#renda-color {
+/* #renda-color {
   color: #F05123;
-}
-
+} */
+/* 
 #densidade-color {
   color: #6929CA;
-}
+} */
 
 #covid-color {
   color: #41A95C;
@@ -314,13 +318,13 @@ a:hover {
   color: #F0184F;
 }
 
-#ong-delivered-color {
+/* #ong-delivered-color {
   color: #4DA9FF;
-}
+} */
 
-#ong-demand-color{
+/* #ong-demand-color{
   color: #8FC9FF;
-}
+} */
 
 .mapboxgl-popup-content small {
   font-size: .7rem;
@@ -384,14 +388,39 @@ a:hover {
 
 .modal-content {
   padding: 1rem;
-  height: 100%;
+  height: 70vh;
   overflow-y: scroll;
   flex-direction: column;
 }
 
-.modal-content::-webkit-scrollbar {
+/* height: 100%; */
+
+/* .modal-content::-webkit-scrollbar {
   width: 5px;
-  background: transparent;
+  background: transparent; */
+
+.ongs-container {
+  padding: 0.55rem;
+  font-size: 0.85rem;
+  font-family: 'Barlow', sans-serif;
+}
+
+.ongs-container h2 {
+  padding-bottom: 1rem;
+}
+
+.ong-list {
+  padding: 0.55rem 0;
+  list-style: none;
+}
+
+.ong-list h3 {
+  padding-bottom: 0.25rem;
+}
+
+.socio {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media(max-width: 975px) {

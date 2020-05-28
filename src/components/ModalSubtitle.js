@@ -108,7 +108,7 @@ class Modal extends Component {
             <li className='content-title name-neighborhood'>{item.properties.district}</li>
             <li>Entrega:<span className='content-delivered'>{item.properties.delivered_amount}</span></li>
             <li>Demanda:<span className='content-demands'>{item.properties.demands}</span></li>
-            <li>Percentual entregue:<span className='content-percent'>80%</span></li>
+            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
           </ul>
         </div>
       );
@@ -129,34 +129,40 @@ class Modal extends Component {
     </div>
   )
 
-  handleOngs = () => (
-    <div className='box'>
-      <h2 className='content-title'>Parceiros</h2>
-      <div className='content-numbers'>
-        <ul>
-          <li>- Nome do parceiro</li>
-          <li>- Endereço do parceiro</li>
-          <li>- Demanda e entrega de cestas básicas</li>
-        </ul>
+  renderOngs = () => {
+    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict)
+
+    return (
+      <div className="ongs-container">
+        <h2>Organizações sociais</h2>
+        {ongs.length > 0 && ongs.map((ong) =>
+          <ul className="ong-list">
+            <li>
+              <h3>{ong.properties.title}</h3>
+              <p>{ong.properties.address}</p>
+            </li>
+          </ul>
+        )}
+        {ongs.length === 0 && (
+          <ul className="ong-list">
+            <li>
+              <p>Nenhum ponto de doação nesse bairro, mas você pode encontrar outros pontos de doação em um bairro vizinho.</p>
+            </li>
+          </ul>
+        )}
       </div>
-      {this.renderSocioEconomic()}
-    </div>
-  )
+      //  {this.renderSocioEconomic()}
+    );
+  }
 
   renderContent = () => {
     const content = this.props.selectedItem.title;
 
     switch (content) {
-      // case 'Socio-econômico':
-			// return this.renderSocioEconomic();
-      // case 'Densidade demográfica':
-      //   return this.handleDemographicDensity();
       case 'Solidariedade':
         return this.handleSolidarity();
       case 'Covid-19':
         return this.handleCovid();
-      case "Parceiros":
-      return this.handleOngs();
       default:
         return null;
     }
@@ -182,18 +188,19 @@ class Modal extends Component {
   )
   
   render() {
-    const setDisplay = this.props.showSubtitle ? 'none' : 'flex';
+    const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
+    const setDisplay = showSubtitle ? 'flex' : 'none';
     const setHeight = this.props.showSubtitle ? 'auto' : '80%';
 
-    
     return (
-      <div className='modal' style={{height: `${setHeight}`}}>
-        <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
-          {this.props.showSubtitle ? <span></span> : <p>+</p>}
+      <div className='modal'>
+        <div className='modal-header' onClick={handleModalSubtitle}>LEGENDA
+          {showSubtitle ? <span></span> : <p>+</p>}
         </div>
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
-          {this.props.currentDistrict}
-          {this.renderContent()}
+          {currentDistrict && this.renderOngs()}
+          {!currentDistrict && this.renderContent()}
+          {!currentDistrict && this.renderSocioEconomic()}
         </div>
       </div>
     );
