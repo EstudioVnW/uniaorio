@@ -362,12 +362,6 @@ a:hover {
   flex-direction: column;
 }
 
-@media(max-width: 975px) {
-  .modal-content {
-    height: 45vh;
-  }
-}
-
 .ongs-container {
   padding: 0.55rem;
   font-size: 0.85rem;
@@ -674,7 +668,7 @@ a:hover {
   height: auto;
   border-radius: 2px;
   margin-right: 10px;
-  background: transparent linear-gradient(180deg, #FCA216 0%, #FCC25A 24%, #FCD276 51%, #C9E2C2 77%, #A5BDD4 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #d10000 0%, #FCA216 20%, #FCC25A 40%, #FCD276 60%, #C9E2C2 80%, #A5BDD4 100%) 0% 0% no-repeat padding-box;
 }
 
 .boxModal {

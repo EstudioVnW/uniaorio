@@ -28,6 +28,7 @@ class Modal extends Component {
       <div className='content-numbers'>
         <div className="ibge-degrade"></div>
         <ul>
+          <li>Abaixo de R$1.000,00</li>
           <li>R$1.000,00 - R$2.000,00</li>
           <li>R$3.000,00 - R$4.000,00</li>
           <li>R$5.000,00 - R$6.000,00</li>
@@ -97,20 +98,23 @@ class Modal extends Component {
   }
 
   setBackground = (renda) => {
-    if(renda === 0 || renda === 1 || renda === 2 ) {
-      return '#FCA216'
+    if(renda === 0) {
+      return '#d10000';
+    }
+    if(renda === 1 || renda === 2 ) {
+      return '#FCA216';
     }
     if(renda === 3 || renda === 4){
-      return '#FCC25A'
+      return '#FCC25A';
     }
     if(renda === 5 || renda === 6){
-      return '#FCD276'
+      return '#FCD276';
     }
     if(renda === 7 || renda === 8){
-      return '#C9E2C2'
+      return '#C9E2C2';
     }
     else {
-      return '#A5BDD4'
+      return '#A5BDD4';
     }
   }
 
@@ -168,8 +172,8 @@ class Modal extends Component {
             </li>
           </ul>
         )}
+       {this.renderSocioEconomic()}
       </div>
-      //  {this.renderSocioEconomic()}
     );
   }
 
@@ -194,6 +198,7 @@ class Modal extends Component {
         <div className='content-numbers'>
           <div className="ibge-degrade"></div>
           <ul>
+            <li>Abaixo de R$1.000,00</li>
             <li>R$1.000,00 - R$2.000,00</li>
             <li>R$3.000,00 - R$4.000,00</li>
             <li>R$5.000,00 - R$6.000,00</li>
@@ -217,7 +222,6 @@ class Modal extends Component {
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
           {currentDistrict && this.renderOngs()}
           {!currentDistrict && this.renderContent()}
-          {!currentDistrict && this.renderSocioEconomic()}
         </div>
       </div>
     );
