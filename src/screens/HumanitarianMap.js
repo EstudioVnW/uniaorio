@@ -17,13 +17,15 @@ class HumanitarianMap extends Component {
     this.state = {
       isLoading: true,
       lng: -43.2096,
-      lat:  -22.9035,
+      lat: -22.9035,
       zoom: 5,
       selectedMenuItem: '',
       showSubtitle: false,
+      bairros: {features: []}
     };
 
     this.map = undefined;
+    this.popup = undefined
   }
 
   choosePopup = (layer, feature) => {
@@ -35,70 +37,93 @@ class HumanitarianMap extends Component {
 
     if (layer === 'Solidariedade') {
       const ongsFiltered = this.state.ongs.features.filter(ongs => ongs.properties.district === feature.district).map(ong => ong.properties.title)
-      
-      return `${district}
-        <div>
-          <span>${demand}<small>Demanda</small></span>
-          <span>${entregaSolid}<small>Entrega</small></span>
+
+      return `
+        <div class="solidariedade-popup">
+          ${district}
+          <div>
+            <span>${demand}<small>Demanda</small></span>
+            <span>${entregaSolid}<small>Entrega</small></span>
+            <button item=${feature.district || feature.title}>Pontos de doação</button>
+          </div>
         </div>
-        <span> ${ongsFiltered.length > 0 ? `Parceiros:  ${ongsFiltered}` : '' }</span>
       `
     }
     else if (layer === 'CovidDeaths' || layer === 'CovidCases') {
-      return `${district}
-        <div>
-          <span>${casosConf}<small>Confirmados</small></span>
-          <span>${mortes}<small>Óbitos</small></span>
-        </div>`
+      return `
+        <div class="covid-popup">
+          ${district}
+          <div>
+            <span>${casosConf}<small>Confirmados</small></span>
+            <span>${mortes}<small>Óbitos</small></span>
+          </div>
+        </div>
+        `
     }
   }
 
   handlePopup = (layerName) => {
-    let popup;
+    this.map.on('click', layerName, (e) => {
+      this.createPopup(e, layerName)
+    });
+  }
 
-    this.map.on('mouseenter', layerName, (e) => {
-
+  createPopup = (e, layerName) => {
+    if (this.popup && this.popup.isOpen()) {
+      this.popup.remove()
+    }
+    if (!this.popup || (this.popup && !this.popup.isOpen())) {
       let coord = undefined;
-
+  
       coord = e.features[0].geometry.coordinates.slice();
-
+  
       while (Math.abs(e.lngLat.lng - coord[0]) > 180) {
         coord[0] += e.lngLat.lng > coord[0] ? 360 : -360;
       }
-
+  
       const popupMarkup = this.choosePopup(layerName, e.features[0].properties)
-
-      popup = new mapboxgl.Popup()
+  
+      this.popup = new mapboxgl.Popup({ closeButton: false })
         .setLngLat(coord)
         .setHTML(popupMarkup)
         .addTo(this.map);
 
-      return popup;
-    });
+      if (layerName === 'Solidariedade') {
+        const popupElem = this.popup.getElement();
+        const ongButton = popupElem.getElementsByTagName("button")[0]
 
-    this.map.on('mouseleave', layerName, () => {
-      this.map.getCanvas().style.cursor = '';
-      popup.remove();
-    });
+        ongButton.addEventListener('click', (ev) => {
+          const currentDistrict = ev.target.getAttribute("item");
+          this.setState({
+            currentDistrict,
+            showSubtitle: true,
+          })
+        })
+
+        this.popup.on('close', () => {
+          this.setState({
+            currentDistrict: '',
+          });
+        });
+      }
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { selectedMenuItem } = this.props;
 
     if (prevProps.selectedMenuItem !== selectedMenuItem) {
+      if (this.popup) {
+        this.popup.remove()
+      }
 
       if (selectedMenuItem.text === 'painel') {
         this.map.setLayoutProperty(prevProps.selectedMenuItem.layerName, 'visibility', 'none');
       }
       if (selectedMenuItem.text !== 'painel') {
-
         if (prevProps.selectedMenuItem.layerName === 'Covid') {
           this.map.setLayoutProperty('CovidDeaths', 'visibility', 'none');
           this.map.setLayoutProperty('CovidCases', 'visibility', 'none');
-        }
-
-        if (prevProps.selectedMenuItem.layerName === 'Solidariedade') {
-          this.map.setLayoutProperty('Solidariedade', 'visibility', 'none');
         }
 
         if (selectedMenuItem.layerName === 'Covid') {
@@ -108,12 +133,18 @@ class HumanitarianMap extends Component {
           this.handlePopup('CovidCases');
         }
 
+        if (prevProps.selectedMenuItem.layerName === 'Solidariedade') {
+          if (this.popup) {
+            this.popup.remove()
+          }
+          this.map.setLayoutProperty('Solidariedade', 'visibility', 'none');
+        }
+
         if (selectedMenuItem.layerName === 'Solidariedade') {
           this.map.setLayoutProperty('Solidariedade', 'visibility', 'visible');
-          this.handlePopup('Solidariedade');
         }
       }
-    } 
+    }
   }
 
   async fetchNeighborhood() {
@@ -123,7 +154,7 @@ class HumanitarianMap extends Component {
       const response = await getIndexes('bairros');
       let geojson = {
         "type":
-        "FeatureCollection",
+          "FeatureCollection",
         "features": []
       }
       response.data.data.forEach(item => {
@@ -185,11 +216,11 @@ class HumanitarianMap extends Component {
     }
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     await this.fetchNeighborhood();
     await this.fetchOngs();
 
-    this.setState({isLoading: false});
+    this.setState({ isLoading: false });
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -203,9 +234,6 @@ class HumanitarianMap extends Component {
         [-40.40585, -20.715985]]
     });
 
-    console.log('this.map', this.map)
-    console.log('this.state', this.state)
-
     this.map.on('load', () => {
       this.map.flyTo({
         center: [this.state.lng, this.state.lat],
@@ -217,31 +245,6 @@ class HumanitarianMap extends Component {
         type: 'geojson',
         data: this.state.bairros
       });
-
-      // Covid 
-      // this.map.addLayer({
-      //   "id": "Covid",
-      //   "type": "symbol",
-      //   "source": "bairros",
-      //   "layout": {
-      //     "visibility": "none",
-      //     "icon-ignore-placement": true,
-      //     "icon-image": [
-      //       "step",
-      //       ["get", "deaths"],
-      //       "",
-      //       1,
-      //       "Grupo 4409",
-      //       20,
-      //       "Grupo%204422",
-      //       50,
-      //       "Grupo 4408"
-      //     ]
-      //   },
-      //   "paint": {
-      //     "icon-opacity": 0
-      //   }
-      // });
 
       // cases
       this.map.addLayer({
@@ -282,7 +285,7 @@ class HumanitarianMap extends Component {
           "visibility": "none",
         },
         "paint": {
-            "circle-stroke-width": [
+          "circle-stroke-width": [
             "interpolate",
             ["linear"],
             ["get", "deaths"],
@@ -291,10 +294,10 @@ class HumanitarianMap extends Component {
 
             20,
             6,
-            
+
             50,
             12,
-            
+
             75,
             24
           ],
@@ -394,6 +397,8 @@ class HumanitarianMap extends Component {
         text: 'solid',
         layerName: 'Solidariedade'
       })
+
+      this.handlePopup('Solidariedade');
     })
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
@@ -407,25 +412,42 @@ class HumanitarianMap extends Component {
 
   renderLoading = () => (
     <figure className='figureLoadingMap'>
-      <img src={Loading} alt='Carregando...' className='imgLoading'/>
+      <img src={Loading} alt='Carregando...' className='imgLoading' />
     </figure>
   )
 
   render() {
-    const {isLoading, showSubtitle} = this.state;
-    const {selectedMenuItem} = this.props;
-    
+    const { isLoading, showSubtitle, bairros } = this.state;
+    const { setDisplay, selectedMenuItem } = this.props;
+
+    // console.log('oola', this.state.bairros.features.forEach(item => item.features));
+
+
+// confirmed_cases: 5
+// district: "AGUA SANTA"
+// deaths: 0
+// pop_total: 8756
+// recovered: 5
+// demands: 0
+// delivered_amount: 0
+
+// district
+// demands
+// entrega: delivered_amount
+// renda_per_capita: " 1,928"
     return (
-      <div id="map">
-        {isLoading
-          ? this.renderLoading()
+      <div id="map" style={{ 'display': setDisplay }}>
+        {isLoading ? this.renderLoading()
           : (
             <>
               <Subtitle
+                currentDistrict={this.state.currentDistrict}
                 handleModalSubtitle={this.handleModalSubtitle}
                 showSubtitle={showSubtitle}
-                selectedItem={selectedMenuItem}/>
-              <div ref={el => this.mapContainer = el} className="mapContainer"/>
+                selectedItem={selectedMenuItem}
+                listSolidarity={bairros.features}
+              />
+              <div ref={el => this.mapContainer = el} className="mapContainer" />
             </>
           )}
       </div>
