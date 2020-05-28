@@ -211,7 +211,6 @@ class Menu extends Component {
       case 'Demandas e Entregas':
         return this.renderDemandsandDeliveries();
       case "ONG's Parceiras":
-      return console.log('ongs');
       default:
         return null;
     }
