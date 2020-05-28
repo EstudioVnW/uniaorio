@@ -35,8 +35,6 @@ class HumanitarianMap extends Component {
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
-    console.log('feature.district || feature.title', feature.district || feature.title)
-
     if (layer === 'Solidariedade') {
       return `
         <div class="solidariedade-popup">
@@ -477,21 +475,6 @@ class HumanitarianMap extends Component {
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
 
-    // console.log('oola', this.state.bairros.features.forEach(item => item.features));
-
-
-// confirmed_cases: 5
-// district: "AGUA SANTA"
-// deaths: 0
-// pop_total: 8756
-// recovered: 5
-// demands: 0
-// delivered_amount: 0
-
-// district
-// demands
-// entrega: delivered_amount
-// renda_per_capita: " 1,928"
     return (
       <div id="map" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()

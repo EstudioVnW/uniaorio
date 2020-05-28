@@ -154,12 +154,12 @@ a:hover {
   }
 }
 
-/* .line {
+.line {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 4px;
-} */
+}
 
 .menu-filters img {
   height: 20px;
@@ -224,7 +224,7 @@ a:hover {
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   margin-bottom: 15px;
-  border-top-color: #F05123;
+  border-top-color: #F0184F;
 }
 
 .mapboxgl-popup-content {
@@ -234,7 +234,7 @@ a:hover {
   border: 0;
   text-align: center;
   line-height: 1rem;
-  border-bottom: 4px solid #F05123;
+  border-bottom: 4px solid #F0184F;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -369,7 +369,7 @@ a:hover {
   padding: .6rem 1rem;
   width: 100%;
   height: 40px;
-  font: 200 .95rem 'Barlow', sans-serif;
+  font: 500 .95rem 'Barlow', sans-serif;
   border-radius: 5px 5px 0px 0px;
   background: #F05123;
   color: #fff;
@@ -393,11 +393,11 @@ a:hover {
   flex-direction: column;
 }
 
-/* height: 100%; */
-
-/* .modal-content::-webkit-scrollbar {
-  width: 5px;
-  background: transparent; */
+@media(max-width: 975px) {
+  .modal-content {
+    height: 45vh;
+  }
+}
 
 .ongs-container {
   padding: 0.55rem;
@@ -423,13 +423,9 @@ a:hover {
   margin-bottom: 2rem;
 }
 
-@media(max-width: 975px) {
-  .modal-content {
-    /* height: 25vh; */
-    overflow-y: scroll;
-  }
+.modal-content::-webkit-scrollbar {
+  width: 5px;
 }
-
 .modal-content::-webkit-scrollbar-thumb {
   background: #cecece85; 
   border-radius: 10px;

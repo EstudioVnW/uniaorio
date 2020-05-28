@@ -1,9 +1,6 @@
 // Libs
 import React, { Component } from 'react';
 
-// Images
-import GraphicImage from '../assets/socio-economic-grafico.svg';
-
 class Modal extends Component {
   state = {
     isModal: true,
@@ -137,7 +134,7 @@ class Modal extends Component {
         <h2>Organizações sociais</h2>
         {ongs.length > 0 && ongs.map((ong) =>
           <ul className="ong-list">
-            <li>
+            <li key={ong.properties.title}>
               <h3>{ong.properties.title}</h3>
               <p>{ong.properties.address}</p>
             </li>
@@ -190,7 +187,6 @@ class Modal extends Component {
   render() {
     const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
     const setDisplay = showSubtitle ? 'flex' : 'none';
-    const setHeight = this.props.showSubtitle ? 'auto' : '80%';
 
     return (
       <div className='modal'>
