@@ -5,10 +5,28 @@ import React, { Component } from 'react';
 import GraphicImage from '../assets/socio-economic-grafico.svg';
 
 class Modal extends Component {
-  state = {};
+  state = {
+    isModal: true,
+    isHover: false,
+  };
 
-  handleSocioEconomic = () => (
-    <div className='socio'>
+  handleHover = () => {
+    this.setState({
+      isHover: !this.state.isHover,
+    })
+  }
+
+  renderSocioEconomic = () => {
+    return (
+      <div className='socio'>
+        {this.renderSocioEconomicDatas()}
+        {this.renderSocioEconomicDescription()}
+      </div>
+    )
+  }
+
+  renderSocioEconomicDatas = () => (
+    <>
       <h2 className='content-title'>Socio-econômico</h2>
       <div className='content-numbers'>
         <div className="ibge-degrade"></div>
@@ -20,11 +38,16 @@ class Modal extends Component {
           <li>Acima de R$10.000,00</li>
         </ul>
       </div>
+    </>
+  )
+
+  renderSocioEconomicDescription = () => (
+    <>
       <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
       <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
       <p>Esses dados foram retirados do CENSO-10, realizado pelo IBGE no ano de 2010.</p>
       <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
-    </div>
+    </>
   )
 
   handleDemographicDensity = () => (
@@ -52,9 +75,45 @@ class Modal extends Component {
           <li><span className='solid-3'></span>Entrega</li>
         </ul>
       </div>
-      <p>Percentual de cestas básicas</p>
+      {this.renderContentDemand()}
     </div>
   )
+
+  renderContentDemand = () => {
+    const widthMob = (window.matchMedia('(max-width:  768px)').matches);
+
+    return (
+      <div>
+        <h2 className='content-title'>Demanda geral por bairro</h2>
+        <p className='content-subtitle'>A barra a esquerda indica a condição
+          {widthMob
+            ? <span onClick={this.handleHover} className='content-subtitle-button'> sócio-econômica </span>
+            : <span className='content-subtitle-button' onMouseEnter={this.handleHover}  onMouseLeave={this.handleHover}> sócio-econômica </span>}
+          de cada bairro
+        </p>
+        <div className='boxModal'>
+          {this.renderModalSocioEconomic()}
+        </div>
+        {this.renderContentDemandList()}
+      </div>
+    )
+  }
+
+  renderContentDemandList = () => {
+    return this.props.listSolidarity.map(item => {
+      return (
+        <div className='container-demand'>
+          <span className='content-bar'></span>
+          <ul>
+            <li className='content-title name-neighborhood'>{item.properties.district}</li>
+            <li>Entrega:<span className='content-delivered'>{item.properties.delivered_amount}</span></li>
+            <li>Demanda:<span className='content-demands'>{item.properties.demands}</span></li>
+            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
+          </ul>
+        </div>
+      );
+    })
+  }
 
   handleCovid = () => (
     <div className='box'>
@@ -66,6 +125,7 @@ class Modal extends Component {
         </ul>
       </div>
       <p>Casos de Covid-19 no Rio de Janeiro</p>
+      {this.renderSocioEconomic()}
     </div>
   )
 
@@ -91,6 +151,7 @@ class Modal extends Component {
           </ul>
         )}
       </div>
+      //  {this.renderSocioEconomic()}
     );
   }
 
@@ -106,10 +167,30 @@ class Modal extends Component {
         return null;
     }
   }
+
+  renderModalSocioEconomic = () => (
+    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
+      <div className='modal-socio-economic-arrow'> </div>
+      <div className='socio socio-float'>
+        <h2 className='content-title'>Socio-econômico</h2>
+        <div className='content-numbers'>
+          <div className="ibge-degrade"></div>
+          <ul>
+            <li>R$1.000,00 - R$2.000,00</li>
+            <li>R$3.000,00 - R$4.000,00</li>
+            <li>R$5.000,00 - R$6.000,00</li>
+            <li>R$7.000,00 - R$8.000,00</li>
+            <li>Acima de R$10.000,00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
   
   render() {
     const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
     const setDisplay = showSubtitle ? 'flex' : 'none';
+    const setHeight = this.props.showSubtitle ? 'auto' : '80%';
 
     return (
       <div className='modal'>
@@ -119,7 +200,7 @@ class Modal extends Component {
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
           {currentDistrict && this.renderOngs()}
           {!currentDistrict && this.renderContent()}
-          {!currentDistrict && this.handleSocioEconomic()}
+          {!currentDistrict && this.renderSocioEconomic()}
         </div>
       </div>
     );

@@ -21,6 +21,7 @@ class HumanitarianMap extends Component {
       zoom: 5,
       selectedMenuItem: '',
       showSubtitle: false,
+      bairros: {features: []}
     };
 
     this.map = undefined;
@@ -473,9 +474,24 @@ class HumanitarianMap extends Component {
   )
 
   render() {
-    const { isLoading, showSubtitle } = this.state;
+    const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
 
+    // console.log('oola', this.state.bairros.features.forEach(item => item.features));
+
+
+// confirmed_cases: 5
+// district: "AGUA SANTA"
+// deaths: 0
+// pop_total: 8756
+// recovered: 5
+// demands: 0
+// delivered_amount: 0
+
+// district
+// demands
+// entrega: delivered_amount
+// renda_per_capita: " 1,928"
     return (
       <div id="map" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()
@@ -487,6 +503,7 @@ class HumanitarianMap extends Component {
                 handleModalSubtitle={this.handleModalSubtitle}
                 showSubtitle={showSubtitle}
                 selectedItem={selectedMenuItem}
+                listSolidarity={bairros.features}
               />
               <div ref={el => this.mapContainer = el} className="mapContainer" />
             </>
