@@ -253,7 +253,7 @@ a:hover {
 }
 
 .solidariedade-popup div {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .mapboxgl-popup-content div {
@@ -263,7 +263,7 @@ a:hover {
 
 .solidariedade-popup button {
   width: 100%;
-  padding: 0.45rem 0 0.65rem 0;
+  padding: 0.45rem 0 0.55rem 0;
   border: 0;
   color: #fff;
   background: #F0184F;
@@ -288,20 +288,6 @@ a:hover {
   font: 600 1.5rem 'Barlow', sans-serif;
 }
 
-/* #renda-color,
-#densidade-color {
-  margin-top: .45rem;
-  margin-bottom: .15rem;
-} */
-
-/* #renda-color {
-  color: #F05123;
-} */
-/* 
-#densidade-color {
-  color: #6929CA;
-} */
-
 #covid-color {
   color: #41A95C;
 }
@@ -318,14 +304,6 @@ a:hover {
   color: #F0184F;
 }
 
-/* #ong-delivered-color {
-  color: #4DA9FF;
-} */
-
-/* #ong-demand-color{
-  color: #8FC9FF;
-} */
-
 .mapboxgl-popup-content small {
   font-size: .7rem;
   color: #343434;
@@ -338,7 +316,6 @@ a:hover {
   right: 0;
   width: 280px;
   min-height: auto;
-  /* height: 80%; */
   max-height: calc(100% - 75px);
   border-radius: 5px 5px 0px 0px;
   background: #F7F7F7;
@@ -346,19 +323,11 @@ a:hover {
   z-index: 3;
   cursor: pointer;
   overflow: hidden;
-  /* overflow-y: scroll; */
-}
-
-@media(max-width: 1025px) {
-  .modal {
-    /* height: 80%; */
-  }
 }
 
 @media(max-width: 975px) {
   .modal {
     bottom: 60px;
-    /* height: 80%; */
   }
 }
 
