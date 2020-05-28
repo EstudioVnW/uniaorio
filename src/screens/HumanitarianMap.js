@@ -21,6 +21,7 @@ class HumanitarianMap extends Component {
       zoom: 5,
       selectedMenuItem: '',
       showSubtitle: false,
+      bairros: {features: []}
     };
 
     this.map = undefined;
@@ -471,9 +472,9 @@ class HumanitarianMap extends Component {
   )
 
   render() {
-    const { isLoading, showSubtitle } = this.state;
+    const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
-    
+
     return (
       <div id="map" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()
@@ -485,6 +486,7 @@ class HumanitarianMap extends Component {
                 handleModalSubtitle={this.handleModalSubtitle}
                 showSubtitle={showSubtitle}
                 selectedItem={selectedMenuItem}
+                listSolidarity={bairros.features}
               />
               <div ref={el => this.mapContainer = el} className="mapContainer" />
             </>
