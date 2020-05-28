@@ -598,6 +598,12 @@ a:hover {
   width: 5%;
 }
 
+@media(max-width: 425px) {
+  .imgLoading {
+    width: 15%;;
+  }
+}
+
 .painel {
   padding: 10rem;
   width: 100%;

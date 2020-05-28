@@ -96,15 +96,36 @@ class Modal extends Component {
     )
   }
 
+  setBackground = (renda) => {
+    if(renda === 0 || renda === 1 || renda === 2 ) {
+      return '#FCA216'
+    }
+    if(renda === 3 || renda === 4){
+      return '#FCC25A'
+    }
+    if(renda === 5 || renda === 6){
+      return '#FCD276'
+    }
+    if(renda === 7 || renda === 8){
+      return '#C9E2C2'
+    }
+    else {
+      return '#A5BDD4'
+    }
+  }
+
   renderContentDemandList = () => {
     return this.props.listSolidarity.map(item => {
+      const {renda_per_capita, district, delivered_amount, demands} = item.properties
+      const roundingNumber = parseInt(renda_per_capita)
+
       return (
         <div className='container-demand'>
-          <span className='content-bar'></span>
+          <span className='content-bar' style={{background: this.setBackground(roundingNumber)}}></span>
           <ul>
-            <li className='content-title name-neighborhood'>{item.properties.district}</li>
-            <li>Entrega:<span className='content-delivered'>{item.properties.delivered_amount}</span></li>
-            <li>Demanda:<span className='content-demands'>{item.properties.demands}</span></li>
+            <li className='content-title name-neighborhood'>{district}</li>
+            <li>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
+            <li>Demanda:<span className='content-demands'>{demands}</span></li>
             {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
           </ul>
         </div>
