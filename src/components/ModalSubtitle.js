@@ -80,38 +80,29 @@ class Modal extends Component {
   )
 
   renderContentDemand = () => {
-    const widthMob = (window.matchMedia('(max-width:  1025px)').matches);
+    const widthMob = (window.matchMedia('(max-width:  768px)').matches);
 
     return (
-      <div className='box boxModal'>
+      <div>
         <h2 className='content-title'>Demanda geral por bairro</h2>
         <p className='content-subtitle'>A barra a esquerda indica a condição
           {widthMob
-            ? <span onClick={this.handleHover} className='content-subtitle-button'> sócio-econômica</span>
-            : <span className='content-subtitle-button' onMouseEnter={this.handleHover}  onMouseLeave={this.handleHover}> sócio-econômica</span>}
-           de cada bairro
+            ? <span onClick={this.handleHover} className='content-subtitle-button'> sócio-econômica </span>
+            : <span className='content-subtitle-button' onMouseEnter={this.handleHover}  onMouseLeave={this.handleHover}> sócio-econômica </span>}
+          de cada bairro
         </p>
-       
-        {this.renderModalSocioEconomic()}
+        <div className='boxModal'>
+          {this.renderModalSocioEconomic()}
+        </div>
         {this.renderContentDemandList()}
-        {/* <div className='content-numbers content-demand'>
-          <span className='content-bar'></span>
-          <ul>
-            <li className='content-title name-neighborhood'>Campo Grande</li>
-            <li>Entrega: 989</li>
-            <li>Demanda: 1.236</li>
-            <li>Percentual entregue: 80%</li>
-          </ul>
-        </div> */}
       </div>
     )
   }
 
   renderContentDemandList = () => {
-    console.log('this.props.listSolidarity', this.props.listSolidarity)
     return this.props.listSolidarity.map(item => {
       return (
-        <div className='content-numbers content-demand'>
+        <div className='container-demand'>
           <span className='content-bar'></span>
           <ul>
             <li className='content-title name-neighborhood'>{item.properties.district}</li>
@@ -192,9 +183,11 @@ class Modal extends Component {
   
   render() {
     const setDisplay = this.props.showSubtitle ? 'none' : 'flex';
+    const setHeight = this.props.showSubtitle ? 'auto' : '80%';
+
     
     return (
-      <div className='modal'>
+      <div className='modal' style={{height: `${setHeight}`}}>
         <div className='modal-header' onClick={this.props.handleModalSubtitle}>LEGENDA
           {this.props.showSubtitle ? <span></span> : <p>+</p>}
         </div>
