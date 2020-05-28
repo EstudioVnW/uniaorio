@@ -242,7 +242,7 @@ class Menu extends Component {
       const currentItem = this.props.selectedMenuItem.title === item.title;
       const setColor = currentItem ? item.color : '#595959';
       const setFont = currentItem ? '600' : '200';
-      const setDisplay = currentItem ? 'flex' : 'none';
+      const setBackground = currentItem ? item.color : '#fff';
       const setOpacity = this.props.selectedMenuItem ? 1 :  0.5;
 
       return (
@@ -252,7 +252,7 @@ class Menu extends Component {
           style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`, opacity: `${setOpacity}`}}>
           <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
           <p>{item.title}</p>
-          <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
+          <span className='line' style={{ 'background': `${setBackground}`, 'transition': 'all .25s ease-in-out' }}></span>
         </li>
       )}
     );

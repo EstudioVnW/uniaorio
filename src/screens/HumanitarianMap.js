@@ -34,8 +34,6 @@ class HumanitarianMap extends Component {
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
     const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
-    console.log('feature.district || feature.title', feature.district || feature.title)
-
     if (layer === 'Solidariedade') {
       return `
         <div class="solidariedade-popup">
@@ -475,7 +473,7 @@ class HumanitarianMap extends Component {
   render() {
     const { isLoading, showSubtitle } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
-
+    
     return (
       <div id="map" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()
