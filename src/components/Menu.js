@@ -105,14 +105,6 @@ class Menu extends Component {
         text: 'solid',
         layerName: 'Solidariedade'
       },
-      // {
-      //   image: filterIcon5,
-      //   selectedImage: filterSelectedIcon5,
-      //   title: "Parceiros",
-      //   color: '#4DA9FF',
-      //   text: 'ongs',
-      //   layerName: 'Parceiros',
-      // },
       {
         image: filterIcon4,
         selectedImage: filterSelectedIcon4,
@@ -218,8 +210,8 @@ class Menu extends Component {
         return this.renderDemographicDensity();
       case 'Demandas e Entregas':
         return this.renderDemandsandDeliveries();
-      // case "ONG's Parceiras":
-      // return console.log('ongs');
+      case "ONG's Parceiras":
+      return console.log('ongs');
       default:
         return null;
     }
@@ -250,7 +242,7 @@ class Menu extends Component {
       const currentItem = this.props.selectedMenuItem.title === item.title;
       const setColor = currentItem ? item.color : '#595959';
       const setFont = currentItem ? '600' : '200';
-      const setDisplay = currentItem ? 'flex' : 'none';
+      const setBackground = currentItem ? item.color : '#fff';
       const setOpacity = this.props.selectedMenuItem ? 1 :  0.5;
 
       return (
@@ -260,7 +252,7 @@ class Menu extends Component {
           style={{ 'color': `${setColor}`, 'fontWeight': `${setFont}`, opacity: `${setOpacity}`}}>
           <img src={currentItem ? item.selectedImage : item.image} alt='Icone'/>
           <p>{item.title}</p>
-          <span className='line' style={{ 'display': `${setDisplay}`, 'background': `${setColor}` }}></span>
+          <span className='line' style={{ 'background': `${setBackground}`, 'transition': 'all .25s ease-in-out' }}></span>
         </li>
       )}
     );
@@ -274,7 +266,7 @@ class Menu extends Component {
               <img src={Logo} alt="logo"/>
             </NavLink>
             <div>
-              <p>Última atualização</p>
+              <p>Última atualização - Em testes</p>
               <p className="text-red">17:00 - 19.05.20</p>
             </div>
           </div>

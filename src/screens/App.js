@@ -8,6 +8,9 @@ import painel from '../assets/painel.svg';
 import menu from '../assets/menu.png';
 import painel2 from '../assets/painel2.svg';
 
+
+import Subtitle from '../components/ModalSubtitle';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +37,8 @@ class App extends Component {
   }
 
   renderMap = () => {
-    const setDisplay = this.state.selectedMenuItem.text !== 'painel' ? 'flex' : 'none';
-
     return (
       <HumanitarianMap
-        setDisplay={setDisplay}
         handleMenuItem={this.handleMenuItem}
         selectedMenuItem={this.state.selectedMenuItem}
       />
@@ -69,8 +69,17 @@ class App extends Component {
           selectMenuItem={this.handleMenuItem}
           selectedMenuItem={this.state.selectedMenuItem}
         />
-        {this.renderMap()}
-        {this.renderPainel()}
+        {/* {this.renderMap()}*/}
+        {this.renderPainel()} 
+
+
+         {this.renderMap()}
+
+        {/* <Subtitle
+          handleModalSubtitle={this.handleModalSubtitle}
+          // showSubtitle={this.state.showSubtitle}
+          // selectedItem={this.state.selectedMenuItem}
+        /> */}
       </div>
     );
   }
