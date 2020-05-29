@@ -65,17 +65,19 @@ class Modal extends Component {
 
   handleSolidarity = () => (
     <div className='box'>
-      <h2 className='content-title'>Cestas básicas</h2>
+      <h2 className='content-title'>Solidariedade</h2>
       <div className='content-numbers'>
         <ul>
           <li><span className='solid-1'>%</span>Percentual entregue</li>
-          <li><span className='solid-2'></span>Demanda</li>
           <li><span className='solid-3'></span>Entrega</li>
+          <li><span className='solid-2'></span>Demanda</li>
         </ul>
       </div>
       {this.renderContentDemand()}
     </div>
   )
+
+
 
   renderContentDemand = () => {
     const widthMob = (window.matchMedia('(max-width:  768px)').matches);
@@ -97,6 +99,34 @@ class Modal extends Component {
     )
   }
 
+  renderModalSocioEconomic = () => (
+    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
+      <div className='modal-socio-economic-arrow'> </div>
+      <div className='socio socio-float'>
+        {this.renderSocioEconomicDatas()}
+      </div>
+    </div>
+  )
+
+  renderContentDemandList = () => {
+    return this.props.listSolidarity.map(item => {
+      const {renda_per_capita, district, delivered_amount, demands} = item.properties
+      const roundingNumber = parseInt(renda_per_capita)
+
+      return (
+        <div className='container-demand'>
+          <span className='content-bar' style={{background: this.setBackground(roundingNumber)}}></span>
+          <ul>
+            <li className='content-title name-neighborhood'>{district}</li>
+            <li>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
+            <li>Demanda:<span className='content-demands'>{demands}</span></li>
+            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
+          </ul>
+        </div>
+      );
+    })
+  }
+
   setBackground = (renda) => {
     if(renda === 0) {
       return '#d10000';
@@ -116,25 +146,6 @@ class Modal extends Component {
     else {
       return '#A5BDD4';
     }
-  }
-
-  renderContentDemandList = () => {
-    return this.props.listSolidarity.map(item => {
-      const {renda_per_capita, district, delivered_amount, demands} = item.properties
-      const roundingNumber = parseInt(renda_per_capita)
-
-      return (
-        <div className='container-demand'>
-          <span className='content-bar' style={{background: this.setBackground(roundingNumber)}}></span>
-          <ul>
-            <li className='content-title name-neighborhood'>{district}</li>
-            <li>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
-            <li>Demanda:<span className='content-demands'>{demands}</span></li>
-            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
-          </ul>
-        </div>
-      );
-    })
   }
 
   handleCovid = () => (
@@ -172,7 +183,6 @@ class Modal extends Component {
             </li>
           </ul>
         )}
-       {this.renderSocioEconomic()}
       </div>
     );
   }
@@ -189,30 +199,10 @@ class Modal extends Component {
         return null;
     }
   }
-
-  renderModalSocioEconomic = () => (
-    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
-      <div className='modal-socio-economic-arrow'> </div>
-      <div className='socio socio-float'>
-        <h2 className='content-title'>Socio-econômico</h2>
-        <div className='content-numbers'>
-          <div className="ibge-degrade"></div>
-          <ul>
-            <li>Abaixo de R$1.000,00</li>
-            <li>R$1.000,00 - R$2.000,00</li>
-            <li>R$3.000,00 - R$4.000,00</li>
-            <li>R$5.000,00 - R$6.000,00</li>
-            <li>R$7.000,00 - R$8.000,00</li>
-            <li>Acima de R$10.000,00</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
   
   render() {
     const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
-    const setDisplay = showSubtitle ? 'flex' : 'none';
+    const setDisplay = !showSubtitle ? 'flex' : 'none';
 
     return (
       <div className='modal'>
