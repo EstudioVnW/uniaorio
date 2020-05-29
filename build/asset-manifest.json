@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/uniaorio/static/css/main.1aaf7a25.chunk.css",
-    "main.js": "/uniaorio/static/js/main.266bb58b.chunk.js",
-    "main.js.map": "/uniaorio/static/js/main.266bb58b.chunk.js.map",
+    "main.css": "/uniaorio/static/css/main.6e6f0688.chunk.css",
+    "main.js": "/uniaorio/static/js/main.368874b9.chunk.js",
+    "main.js.map": "/uniaorio/static/js/main.368874b9.chunk.js.map",
     "runtime-main.js": "/uniaorio/static/js/runtime-main.cb743201.js",
     "runtime-main.js.map": "/uniaorio/static/js/runtime-main.cb743201.js.map",
-    "static/js/2.6f2ccb2e.chunk.js": "/uniaorio/static/js/2.6f2ccb2e.chunk.js",
-    "static/js/2.6f2ccb2e.chunk.js.map": "/uniaorio/static/js/2.6f2ccb2e.chunk.js.map",
+    "static/js/2.44d7559f.chunk.js": "/uniaorio/static/js/2.44d7559f.chunk.js",
+    "static/js/2.44d7559f.chunk.js.map": "/uniaorio/static/js/2.44d7559f.chunk.js.map",
     "index.html": "/uniaorio/index.html",
-    "precache-manifest.21c320131e0941a660c256d9b448ded5.js": "/uniaorio/precache-manifest.21c320131e0941a660c256d9b448ded5.js",
+    "precache-manifest.f0e6e3ea28d43ef5631396e79612228c.js": "/uniaorio/precache-manifest.f0e6e3ea28d43ef5631396e79612228c.js",
     "service-worker.js": "/uniaorio/service-worker.js",
-    "static/css/main.1aaf7a25.chunk.css.map": "/uniaorio/static/css/main.1aaf7a25.chunk.css.map",
-    "static/js/2.6f2ccb2e.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.6f2ccb2e.chunk.js.LICENSE.txt",
+    "static/css/main.6e6f0688.chunk.css.map": "/uniaorio/static/css/main.6e6f0688.chunk.css.map",
+    "static/js/2.44d7559f.chunk.js.LICENSE.txt": "/uniaorio/static/js/2.44d7559f.chunk.js.LICENSE.txt",
     "static/media/check.svg": "/uniaorio/static/media/check.32d24ad4.svg",
     "static/media/densDiagonal.svg": "/uniaorio/static/media/densDiagonal.22c16143.svg",
     "static/media/densHorizontal.svg": "/uniaorio/static/media/densHorizontal.23396a5d.svg",
@@ -29,12 +29,13 @@
     "static/media/index.css": "/uniaorio/static/media/second-dens.e1b0ade8.svg",
     "static/media/menu.png": "/uniaorio/static/media/menu.3a4e897c.png",
     "static/media/painel.svg": "/uniaorio/static/media/painel.6e1bce9b.svg",
-    "static/media/painel2.svg": "/uniaorio/static/media/painel2.e48b3922.svg"
+    "static/media/painel2.svg": "/uniaorio/static/media/painel2.e48b3922.svg",
+    "static/media/vnw.svg": "/uniaorio/static/media/vnw.a93706a9.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cb743201.js",
-    "static/js/2.6f2ccb2e.chunk.js",
-    "static/css/main.1aaf7a25.chunk.css",
-    "static/js/main.266bb58b.chunk.js"
+    "static/js/2.44d7559f.chunk.js",
+    "static/css/main.6e6f0688.chunk.css",
+    "static/js/main.368874b9.chunk.js"
   ]
 }

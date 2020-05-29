@@ -77,8 +77,6 @@ class Modal extends Component {
     </div>
   )
 
-
-
   renderContentDemand = () => {
     const widthMob = (window.matchMedia('(max-width:  768px)').matches);
 
