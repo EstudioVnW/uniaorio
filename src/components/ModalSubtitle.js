@@ -172,7 +172,7 @@ class Modal extends Component {
           <ul className="ong-list">
             <li key={ong.properties.title}>
               <h3>{ong.properties.title}</h3>
-              <p>{ong.properties.address}</p>
+              <p>{ong.properties.address !== '0' ? ong.properties.address : null}</p>
             </li>
           </ul>
         )}
