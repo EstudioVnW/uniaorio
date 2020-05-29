@@ -6,6 +6,7 @@ import mapboxgl from 'mapbox-gl';
 import Subtitle from '../components/ModalSubtitle';
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
+import vnw from '../assets/vnw.svg';
 import { getIndexes } from '../api';
 import Loading from '../assets/loading.svg';
 
@@ -29,11 +30,12 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    const district = `${feature.district || feature.title}`;
+    console.log('feature', feature)
+    const district = `${feature.district}`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
-    const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
+    const delivered = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
     if (layer === 'Solidariedade') {
       return `
@@ -41,7 +43,7 @@ class HumanitarianMap extends Component {
           <h2>${district}</h2>
           <div>
             <span>${demand}<small>Demanda</small></span>
-            <span>${entregaSolid}<small>Entrega</small></span>
+            <span>${delivered}<small>Entrega</small></span>
             <button item='${district}'>Pontos de doação</button>
           </div>
         </div>
@@ -94,7 +96,7 @@ class HumanitarianMap extends Component {
           const currentDistrict = ev.target.getAttribute("item");
           this.setState({
             currentDistrict,
-            showSubtitle: true,
+            showSubtitle: false,
           })
         })
 
@@ -408,7 +410,7 @@ class HumanitarianMap extends Component {
               ]
             ],
             "",
-            5,
+            1,
             "25 (1)",
             50,
             "50",
@@ -444,6 +446,9 @@ class HumanitarianMap extends Component {
         },
       });
 
+      // console.log('layer', this.map.getStyle().layers)
+      // console.log('source', this.map.getSource('bairros'))
+
       this.props.handleMenuItem({
         image: filterIcon3,
         selectedImage: filterSelectedIcon3,
@@ -472,6 +477,7 @@ class HumanitarianMap extends Component {
   )
 
   render() {
+    console.log(this.state.ongs)
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
 
@@ -488,6 +494,12 @@ class HumanitarianMap extends Component {
                 selectedItem={selectedMenuItem}
                 listSolidarity={bairros.features}
               />
+              <footer>
+                <a rel="noopener noreferrer" target="_blank" href="https://www.vainaweb.com.br/" aria-label="VaiNaWeb logo">
+                  <p>Desenvolvido por</p>
+                  <img src={vnw} alt="vnw logo"/>
+                </a>
+              </footer>
               <div ref={el => this.mapContainer = el} className="mapContainer" />
             </>
           )}

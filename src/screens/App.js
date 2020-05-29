@@ -25,9 +25,11 @@ class App extends Component {
   }
 
   handleMenuItem = (item) => {
-    this.setState({
-      selectedMenuItem: item,
-    });
+    if (item.title !== 'Transparência') {
+      this.setState({
+        selectedMenuItem: item,
+      });
+    }
   }
 
   handleModalSubtitle = () => {
