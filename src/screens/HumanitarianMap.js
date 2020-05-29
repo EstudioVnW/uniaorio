@@ -474,7 +474,7 @@ class HumanitarianMap extends Component {
   render() {
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
-
+console.log('ong', this.state.ongs)
     return (
       <div id="map" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()

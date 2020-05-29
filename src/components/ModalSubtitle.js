@@ -5,11 +5,19 @@ class Modal extends Component {
   state = {
     isModal: true,
     isHover: false,
+    selectedOption: 'Bairros',
+    deliveryOption: ['Bairros', 'Doadores']
   };
 
   handleHover = () => {
     this.setState({
       isHover: !this.state.isHover,
+    })
+  }
+
+  handleSelecOptionClick = (option) => {
+    this.setState({
+      selectedOption: option,
     })
   }
 
@@ -28,6 +36,7 @@ class Modal extends Component {
       <div className='content-numbers'>
         <div className="ibge-degrade"></div>
         <ul>
+          <li>Abaixo de R$1.000,00</li>
           <li>R$1.000,00 - R$2.000,00</li>
           <li>R$3.000,00 - R$4.000,00</li>
           <li>R$5.000,00 - R$6.000,00</li>
@@ -64,17 +73,83 @@ class Modal extends Component {
 
   handleSolidarity = () => (
     <div className='box'>
-      <h2 className='content-title'>Cestas básicas</h2>
-      <div className='content-numbers'>
-        <ul>
-          <li><span className='solid-1'>%</span>Percentual entregue</li>
-          <li><span className='solid-2'></span>Demanda</li>
-          <li><span className='solid-3'></span>Entrega</li>
+      <div className='padding'>
+        <h2 className='content-title'>Solidariedade</h2>
+        <div className='content-numbers'>
+          <ul>
+            <li><span className='solid-1'>%</span>Percentual entregue</li>
+            <li><span className='solid-3'></span>Entrega</li>
+            <li><span className='solid-2'></span>Demanda</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <ul className="container-option">
+          {this.renderDeliveryOption()}
         </ul>
       </div>
-      {this.renderContentDemand()}
+      <div className="scroll">
+        {this.state.selectedOption === 'Bairros'
+          ? this.renderContentDemand()
+          : (
+            <>
+              <h2 className='content-title'>Doadores</h2>
+              {/* <input type='text' /> */}
+              {this.renderDonors()}
+            </>
+          )
+        }
+      </div>
     </div>
   )
+
+  renderDeliveryOption = () => {
+    const {deliveryOption, selectedOption} = this.state;
+
+    return deliveryOption.map(item => {
+      const setColor = selectedOption === item ? '#F0184F' : '#595959';
+      const setBackground = selectedOption === item ? '#F0184F' : '#f7f7f7';
+
+      return (
+        <li  key={item}>
+          <button
+            className='deliveryOptionButton'
+            style={{color: `${setColor}`}}
+            onClick={() => this.handleSelecOptionClick(item)}
+          >
+            {item}
+          </button>
+          <span className='line' style={{backgroundColor: `${setBackground}`}}></span>
+        </li>
+        )
+    })
+  }
+
+  renderDonors =  () => {
+    let listOng = [];
+    const validOngs = this.props.ongs.features.filter(doador => doador.properties.ID_Doadores != 0);
+    validOngs.forEach(item => !listOng.includes(item.properties.ID_Doadores) && listOng.push(item.properties.ID_Doadores))
+
+    const renderInfo = (name, type) => {
+      const list = this.props.ongs.features.filter(doador => doador.properties.ID_Doadores === name);
+      let count = 0;
+      list.forEach(item => count = item.properties[type] + count);
+      return count;
+    }
+
+    return listOng.map(item => {
+      return (
+        <div className='container-demand'>
+          <ul>
+            <li className='content-title content-name'>{item}</li>
+            <li className='text'>Entrega: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
+            <li className='text'>Organizações: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
+          </ul>
+        </div>
+      );
+    })
+  }
 
   renderContentDemand = () => {
     const widthMob = (window.matchMedia('(max-width:  768px)').matches);
@@ -96,24 +171,57 @@ class Modal extends Component {
     )
   }
 
+  renderModalSocioEconomic = () => (
+    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
+      <div className='modal-socio-economic-arrow'> </div>
+      <div className='socio socio-float'>
+        {this.renderSocioEconomicDatas()}
+      </div>
+    </div>
+  )
+
   renderContentDemandList = () => {
     return this.props.listSolidarity.map(item => {
+      const {renda_per_capita, district, delivered_amount, demands, perc_demand_deliv} = item.properties
+      const roundingNumber = parseInt(renda_per_capita)
+
       return (
         <div className='container-demand'>
-          <span className='content-bar'></span>
+          <span className='content-bar' style={{background: this.setBackground(roundingNumber)}}></span>
           <ul>
-            <li className='content-title name-neighborhood'>{item.properties.district}</li>
-            <li>Entrega:<span className='content-delivered'>{item.properties.delivered_amount}</span></li>
-            <li>Demanda:<span className='content-demands'>{item.properties.demands}</span></li>
-            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
+            <li className='content-title content-name'>{district}</li>
+            <li className='text'>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
+            <li className='text'>Demanda:<span className='content-demands'>{demands}</span></li>
+            <li>Percentual entregue:<span className='content-percent'>{parseInt(perc_demand_deliv)}%</span></li>
           </ul>
         </div>
       );
     })
   }
 
+  setBackground = (renda) => {
+    if(renda === 0) {
+      return '#d10000';
+    }
+    if(renda === 1 || renda === 2 ) {
+      return '#FCA216';
+    }
+    if(renda === 3 || renda === 4){
+      return '#FCC25A';
+    }
+    if(renda === 5 || renda === 6){
+      return '#FCD276';
+    }
+    if(renda === 7 || renda === 8){
+      return '#C9E2C2';
+    }
+    else {
+      return '#A5BDD4';
+    }
+  }
+
   handleCovid = () => (
-    <div className='box'>
+    <div className='box padding container-covid'>
       <h2 className='content-title'>Casos de COVID-19</h2>
       <div className='content-numbers'>
         <ul>
@@ -127,7 +235,7 @@ class Modal extends Component {
   )
 
   renderOngs = () => {
-    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict)
+    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict);
 
     return (
       <div className="ongs-container">
@@ -148,7 +256,6 @@ class Modal extends Component {
           </ul>
         )}
       </div>
-      //  {this.renderSocioEconomic()}
     );
   }
 
@@ -164,30 +271,11 @@ class Modal extends Component {
         return null;
     }
   }
-
-  renderModalSocioEconomic = () => (
-    <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
-      <div className='modal-socio-economic-arrow'> </div>
-      <div className='socio socio-float'>
-        <h2 className='content-title'>Socio-econômico</h2>
-        <div className='content-numbers'>
-          <div className="ibge-degrade"></div>
-          <ul>
-            <li>R$1.000,00 - R$2.000,00</li>
-            <li>R$3.000,00 - R$4.000,00</li>
-            <li>R$5.000,00 - R$6.000,00</li>
-            <li>R$7.000,00 - R$8.000,00</li>
-            <li>Acima de R$10.000,00</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
   
   render() {
     const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
     const setDisplay = showSubtitle ? 'flex' : 'none';
-
+    
     return (
       <div className='modal'>
         <div className='modal-header' onClick={handleModalSubtitle}>LEGENDA
@@ -196,7 +284,6 @@ class Modal extends Component {
         <div className='modal-content' style={{ 'display': `${setDisplay}` }}>
           {currentDistrict && this.renderOngs()}
           {!currentDistrict && this.renderContent()}
-          {!currentDistrict && this.renderSocioEconomic()}
         </div>
       </div>
     );

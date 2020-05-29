@@ -130,6 +130,10 @@ class Menu extends Component {
     isDemandsandDeliveries: false,
   };
 
+  handleClick = () => {
+
+  }
+
   handleIsMappingOpen = (item) => {
     this.setState({ 
       isSelectedButton: item,
@@ -211,7 +215,6 @@ class Menu extends Component {
       case 'Demandas e Entregas':
         return this.renderDemandsandDeliveries();
       case "ONG's Parceiras":
-      return console.log('ongs');
       default:
         return null;
     }
@@ -273,9 +276,9 @@ class Menu extends Component {
           <ul className="menu-filters">
             {this.renderMenuItem()}
           </ul>
-          <button>
+          <a href={'https://www.riocontracorona.org/'} target="_blank" className='donation-button'>
             Faça uma doação
-          </button>
+          </a>
           {/* <div className="container_menu-wrapper">
             {this.state.buttonList.map(({label, route}) => (
               <>
