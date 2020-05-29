@@ -28,12 +28,12 @@ class Modal extends Component {
       <div className='content-numbers'>
         <div className="ibge-degrade"></div>
         <ul>
-          <li className='li'>Abaixo de R$1.000,00</li>
-          <li>R$1.000,00 - R$2.000,00</li>
-          <li>R$3.000,00 - R$4.000,00</li>
-          <li>R$5.000,00 - R$6.000,00</li>
-          <li>R$7.000,00 - R$8.000,00</li>
-          <li>Acima de R$10.000,00</li>
+          <li>Abaixo de R$1.000,00</li>
+          <li>R$1.000,00 - R$2.999,99</li>
+          <li>R$3.000,00 - R$4.999,99</li>
+          <li>R$5.000,00 - R$6.999,99</li>
+          <li>R$7.000,00 - R$8.999,99</li>
+          <li>Acima de R$9.000,00</li>
         </ul>
       </div>
     </>
