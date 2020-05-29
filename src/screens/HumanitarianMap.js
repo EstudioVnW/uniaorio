@@ -30,7 +30,6 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    console.log('feature', feature)
     const district = `${feature.district}`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
@@ -94,6 +93,9 @@ class HumanitarianMap extends Component {
 
         ongButton.addEventListener('click', (ev) => {
           const currentDistrict = ev.target.getAttribute("item");
+
+          this.map.setFilter('Solidariedade', ['==', ['get', 'district'], currentDistrict]);
+
           this.setState({
             currentDistrict,
             showSubtitle: false,
@@ -101,6 +103,8 @@ class HumanitarianMap extends Component {
         })
 
         this.popup.on('close', () => {
+          this.map.setFilter('Solidariedade', null);
+
           this.setState({
             currentDistrict: '',
           });
@@ -477,7 +481,6 @@ class HumanitarianMap extends Component {
   )
 
   render() {
-    console.log(this.state.ongs)
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
 
