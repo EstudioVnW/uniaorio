@@ -171,9 +171,6 @@ class Modal extends Component {
             <li key={ong.properties.title}>
               <h3>{ong.properties.title}</h3>
               <p>{ong.properties.address !== '0' ? ong.properties.address : null}</p>
-              <p>doador: {ong.properties.ID_Doadores !== '0' ? ong.properties.ID_Doadores : null}</p>
-              <p>cidade: {ong.properties.city}</p>
-              <p>favela: {ong.properties.favela}</p>
             </li>
           </ul>
         )}
