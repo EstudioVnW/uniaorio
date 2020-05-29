@@ -480,11 +480,11 @@ class HumanitarianMap extends Component {
     </figure>
   )
 
-  handleDoador = doares => {
+  handleDoador = doadores => {
     this.map.setFilter('Solidariedade', [
       'in',
       ['get', 'district'],
-      ["literal", doares]
+      ["literal", doadores]
     ]);
   }
 
