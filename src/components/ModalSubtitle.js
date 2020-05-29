@@ -238,13 +238,13 @@ class Modal extends Component {
     const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict);
 
     return (
-      <div className="ongs-container">
+      <div className="ongs-container container-covid">
         <h2>Organizações sociais</h2>
         {ongs.length > 0 && ongs.map((ong) =>
           <ul className="ong-list">
             <li key={ong.properties.title}>
               <h3>{ong.properties.title}</h3>
-              <p>{ong.properties.address}</p>
+              <p>{ong.properties.address !== '0' ? ong.properties.address : null}</p>
             </li>
           </ul>
         )}

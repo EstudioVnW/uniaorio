@@ -20,22 +20,6 @@ import filterSelectedIcon6 from '../assets/filter-selected-icon-6.svg';
 
 class Menu extends Component {
   state = {
-    buttonList: [
-      {
-        label: "Mapeamento",
-        route: "/uniaorio"
-      },
-      {
-        label: "Estatísticas por Bairro",
-        route: "/uniaorio/statistics"
-      },      
-    ],
-    mappingList: [
-      "Sócio-Econômico",
-      "Densidade Demográfica",
-      "Demandas e Entregas",
-      "ONG's Parceiras"
-    ],
     averageIncome: [
       {
         text: 'Até R$1.254,00',
@@ -121,7 +105,7 @@ class Menu extends Component {
         text: 'painel',
       }
     ],
-    isMapping: false,
+    // isMapping: false,
     isSelectedButton: '',
     isSelectedCheck: ['Sócio-Econômico', 'Densidade Demográfica'],
     isSelected: '',
@@ -130,16 +114,12 @@ class Menu extends Component {
     isDemandsandDeliveries: false,
   };
 
-  handleClick = () => {
-
-  }
-
-  handleIsMappingOpen = (item) => {
-    this.setState({ 
-      isSelectedButton: item,
-      isMapping: !this.state.isMapping,
-    });
-  }
+  // handleIsMappingOpen = (item) => {
+  //   this.setState({ 
+  //     isSelectedButton: item,
+  //     isMapping: !this.state.isMapping,
+  //   });
+  // }
 
   handleSelected = (label) => {    
     this.setState({ isSelectedButton: label });
@@ -220,25 +200,6 @@ class Menu extends Component {
     }
   }
 
-  renderMapping = () => (
-    <div className="container_mapping">
-      {this.state.mappingList.map((item) => (
-        <>
-          <div key={item} className="container_mapping-item">
-            {/* <div
-              className="mapping_item-checkbox"
-              onClick={() => this.handleMappingCheck(item)}
-            >
-              {this.renderCheckIcon(item)}
-            </div> */}
-            <p className="mapping_item-text">{item}</p>
-          </div>
-          {this.renderDataItem(item)}
-        </>
-      ))}
-    </div>
-  )
-  
   renderMenuItem = () => {
     const { menuItems } = this.state;
     return menuItems.map(item => {
@@ -270,7 +231,7 @@ class Menu extends Component {
             </NavLink>
             <div>
               <p>Última atualização - Em testes</p>
-              <p className="text-red">17:00 - 19.05.20</p>
+              <p className="text-red">17:00 - 28.05.20</p>
             </div>
           </div>
           <ul className="menu-filters">
@@ -279,32 +240,6 @@ class Menu extends Component {
           <a href={'https://www.riocontracorona.org/'} target="_blank" className='donation-button'>
             Faça uma doação
           </a>
-          {/* <div className="container_menu-wrapper">
-            {this.state.buttonList.map(({label, route}) => (
-              <>
-                <NavLink
-                  key={label}
-                  className="container_menu-button"
-                  exact to={route}
-                  activeClassName="menu_button-active"
-                  style={{ 
-                    backgroundColor: this.state.isSelectedButton === label && '#CC2E00',
-                    justifyContent: label === 'Mapeamento' && 'space-between'
-                  }}
-                  onClick={label === 'Mapeamento'
-                    ? () => this.handleIsMappingOpen(label)
-                    : () => this.handleSelected(label)
-                  }
-                >
-                  {label}
-                  {label === 'Mapeamento' && this.state.isMapping === false ? (
-                    <img src={Dropdown} alt="dropdown" className="menu_drop" />
-                  ) : (label === 'Mapeamento' && <img src={DropdownUp} alt="dropUp" className="menu_drop" />)}
-                </NavLink>
-                {label === "Mapeamento" ? this.state.isMapping && this.renderMapping() : null}
-              </>
-            ))}
-          </div> */}
         </div>
       </nav>
     );
