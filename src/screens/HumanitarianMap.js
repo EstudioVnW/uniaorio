@@ -29,11 +29,12 @@ class HumanitarianMap extends Component {
   }
 
   choosePopup = (layer, feature) => {
-    const district = `${feature.district || feature.title}`;
+    console.log('feature', feature)
+    const district = `${feature.district}`;
     const casosConf = `<p id='covid-color_confirm'>${feature.confirmed_cases}</p>`;
     const mortes = `<p id='covid-color'>${feature.deaths}</p>`;
     const demand = `<p id='solidariedade-color2'>${feature.demands || 0}</p>`;
-    const entregaSolid = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
+    const delivered = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
     if (layer === 'Solidariedade') {
       return `
@@ -41,7 +42,7 @@ class HumanitarianMap extends Component {
           <h2>${district}</h2>
           <div>
             <span>${demand}<small>Demanda</small></span>
-            <span>${entregaSolid}<small>Entrega</small></span>
+            <span>${delivered}<small>Entrega</small></span>
             <button item='${district}'>Pontos de doação</button>
           </div>
         </div>
@@ -408,7 +409,7 @@ class HumanitarianMap extends Component {
               ]
             ],
             "",
-            5,
+            1,
             "25 (1)",
             50,
             "50",
@@ -443,6 +444,9 @@ class HumanitarianMap extends Component {
           "icon-opacity": 0.7
         },
       });
+
+      // console.log('layer', this.map.getStyle().layers)
+      // console.log('source', this.map.getSource('bairros'))
 
       this.props.handleMenuItem({
         image: filterIcon3,
