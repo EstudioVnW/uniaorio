@@ -5,7 +5,7 @@ class Modal extends Component {
   state = {
     isModal: true,
     isHover: false,
-    selectedOption: 'Doadores',
+    selectedOption: 'Bairros',
     deliveryOption: ['Bairros', 'Doadores']
   };
 
@@ -90,30 +90,36 @@ class Modal extends Component {
         </ul>
       </div>
       <div className="scroll">
-      {this.state.selectedOption === 'Bairros'
-            ? this.renderContentDemand()
-            : ( <>
-                <h2 className='content-title'>Doadores</h2>
-                {/* <input type='text' /> */}
-                {this.renderDonors()}
-                </>
-            )
-          }
-          
-      {/* {this.renderContentDemand()} */}
+        {this.state.selectedOption === 'Bairros'
+          ? this.renderContentDemand()
+          : (
+            <>
+              <h2 className='content-title'>Doadores</h2>
+              {/* <input type='text' /> */}
+              {this.renderDonors()}
+            </>
+          )
+        }
       </div>
     </div>
   )
 
   renderDeliveryOption = () => {
     const {deliveryOption, selectedOption} = this.state;
+
     return deliveryOption.map(item => {
-    const setColor = selectedOption === item ? '#F0184F' : '#595959';
-    const setBackground = selectedOption === item ? '#F0184F' : '#fff';
+      const setColor = selectedOption === item ? '#F0184F' : '#595959';
+      const setBackground = selectedOption === item ? '#F0184F' : '#f7f7f7';
 
       return (
         <li  key={item}>
-          <button className='deliveryOptionButton' style={{color: `${setColor}`}} onClick={() => this.handleSelecOptionClick(item)}>{item}</button>
+          <button
+            className='deliveryOptionButton'
+            style={{color: `${setColor}`}}
+            onClick={() => this.handleSelecOptionClick(item)}
+          >
+            {item}
+          </button>
           <span className='line' style={{backgroundColor: `${setBackground}`}}></span>
         </li>
         )
@@ -137,8 +143,8 @@ class Modal extends Component {
         <div className='container-demand'>
           <ul>
             <li className='content-title content-name'>{item}</li>
-            <li className='text'>Entrega: <span>{renderInfo(item, 'delivered_amount')}</span></li>
-            <li className='text'>Organizações: <span>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
+            <li className='text'>Entrega: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
+            <li className='text'>Organizações: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
           </ul>
         </div>
       );
@@ -175,8 +181,6 @@ class Modal extends Component {
   )
 
   renderContentDemandList = () => {
-    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict)
-
     return this.props.listSolidarity.map(item => {
       const {renda_per_capita, district, delivered_amount, demands, perc_demand_deliv} = item.properties
       const roundingNumber = parseInt(renda_per_capita)
@@ -217,7 +221,7 @@ class Modal extends Component {
   }
 
   handleCovid = () => (
-    <div className='box padding'>
+    <div className='box padding container-covid'>
       <h2 className='content-title'>Casos de COVID-19</h2>
       <div className='content-numbers'>
         <ul>
@@ -269,7 +273,7 @@ class Modal extends Component {
   }
   
   render() {
-    const { currentDistrict, handleModalSubtitle, showSubtitle, ongs} = this.props;
+    const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
     const setDisplay = showSubtitle ? 'flex' : 'none';
     
     return (

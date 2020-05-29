@@ -87,12 +87,14 @@ li {
 }
 
 .donation-button {
-  padding: 1rem 0;
-  width: 155px;
+  padding: .7rem 0 0.9rem 0;
+  width: 185px;
   background: #FBB03B 0% 0% no-repeat padding-box;
   border-radius: 4px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: .9rem;
+  font-family: 'Barlow', sans-serif;
   border: 0;
 }
 
@@ -476,6 +478,10 @@ li {
   background-position: center;
 }
 
+.container-covid {
+  overflow-y: scroll;
+}
+
 .covid-1 {
   border-radius: 2px;
   background: #0ACF59;
@@ -766,13 +772,8 @@ li {
   background-color: purple;
 }
 
-
-
-
-
 .padding {
   padding: 1rem;
-  /* height: auto; */
 }
 
 .scroll {
@@ -802,5 +803,9 @@ li {
   margin-top: 0;
   font: 500 .625rem 'Barlow', sans-serif;
   color: #000000;
+}
+
+.text-data {
+  color: #F0184F;
 }
 
