@@ -69,8 +69,11 @@ class App extends Component {
           selectMenuItem={this.handleMenuItem}
           selectedMenuItem={this.state.selectedMenuItem}
         />
+        {/* {this.renderMap()}*/}
         {this.renderPainel()} 
-        {this.renderMap()}
+
+
+         {this.renderMap()}
 
         {/* <Subtitle
           handleModalSubtitle={this.handleModalSubtitle}
