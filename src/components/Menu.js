@@ -237,9 +237,9 @@ class Menu extends Component {
           <ul className="menu-filters">
             {this.renderMenuItem()}
           </ul>
-          <button>
+          <a href={'https://www.riocontracorona.org/'} target="_blank" className='donation-button'>
             Faça uma doação
-          </button>
+          </a>
         </div>
       </nav>
     );

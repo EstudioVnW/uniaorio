@@ -44,7 +44,9 @@ a:active,
 a:hover {
   color: #F05123;
 }
-
+li {
+  list-style: none;
+}
 ::selection {
   background: #F05123;
   color: #fff;
@@ -71,6 +73,7 @@ a:hover {
   justify-content: space-between;
 }
 
+
 @media(max-width: 1025px) {
   .menu-container {
     width: 95%;
@@ -79,16 +82,19 @@ a:hover {
   }
 }
 
-.menu-container button {
-  width: 155px;
-  height: 38px;
+.menu-container a {
+  color: #000000;
+}
+
+.donation-button {
+  padding: .7rem 0 0.9rem 0;
+  width: 185px;
   background: #FBB03B 0% 0% no-repeat padding-box;
   border-radius: 4px;
-  line-height: 1rem;
   text-align: center;
-  font-weight: 700;
-  letter-spacing: 0px;
-  color: #000000;
+  font-weight: 600;
+  font-size: .9rem;
+  font-family: 'Barlow', sans-serif;
   border: 0;
 }
 
@@ -158,7 +164,7 @@ a:hover {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 4px;
+  height: 4.5px;
 }
 
 .menu-filters img {
@@ -342,9 +348,9 @@ a:hover {
 }
 
 .modal-content {
-  padding: 1rem;
+  /* padding: 1rem; */
   height: 70vh;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   flex-direction: column;
 }
 
@@ -468,6 +474,19 @@ a:hover {
   background-position: center;
 }
 
+.container-covid {
+  overflow-y: scroll;
+}
+
+.container-covid::-webkit-scrollbar {
+  width: 5px;
+}
+
+.container-covid::-webkit-scrollbar-thumb {
+  background: #cecece85; 
+  border-radius: 10px;
+}
+
 .covid-1 {
   border-radius: 2px;
   background: #0ACF59;
@@ -513,7 +532,6 @@ a:hover {
 
 .content-bar {
   width: 10px;
-  margin-right: 1.313rem;
   border-radius: 7px 0 0 7px;
   background: #F0184F;
 }
@@ -530,20 +548,22 @@ a:hover {
 
 .container-demand ul {
   padding: .56rem 0;
+  margin-left: 1.313rem;
+
 }
 
 .container-demand li {
-  margin-bottom: 3px;
   display: flex;
   align-items: center;
   width: 100%;
   list-style: none;
-  height: 21px;
+  /* height: 21px; */
+  margin: 2px 0;
   font-size: .8rem;
   font-family: 'Barlow', sans-serif;
 }
 
-.name-neighborhood {
+.content-name {
   font-size: 0.625rem;
 }
 
@@ -718,6 +738,80 @@ a:hover {
   .modal-socio-economic-arrow {
     display: none;
   }
+}
+
+
+.container-option {
+  display: flex;
+  box-shadow: 0px 6px 6px -2px #00000029;
+  font-size: .625rem;
+  font-family: 'Barlow', sans-serif;
+  position: relative;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.container-option li {
+  flex: 1;
+  font-size: .625rem;
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+}
+
+.deliveryOptionButton {
+  margin: 0 0 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  flex: 1;
+  text-align: center;
+}
+
+.bairro {
+  background-color: red;
+}
+
+.doadores {
+  background-color: purple;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.scroll {
+  min-height: 40vh;
+  height: 55vh;
+  max-height: 60vh;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #cecece85; 
+  border-radius: 10px;
+}
+
+.content-demand {
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  background-color: #FFF;
+}
+
+.text {
+  margin-top: 0;
+  font: 500 .625rem 'Barlow', sans-serif;
+  color: #000000;
+}
+
+.text-data {
+  color: #F0184F;
 }
 
 footer {

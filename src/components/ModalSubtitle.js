@@ -5,11 +5,19 @@ class Modal extends Component {
   state = {
     isModal: true,
     isHover: false,
+    selectedOption: 'Bairros',
+    deliveryOption: ['Bairros', 'Doadores']
   };
 
   handleHover = () => {
     this.setState({
       isHover: !this.state.isHover,
+    })
+  }
+
+  handleSelecOptionClick = (option) => {
+    this.setState({
+      selectedOption: option,
     })
   }
 
@@ -65,17 +73,83 @@ class Modal extends Component {
 
   handleSolidarity = () => (
     <div className='box'>
-      <h2 className='content-title'>Solidariedade</h2>
-      <div className='content-numbers'>
-        <ul>
-          <li><span className='solid-1'>%</span>Percentual entregue</li>
-          <li><span className='solid-3'></span>Entrega</li>
-          <li><span className='solid-2'></span>Demanda</li>
+      <div className='padding'>
+        <h2 className='content-title'>Solidariedade</h2>
+        <div className='content-numbers'>
+          <ul>
+            <li><span className='solid-1'>%</span>Percentual entregue</li>
+            <li><span className='solid-3'></span>Entrega</li>
+            <li><span className='solid-2'></span>Demanda</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <ul className="container-option">
+          {this.renderDeliveryOption()}
         </ul>
       </div>
-      {this.renderContentDemand()}
+      <div className="scroll">
+        {this.state.selectedOption === 'Bairros'
+          ? this.renderContentDemand()
+          : (
+            <>
+              <h2 className='content-title'>Doadores</h2>
+              {/* <input type='text' /> */}
+              {this.renderDonors()}
+            </>
+          )
+        }
+      </div>
     </div>
   )
+
+  renderDeliveryOption = () => {
+    const {deliveryOption, selectedOption} = this.state;
+
+    return deliveryOption.map(item => {
+      const setColor = selectedOption === item ? '#F0184F' : '#595959';
+      const setBackground = selectedOption === item ? '#F0184F' : '#f7f7f7';
+
+      return (
+        <li  key={item}>
+          <button
+            className='deliveryOptionButton'
+            style={{color: `${setColor}`}}
+            onClick={() => this.handleSelecOptionClick(item)}
+          >
+            {item}
+          </button>
+          <span className='line' style={{backgroundColor: `${setBackground}`}}></span>
+        </li>
+        )
+    })
+  }
+
+  renderDonors =  () => {
+    let listOng = [];
+    const validOngs = this.props.ongs.features.filter(doador => doador.properties.ID_Doadores != 0);
+    validOngs.forEach(item => !listOng.includes(item.properties.ID_Doadores) && listOng.push(item.properties.ID_Doadores))
+
+    const renderInfo = (name, type) => {
+      const list = this.props.ongs.features.filter(doador => doador.properties.ID_Doadores === name);
+      let count = 0;
+      list.forEach(item => count = item.properties[type] + count);
+      return count;
+    }
+
+    return listOng.map(item => {
+      return (
+        <div className='container-demand'>
+          <ul>
+            <li className='content-title content-name'>{item}</li>
+            <li className='text'>Entrega: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
+            <li className='text'>Organizações: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
+          </ul>
+        </div>
+      );
+    })
+  }
 
   renderContentDemand = () => {
     const widthMob = (window.matchMedia('(max-width:  768px)').matches);
@@ -108,17 +182,17 @@ class Modal extends Component {
 
   renderContentDemandList = () => {
     return this.props.listSolidarity.map(item => {
-      const {renda_per_capita, district, delivered_amount, demands} = item.properties
+      const {renda_per_capita, district, delivered_amount, demands, perc_demand_deliv} = item.properties
       const roundingNumber = parseInt(renda_per_capita)
 
       return (
         <div className='container-demand'>
           <span className='content-bar' style={{background: this.setBackground(roundingNumber)}}></span>
           <ul>
-            <li className='content-title name-neighborhood'>{district}</li>
-            <li>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
-            <li>Demanda:<span className='content-demands'>{demands}</span></li>
-            {/* <li>Percentual entregue:<span className='content-percent'>80%</span></li> */}
+            <li className='content-title content-name'>{district}</li>
+            <li className='text'>Entrega:<span className='content-delivered'>{delivered_amount}</span></li>
+            <li className='text'>Demanda:<span className='content-demands'>{demands}</span></li>
+            <li>Percentual entregue:<span className='content-percent'>{parseInt(perc_demand_deliv)}%</span></li>
           </ul>
         </div>
       );
@@ -147,7 +221,7 @@ class Modal extends Component {
   }
 
   handleCovid = () => (
-    <div className='box'>
+    <div className='box padding container-covid'>
       <h2 className='content-title'>Casos de COVID-19</h2>
       <div className='content-numbers'>
         <ul>
@@ -161,10 +235,10 @@ class Modal extends Component {
   )
 
   renderOngs = () => {
-    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict)
+    const ongs = this.props.ongs.features.filter(ongs => ongs.properties.district === this.props.currentDistrict);
 
     return (
-      <div className="ongs-container">
+      <div className="ongs-container container-covid">
         <h2>Organizações sociais</h2>
         {ongs.length > 0 && ongs.map((ong) =>
           <ul className="ong-list">
@@ -200,8 +274,8 @@ class Modal extends Component {
   
   render() {
     const { currentDistrict, handleModalSubtitle, showSubtitle} = this.props;
-    const setDisplay = !showSubtitle ? 'flex' : 'none';
-
+    const setDisplay = showSubtitle ? 'flex' : 'none';
+    
     return (
       <div className='modal'>
         <div className='modal-header' onClick={handleModalSubtitle}>LEGENDA
