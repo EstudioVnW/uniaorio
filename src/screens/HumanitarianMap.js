@@ -493,7 +493,7 @@ class HumanitarianMap extends Component {
     const { setDisplay, selectedMenuItem } = this.props;
 
     return (
-      <div id="map" style={{ 'display': setDisplay }}>
+      <div id="map" className="map-container" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()
           : (
             <>
