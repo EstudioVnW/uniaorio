@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6702a9147ef19a86db09e03a31b6147b",
+    "revision": "3b64db174fc0624c5a28383e8c2470d4",
     "url": "/uniaorio/index.html"
   },
   {
-    "revision": "fbfd8b8f85f309743fed",
-    "url": "/uniaorio/static/css/main.ef89c390.chunk.css"
+    "revision": "5c4d0719d2195cce50ab",
+    "url": "/uniaorio/static/css/main.a5df7703.chunk.css"
   },
   {
     "revision": "8be11f7c647f3175614c",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniaorio/static/js/2.44d7559f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fbfd8b8f85f309743fed",
+    "revision": "5c4d0719d2195cce50ab",
     "url": "/uniaorio/static/js/main.03acda5f.chunk.js"
   },
   {
