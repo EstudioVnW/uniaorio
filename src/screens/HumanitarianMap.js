@@ -98,7 +98,7 @@ class HumanitarianMap extends Component {
 
           this.setState({
             currentDistrict,
-            showSubtitle: false,
+            showSubtitle: true,
           })
         })
 
@@ -480,16 +480,25 @@ class HumanitarianMap extends Component {
     </figure>
   )
 
+  handleDoador = doadores => {
+    this.map.setFilter('Solidariedade', [
+      'in',
+      ['get', 'district'],
+      ["literal", doadores]
+    ]);
+  }
+
   render() {
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
-console.log('ong', this.state.ongs)
+
     return (
-      <div id="map" style={{ 'display': setDisplay }}>
+      <div id="map" className="map-container" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()
           : (
             <>
               <Subtitle
+                handleDoador={this.handleDoador}
                 ongs={this.state.ongs}
                 currentDistrict={this.state.currentDistrict}
                 handleModalSubtitle={this.handleModalSubtitle}

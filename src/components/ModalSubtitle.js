@@ -138,10 +138,16 @@ class Modal extends Component {
       return count;
     }
 
+    const chooseDoador = item => {
+      const list = this.props.ongs.features.filter(doador => doador.properties.ID_Doadores === item);
+      const district_list = list.map(item => item.properties.district);
+      this.props.handleDoador(district_list)
+    }
+
     return listOng.map(item => {
       return (
-        <div className='container-demand'>
-          <ul>
+        <div className='container-demand' onClick={() => chooseDoador(item)}>
+          <ul key={item}>
             <li className='content-title content-name'>{item}</li>
             <li className='text'>Entrega: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
             <li className='text'>Organizações: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
