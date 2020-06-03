@@ -92,11 +92,11 @@ li {
   padding: 0 0.55rem;
 }
 .menu-logo img {
-  width: 55px;
+  width: 45px;
 }
 
 .menu-filters {
-  width: 40%;
+  width: 20%;
   height: 60px;
   display: flex;
   align-items: center;
@@ -106,6 +106,7 @@ li {
 
 @media(max-width: 975px) {
   .menu-filters {
+    height: 10vh;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -121,7 +122,6 @@ li {
   display: flex;
   width: 100%;
   height: 100%;
-  margin: 0 0.25rem;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -212,6 +212,12 @@ li {
   overflow: hidden;
 }
 
+@media(max-width: 975px) {
+  .mapboxgl-popup-content {
+    width: 175px;
+  }
+}
+
 .solidariedade-popup,
 .covid-popup {
   display: flex;
@@ -221,17 +227,32 @@ li {
   min-height: 110px;
 }
 
-.solidariedade-popup {
-  min-height: 120px;
+@media(max-width: 975px) {
+  .solidariedade-popup,
+  .covid-popup {
+    min-height: 95px;
+  }
 }
 
-.solidariedade-popup div {
+/* .solidariedade-popup {
+  min-height: 120px;
+} */
+
+/* .solidariedade-popup div {
   margin-bottom: 1rem;
-}
+} */
 
 .mapboxgl-popup-content div {
   display: flex;
+  justify-content: center;
   padding: 0.45rem 0;
+}
+
+.mapboxgl-popup-content span {
+  padding: 0 0.45rem;
+  text-align: center;
+  font-size: .7rem;
+  color: #343434;
 }
 
 .solidariedade-popup button {
@@ -247,11 +268,6 @@ li {
   text-decoration: underline;
 }
 
-.mapboxgl-popup-content span {
-  padding: 0 0.45rem;
-  text-align: center;
-}
-
 .mapboxgl-popup-content h2 {
   font: 600 1rem 'Barlow', sans-serif;
   color: #343434;
@@ -259,6 +275,18 @@ li {
 
 .mapboxgl-popup-content p {
   font: 600 1.5rem 'Barlow', sans-serif;
+}
+
+@media(max-width: 975px) {
+  .mapboxgl-popup-content p {
+    font-size: 1.25rem;
+  }
+  .mapboxgl-popup-content small {
+    font-size: .65rem;
+  }
+  .mapboxgl-popup-content span {
+    padding: 0 0.25rem;
+  }
 }
 
 #covid-color {
@@ -275,11 +303,6 @@ li {
 
 #solidariedade-color {
   color: #F0184F;
-}
-
-.mapboxgl-popup-content small {
-  font-size: .7rem;
-  color: #343434;
 }
 
 /* LEGENDA */
@@ -366,10 +389,10 @@ li {
   padding-bottom: 0.25rem;
 }
 
-.socio {
+/* .socio {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
+} */
 
 .modal-content::-webkit-scrollbar {
   width: 5px;
@@ -578,7 +601,7 @@ li {
   line-height: 1.25rem;
 }
 
-.socio span {
+small {
   font-size: .7rem;
   color: #595959;
 }
