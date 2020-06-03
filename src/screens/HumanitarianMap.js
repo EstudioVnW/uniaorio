@@ -37,13 +37,22 @@ class HumanitarianMap extends Component {
     const delivered = `<p id='solidariedade-color'>${feature.delivered_amount || 0}</p>`;
 
     if (layer === 'Solidariedade') {
+      // return `
+      //   <div class="solidariedade-popup">
+      //     <h2>${district}</h2>
+      //     <div>
+      //       <span>${demand}<small>Demanda</small></span>
+      //       <span>${delivered}<small>Cestas-básicas</small></span>
+      //       <button item='${district}'>Pontos de entrega</button>
+      //     </div>
+      //   </div>
+      // `
       return `
         <div class="solidariedade-popup">
           <h2>${district}</h2>
           <div>
-            <span>${demand}<small>Demanda</small></span>
-            <span>${delivered}<small>Entrega</small></span>
-            <button item='${district}'>Pontos de doação</button>
+            <span>${demand}<small>Demandas</small></span>
+            <span>${delivered}<small>Cestas básicas</small></span>
           </div>
         </div>
       `
@@ -87,29 +96,29 @@ class HumanitarianMap extends Component {
         .setHTML(popupMarkup)
         .addTo(this.map);
 
-      if (layerName === 'Solidariedade') {
-        const popupElem = this.popup.getElement();
-        const ongButton = popupElem.getElementsByTagName("button")[0]
+      // if (layerName === 'Solidariedade') {
+      //   const popupElem = this.popup.getElement();
+      //   const ongButton = popupElem.getElementsByTagName("button")[0]
 
-        ongButton.addEventListener('click', (ev) => {
-          const currentDistrict = ev.target.getAttribute("item");
+      //   ongButton.addEventListener('click', (ev) => {
+      //     const currentDistrict = ev.target.getAttribute("item");
 
-          this.map.setFilter('Solidariedade', ['==', ['get', 'district'], currentDistrict]);
+      //     this.map.setFilter('Solidariedade', ['==', ['get', 'district'], currentDistrict]);
 
-          this.setState({
-            currentDistrict,
-            showSubtitle: true,
-          })
-        })
+      //     this.setState({
+      //       currentDistrict,
+      //       showSubtitle: true,
+      //     })
+      //   })
 
-        this.popup.on('close', () => {
-          this.map.setFilter('Solidariedade', null);
+      //   this.popup.on('close', () => {
+      //     this.map.setFilter('Solidariedade', null);
 
-          this.setState({
-            currentDistrict: '',
-          });
-        });
-      }
+      //     this.setState({
+      //       currentDistrict: '',
+      //     });
+      //   });
+      // }
     }
   }
 
@@ -393,6 +402,17 @@ class HumanitarianMap extends Component {
         }
       });
 
+      // "layout": {
+      //   "text-field": [
+      //     "case",
+      //     ["<", ["get", "perc_demand_deliv"], 100],
+      //     ["to-string", ["get", "perc_demand_deliv"]],
+      //     ""
+      //   ]
+      // },
+
+      
+
       // solidariedade
       this.map.addLayer({
         'id': 'Solidariedade',
@@ -404,15 +424,7 @@ class HumanitarianMap extends Component {
           "visibility": "visible",
           "icon-image": [
             "step",
-            ["round",
-              ["/",
-                ["*",
-                  100,
-                  ["get", "delivered_amount"]
-                ],
-                ["get", "demands"]
-              ]
-            ],
+            ["get", "perc_demand_deliv"],
             "",
             1,
             "25 (1)",
@@ -421,27 +433,23 @@ class HumanitarianMap extends Component {
             75,
             "75",
             100,
-            "100"
+            ""
           ],
           "text-field": [
             "step",
-            ["get", "delivered_amount"],
+            ["get", "perc_demand_deliv"],
             "",
             1,
             ["concat",
               ["to-string",
                 ["round",
-                  ["/",
-                    ["*",
-                      100,
-                      ["get", "delivered_amount"]
-                    ],
-                    ["get", "demands"]
-                  ]
+                  ["get", "perc_demand_deliv"]
                 ]
               ],
               '%'
-            ]
+            ],
+            100,
+            ""
           ]
         },
         "paint": {
@@ -491,7 +499,7 @@ class HumanitarianMap extends Component {
   render() {
     const { isLoading, showSubtitle, bairros } = this.state;
     const { setDisplay, selectedMenuItem } = this.props;
-
+    console.log('this.state', this.state.bairros)
     return (
       <div id="map" className="map-container" style={{ 'display': setDisplay }}>
         {isLoading ? this.renderLoading()

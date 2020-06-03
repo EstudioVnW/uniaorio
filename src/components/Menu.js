@@ -11,11 +11,9 @@ import densDiagonal from '../assets/densDiagonal.svg'
 
 import filterIcon3 from '../assets/filter-icon-3.svg';
 import filterIcon4 from '../assets/filter-icon-4.svg';
-import filterIcon5 from '../assets/filter-icon-5.svg';
 import filterIcon6 from '../assets/filter-icon-6.svg';
 import filterSelectedIcon3 from '../assets/filter-selected-icon-3.svg';
 import filterSelectedIcon4 from '../assets/filter-selected-icon-4.svg';
-import filterSelectedIcon5 from '../assets/filter-selected-icon-5.svg';
 import filterSelectedIcon6 from '../assets/filter-selected-icon-6.svg';
 
 class Menu extends Component {
@@ -97,13 +95,13 @@ class Menu extends Component {
         text: 'covid',
         layerName: 'Covid'
       },
-      {
-        image: filterIcon6,
-        selectedImage: filterSelectedIcon6,
-        title: 'Transparência',
-        color: '#FA9900',
-        text: 'painel',
-      }
+      // {
+      //   image: filterIcon6,
+      //   selectedImage: filterSelectedIcon6,
+      //   title: 'Transparência',
+      //   color: '#FA9900',
+      //   text: 'painel',
+      // }
     ],
     // isMapping: false,
     isSelectedButton: '',
@@ -113,13 +111,6 @@ class Menu extends Component {
     DemographicDensity: false,
     isDemandsandDeliveries: false,
   };
-
-  // handleIsMappingOpen = (item) => {
-  //   this.setState({ 
-  //     isSelectedButton: item,
-  //     isMapping: !this.state.isMapping,
-  //   });
-  // }
 
   handleSelected = (label) => {    
     this.setState({ isSelectedButton: label });
@@ -230,7 +221,7 @@ class Menu extends Component {
               <img src={Logo} alt="logo"/>
             </NavLink>
             <div>
-              <p>Última atualização - Em testes</p>
+              <p>Última atualização</p>
               <p className="text-red">18:39 - 28.05.20</p>
             </div>
           </div>

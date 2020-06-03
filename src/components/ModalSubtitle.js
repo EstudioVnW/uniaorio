@@ -6,7 +6,7 @@ class Modal extends Component {
     isModal: true,
     isHover: false,
     selectedOption: 'Bairros',
-    deliveryOption: ['Bairros', 'Doadores']
+    deliveryOption: ['Bairros', 'Parceiros']
   };
 
   handleHover = () => {
@@ -23,38 +23,25 @@ class Modal extends Component {
 
   renderSocioEconomic = () => {
     return (
-      <div className='socio'>
-        {this.renderSocioEconomicDatas()}
-        {this.renderSocioEconomicDescription()}
+      <div >
+        <div>
+          <h2 className='content-title'>Socio-econômico</h2>
+          <div className='content-numbers'>
+            <div className="ibge-degrade"></div>
+            <ul>
+              <li>Abaixo de R$1.000,00</li>
+              <li>R$1.000,00 - R$2.000,00</li>
+              <li>R$3.000,00 - R$4.000,00</li>
+              <li>R$5.000,00 - R$6.000,00</li>
+              <li>R$7.000,00 - R$8.000,00</li>
+              <li>Acima de R$10.000,00</li>
+            </ul>
+          </div>
+        </div>
+        <small>Fonte: CENSO-10, realizado pelo IBGE no ano de 2010.</small>
       </div>
     )
   }
-
-  renderSocioEconomicDatas = () => (
-    <>
-      <h2 className='content-title'>Socio-econômico</h2>
-      <div className='content-numbers'>
-        <div className="ibge-degrade"></div>
-        <ul>
-          <li>Abaixo de R$1.000,00</li>
-          <li>R$1.000,00 - R$2.000,00</li>
-          <li>R$3.000,00 - R$4.000,00</li>
-          <li>R$5.000,00 - R$6.000,00</li>
-          <li>R$7.000,00 - R$8.000,00</li>
-          <li>Acima de R$10.000,00</li>
-        </ul>
-      </div>
-    </>
-  )
-
-  renderSocioEconomicDescription = () => (
-    <>
-      <p>Os tons mais escuros correspondem aos de menor <strong>renda per-capita</strong>. Já os mais claros correspondem aos de maior renda. Assim podemos identificar quais regiões tem mais recursos para manter os seus habitantes em segurança.</p>
-      <p>Vale ressaltar que uma região com mais recursos tem acesso mais rápido aos serviços do estado e outras prestadoras privadas.</p>
-      <p>Esses dados foram retirados do CENSO-10, realizado pelo IBGE no ano de 2010.</p>
-      <span><strong>Renda per-capita</strong>: é o valor médio que cada pessoa da região recebe mensalmente.</span>
-    </>
-  )
 
   handleDemographicDensity = () => (
     <div className='box'>
@@ -77,8 +64,8 @@ class Modal extends Component {
         <h2 className='content-title'>Solidariedade</h2>
         <div className='content-numbers'>
           <ul>
-            <li><span className='solid-1'>%</span>Percentual entregue</li>
-            <li><span className='solid-3'></span>Entrega</li>
+            <li><span className='solid-1'>%</span>Percentual de entregas</li>
+            <li><span className='solid-3'></span>Cestas básicas</li>
             <li><span className='solid-2'></span>Demanda</li>
           </ul>
         </div>
@@ -94,7 +81,7 @@ class Modal extends Component {
           ? this.renderContentDemand()
           : (
             <>
-              <h2 className='content-title'>Doadores</h2>
+              <h2 className='content-title'>Parceiros</h2>
               {/* <input type='text' /> */}
               {this.renderDonors()}
             </>
@@ -148,9 +135,9 @@ class Modal extends Component {
       return (
         <div className='container-demand' onClick={() => chooseDoador(item)}>
           <ul key={item}>
-            <li className='content-title content-name'>{item}</li>
-            <li className='text'>Entrega: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
-            <li className='text'>Organizações: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
+            <li className='content-title content-name'>{item === 'Galo do Amanhã' ? 'Somos Rio' : item}</li>
+            <li className='text'>Cestas-básicas: <span className='text-data'>{renderInfo(item, 'delivered_amount')}</span></li>
+            <li className='text'>Pontos de entrega: <span className='text-data'>{renderInfo(item, 'qtd_doacoes_entregas')}</span></li>
           </ul>
         </div>
       );
@@ -181,7 +168,7 @@ class Modal extends Component {
     <div className='modal-socio-economic modal-socio-economic-float' style={{display: this.state.isHover ? 'flex' : 'none'}}>
       <div className='modal-socio-economic-arrow'> </div>
       <div className='socio socio-float'>
-        {this.renderSocioEconomicDatas()}
+        {this.renderSocioEconomic()}
       </div>
     </div>
   )
