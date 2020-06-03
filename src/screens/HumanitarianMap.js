@@ -402,17 +402,6 @@ class HumanitarianMap extends Component {
         }
       });
 
-      // "layout": {
-      //   "text-field": [
-      //     "case",
-      //     ["<", ["get", "perc_demand_deliv"], 100],
-      //     ["to-string", ["get", "perc_demand_deliv"]],
-      //     ""
-      //   ]
-      // },
-
-      
-
       // solidariedade
       this.map.addLayer({
         'id': 'Solidariedade',
